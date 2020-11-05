@@ -8,6 +8,8 @@ const authRoutes = require('./routes/authRoutes');
 
 const server = express();
 
+require('./config/passport/passport');
+
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
