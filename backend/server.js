@@ -4,12 +4,15 @@ require('colors');
 const express = require('express');
 const cors = require('cors');
 const db = require('./models');
+const authRoutes = require('./routes/authRoutes');
 
 const server = express();
 
 server.use(cors());
 server.use(express.json());
 server.use(express.urlencoded({extended: false}));
+
+server.use('/auth', authRoutes);
 
 db.sequelize
   .sync()

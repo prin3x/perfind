@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "<password>",
+    "password": "0847579813prince",
     "database": "perfind_database",
     "host": "127.0.0.1",
     "dialect": "mysql"
