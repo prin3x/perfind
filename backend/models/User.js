@@ -2,14 +2,16 @@ module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
     'User',
     {
+      facebook_id: {
+        type: DataTypes.STRING(255),
+        unique: true,
+      },
       username: {
         type: DataTypes.STRING(255),
         unique: true,
-        allowNull: false,
       },
       password: {
         type: DataTypes.STRING(255),
-        allowNull: false,
       },
       fname: {
         type: DataTypes.STRING(255),
@@ -22,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING(255),
-        allowNull: false,
       },
       phone_number: {
         type: DataTypes.STRING(255),

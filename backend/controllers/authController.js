@@ -57,7 +57,18 @@ const userLogin = async (req, res) => {
   }
 };
 
+const facebookLogin = async (req, res) => {
+  try {
+    console.log('IM HERE');
+    res.status(200).send('HELOO');
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({message: 'bad request'});
+  }
+};
+
 module.exports = {
   userRegister,
   userLogin,
+  facebookLogin,
 };

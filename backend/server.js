@@ -5,10 +5,15 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./models');
 const authRoutes = require('./routes/authRoutes');
+const passport = require('passport');
 
 const server = express();
 
 require('./config/passport/passport');
+require('./config/passport/passport-facebook');
+
+server.use(passport.initialize());
+server.use(passport.session());
 
 server.use(cors());
 server.use(express.json());
@@ -17,7 +22,7 @@ server.use(express.urlencoded({extended: false}));
 server.use('/auth', authRoutes);
 
 db.sequelize
-  .sync()
+  .sync({force: false})
   .then(() => {
     console.log(`DABATSE HAS BEEN SYNCING`.cyan.bold.underline);
   })
