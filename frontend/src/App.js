@@ -1,10 +1,11 @@
-import "./App.css";
-import Login from "./containers/pages/Login/Login";
+import './App.css';
+import Login, {Button} from './containers/pages/Login/Login';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Login></Login>
+      <Button>Login</Button>
     </div>
   );
 }
