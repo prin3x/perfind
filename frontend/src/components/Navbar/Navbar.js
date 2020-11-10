@@ -4,7 +4,7 @@ import {GiHamburgerMenu} from 'react-icons/gi';
 import {AiOutlineUser} from 'react-icons/ai';
 import {RiShoppingCartLine} from 'react-icons/ri';
 import {Input} from 'antd';
-import Logo from '../../assets/logo.svg';
+import Logo from '../../assets/logo-3.svg';
 const {Search} = Input;
 
 const HamContainer = styled.div`
@@ -70,13 +70,15 @@ const MiddleContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   top: 50%;
+  background: transparent;
+  padding: 1.25rem;
 `;
 
 const ImageContainer = styled.div`
-  background: url('assets/index/navbar-logo-01.png') center center no-repeat;
+  background: url('assets/index/logo-3-without-bg.png') center center no-repeat;
   background-size: contain;
   min-height: 2rem;
-  height: 7.5rem;
+  height: 5.25rem;
   width: 13rem;
 `;
 
@@ -101,6 +103,7 @@ const Menu = styled.div`
   top: 3rem;
   left: 0.25rem;
   background: radial-gradient(#b8956c, #e3d5b0);
+  opacity: 0.5;
   z-index: -1;
   transition: transform 0.8s ease-in;
   transform: scale(${props => props.scale});
@@ -119,7 +122,7 @@ const Navbar = () => {
       <Menu scale={show ? '250' : '0'} />
       <UpperNavbar></UpperNavbar>
       <MiddleContainer>
-        <img src={Logo} alt='' />
+        <ImageContainer />
       </MiddleContainer>
       <LowerNavbar>
         <LeftContainer>
