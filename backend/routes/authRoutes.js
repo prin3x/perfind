@@ -3,6 +3,7 @@ const passport = require('passport');
 const controller = require('../controllers/authController');
 
 passport.serializeUser(function (user, done) {
+  console.log('Hello this is serialize');
   done(null, user);
 });
 passport.deserializeUser(function (user, done) {
@@ -17,7 +18,6 @@ route.get(
   '/facebook/callback',
   passport.authenticate('facebookToken'),
   (req, res) => {
-    console.log({userOUTSIDE: req.user.user});
     res.status(200).send({message: 'login successfully'});
   }
 );
