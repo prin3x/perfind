@@ -41,17 +41,18 @@ const MainSection = styled.div`
 
 const InsideMainSection = styled.div`
   box-shadow: 1px 0 45px 0.41px #33302a;
-  width: 90vw;
+  max-width: 95rem;
   height: 100%;
   background: #fff;
   box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
 
   margin: 0 auto;
-  padding: 3rem;
+  padding: 5rem 7.5rem;
   border-radius: 1rem;
 `;
 
 const ContentWrapper = styled.div`
+  max-width: 80rem;
   width: 100%;
   height: 100%;
   display: flex;
@@ -73,9 +74,15 @@ const Title = styled.h1`
   font-family: Playfair;
   font-size: 3rem;
 `;
+const SubTitle = styled.span`
+  color: #b8956c;
+  font-family: Playfair;
+  font-size: 2rem;
+`;
 
 const Paragraph = styled.p`
   padding: 2rem 0;
+  font-size: 1.2rem;
 `;
 
 const LandingPage = () => {
@@ -87,8 +94,8 @@ const LandingPage = () => {
           <ContentWrapper>
             <Content>
               <Title>
-                Because Scent
-                <br /> Define Who You Are
+                <SubTitle>Because</SubTitle> Scent
+                <br /> Define<SubTitle> Who</SubTitle> You Are
               </Title>
               <Paragraph>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores

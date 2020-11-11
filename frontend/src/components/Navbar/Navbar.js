@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {GiHamburgerMenu} from 'react-icons/gi';
 import {AiOutlineUser} from 'react-icons/ai';
 import {RiShoppingCartLine} from 'react-icons/ri';
 import {Input} from 'antd';
-import Logo from '../../assets/logo-3.svg';
 const {Search} = Input;
 
 const HamContainer = styled.div`
@@ -56,6 +54,7 @@ const UpperNavbar = styled.div`
 const LowerNavbar = styled.div`
   min-height: 1.5rem;
   height: 3.5rem;
+  padding: 0.25rem 4rem;
   width: 100%;
   background: #fff;
   display: flex;
@@ -67,7 +66,7 @@ const MiddleContainer = styled.div`
   width: 13rem;
 
   position: absolute;
-  left: 50%;
+  left: 47.5%;
   transform: translate(-50%, -50%);
   top: 50%;
   background: transparent;
@@ -89,10 +88,11 @@ const LeftContainer = styled.div`
 `;
 
 const RightContainer = styled.div`
-  width: 20rem;
+  width: 25rem;
   padding-right: 1rem;
   padding-top: 0.25rem;
   display: flex;
+  margin-right: 6.5rem;
 `;
 
 const Menu = styled.div`
@@ -107,9 +107,41 @@ const Menu = styled.div`
   z-index: -1;
   transition: transform 0.8s ease-in;
   transform: scale(${props => props.scale});
+  display: ${props => props.display};
 `;
 
-const iconFontSize = {fontSize: '1.75rem', color: '#8a7d6b'};
+const DropdownContent = styled.div`
+  display: ${props => props.display};
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1rem;
+  z-index: 1;
+`;
+const IconWrapper = styled.div`
+  position: relative;
+  &:hover .dropdown-content {
+    display: block;
+  }
+`;
+
+const ListWrapper = styled.ul`
+  list-style: none;
+`;
+
+const List = styled.li`
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+`;
+
+const iconFontSize = {
+  fontSize: '2rem',
+  color: '#8a7d6b',
+  margin: '0 1rem',
+  cursor: 'pointer',
+};
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -140,7 +172,16 @@ const Navbar = () => {
             allowClear
           />
           <RiShoppingCartLine style={iconFontSize} />
-          <AiOutlineUser style={iconFontSize} />
+          <IconWrapper>
+            <AiOutlineUser style={iconFontSize} />
+            <DropdownContent display='none' className='dropdown-content'>
+              <ListWrapper>
+                <List>My Account</List>
+                <List>My Transactions</List>
+                <List>Logout</List>
+              </ListWrapper>
+            </DropdownContent>
+          </IconWrapper>
         </RightContainer>
       </LowerNavbar>
     </NavbarWrapper>
