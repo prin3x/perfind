@@ -84,15 +84,13 @@ const ImageContainer = styled.div`
 const LeftContainer = styled.div`
   width: 3rem;
   padding-left: 0.2rem;
-  padding-top: 0.25rem;
+  padding-top: 0.5rem;
 `;
 
 const RightContainer = styled.div`
   width: 25rem;
-  padding-right: 1rem;
-  padding-top: 0.25rem;
+  padding-top: 0.5rem;
   display: flex;
-  margin-right: 6.5rem;
 `;
 
 const Menu = styled.div`
@@ -128,6 +126,7 @@ const IconWrapper = styled.div`
 
 const ListWrapper = styled.ul`
   list-style: none;
+  position: relative;
 `;
 
 const List = styled.li`
@@ -136,10 +135,28 @@ const List = styled.li`
   font-size: 0.9rem;
 `;
 
+const MainNavWrapper = styled.ul`
+  position: fixed;
+  list-style: none;
+  left: 46%;
+  top: 25%;
+  display: ${props => props.display};
+  transform: translateX(${props => props.transform});
+  transition: all 0.75s ease-in;
+  text-align: center;
+`;
+
+const MainNav = styled.li`
+  padding: 2rem 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+`;
+
 const iconFontSize = {
-  fontSize: '2rem',
+  fontSize: '1.75rem',
   color: '#8a7d6b',
-  margin: '0 1rem',
+  margin: '0 1.25rem',
   cursor: 'pointer',
 };
 
@@ -164,6 +181,16 @@ const Navbar = () => {
             <div className={`bar3 ${show ? 'change' : ''}`}></div>
           </HamContainer>
         </LeftContainer>
+        <MainNavWrapper
+          className='main-nav-wrapper1234'
+          display={show ? 'block' : 'none'}
+          transform={show ? '0' : '70rem'}
+        >
+          <MainNav>Products</MainNav>
+          <MainNav>Brands</MainNav>
+          <MainNav>About</MainNav>
+          <MainNav>Contact</MainNav>
+        </MainNavWrapper>
         <RightContainer>
           <Search
             placeholder='input search text'
@@ -171,7 +198,9 @@ const Navbar = () => {
             style={{borderRadius: '10px'}}
             allowClear
           />
-          <RiShoppingCartLine style={iconFontSize} />
+          <IconWrapper>
+            <RiShoppingCartLine style={iconFontSize} />
+          </IconWrapper>
           <IconWrapper>
             <AiOutlineUser style={iconFontSize} />
             <DropdownContent display='none' className='dropdown-content'>

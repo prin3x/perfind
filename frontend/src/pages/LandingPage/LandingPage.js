@@ -41,7 +41,7 @@ const MainSection = styled.div`
 
 const InsideMainSection = styled.div`
   box-shadow: 1px 0 45px 0.41px #33302a;
-  max-width: 95rem;
+  max-width: 90rem;
   height: 100%;
   background: #fff;
   box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
@@ -72,7 +72,7 @@ const Content = styled.div`
 const Title = styled.h1`
   color: #b8956c;
   font-family: Playfair;
-  font-size: 3rem;
+  font-size: 4rem;
 `;
 const SubTitle = styled.span`
   color: #b8956c;
@@ -105,7 +105,7 @@ const LandingPage = () => {
                 Similique doloremque iure nesciunt quaerat sit sint perspiciatis
                 exercitationem. Sint, eligendi inventore?
               </Paragraph>
-              <Button type='primary' style={{width: '50%'}}>
+              <Button type='primary' style={{width: '15rem'}}>
                 DISCOVER YOUR PERFUME
               </Button>
             </Content>
@@ -142,7 +142,7 @@ const LandingPage = () => {
                 Similique doloremque iure nesciunt quaerat sit sint perspiciatis
                 exercitationem. Sint, eligendi inventore?
               </Paragraph>
-              <Button type='primary' style={{width: '50%'}}>
+              <Button type='primary' style={{width: '15rem'}}>
                 DISCOVER YOUR PERFUME
               </Button>
             </Content>
@@ -161,7 +161,7 @@ const LandingPage = () => {
                 Similique doloremque iure nesciunt quaerat sit sint perspiciatis
                 exercitationem. Sint, eligendi inventore?
               </Paragraph>
-              <Button type='primary' style={{width: '50%'}}>
+              <Button type='primary' style={{width: '15rem'}}>
                 DISCOVER YOUR PERFUME
               </Button>
             </Content>
