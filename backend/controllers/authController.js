@@ -2,10 +2,16 @@ const db = require('../models');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const userUpload = function (req, res) {
+  console.log('storage location is ', req.hostname + '/' + req.file.path);
+  return res.send(req.file);
+};
+
 const userRegister = async (req, res) => {
   try {
     const {username, password} = req.body;
     const targetUser = await db.User.findOne({where: {username}});
+    console.log(req.body);
 
     if (targetUser) {
       res.status(400).send({message: 'This username has been chosen'});

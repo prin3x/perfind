@@ -6,6 +6,7 @@ const cors = require('cors');
 const db = require('./models');
 const authRoutes = require('./routes/authRoutes');
 const passport = require('passport');
+const logger = require('morgan');
 
 const server = express();
 
@@ -16,7 +17,9 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 server.use(cors());
+server.use(logger('tiny'));
 server.use(express.json());
+server.use(express.static('public/images'));
 server.use(express.urlencoded({extended: false}));
 
 server.use('/auth', authRoutes);

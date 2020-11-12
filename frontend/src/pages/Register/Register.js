@@ -45,7 +45,7 @@ function Register(props) {
   const propsUpload = {
     name: 'img',
     multiple: false,
-    action: `${BASE_BACKEND_URL}/uploads/`,
+    action: `${BASE_BACKEND_URL}/auth/register`,
     onChange(info) {
       const {status} = info.file;
       if (status !== 'uploading') {
