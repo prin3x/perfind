@@ -1,4 +1,4 @@
-import React, {useState, Fragment} from 'react';
+import React, { useState, Fragment } from 'react';
 import {
   Row,
   Col,
@@ -9,25 +9,27 @@ import {
   message,
   notification,
   Select,
+  Checkbox,
+  Card
 } from 'antd';
 import axios from '../../config/axios';
-import {BASE_BACKEND_URL} from '../../config/constants';
+import { BASE_BACKEND_URL } from '../../config/constants';
 import Dragger from 'antd/lib/upload/Dragger';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const layout = {
-  labelCol: {xs: 24, sm: 5, md: 4, lg: 5, xl: 5, xxl: 5},
-  wrapperCol: {xs: 24, sm: 19, md: 20, lg: 19, xl: 19, xxl: 19},
+  labelCol: { xs: 24, sm: 5, md: 4, lg: 5, xl: 5, xxl: 5 },
+  wrapperCol: { xs: 24, sm: 19, md: 20, lg: 19, xl: 19, xxl: 19 },
 };
 
-const {Option} = Select;
+const { Option } = Select;
 
 function Register(props) {
   const [fileName, setFileName] = useState('');
 
-  const onFinish = ({username, password, nickname: name}) => {
+  const onFinish = ({ username, password, firstname, lastname, email, security, answer }) => {
     axios
-      .post('/auth/register', {username, password, name, profileUrl: fileName})
+      .post('/auth/register', { username, password, firstname, lastname, email, security, answer, profileUrl: fileName })
       .then(res => {
         notification.success({
           description: 'Signup successfully',
@@ -47,7 +49,7 @@ function Register(props) {
     multiple: false,
     action: `${BASE_BACKEND_URL}/uploads/`,
     onChange(info) {
-      const {status} = info.file;
+      const { status } = info.file;
       if (status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
@@ -60,32 +62,37 @@ function Register(props) {
     },
   };
 
+  function onChange(e) {
+    console.log(`checked = ${e.target.checked}`);
+  }
+
   const [form] = Form.useForm();
   const formLayout = 'vertical';
   const formItemLayout =
     formLayout === 'vertical'
       ? {
-          labelCol: {
-            span: 10,
-          },
-          wrapperCol: {
-            span: 24,
-          },
-        }
+        labelCol: {
+          span: 10,
+        },
+        wrapperCol: {
+          span: 24,
+        },
+      }
       : null;
   return (
     <Fragment>
       <Row justify='center'>
-        <Col span={16} className='Form' marginTop='2rem'>
+        <Col span={16} className='Form' marginTop='4rem'>
           <Row justify='center'>
             <div>
               <Dragger {...propsUpload}>
                 <div
                   style={{
-                    width: '14rem',
-                    height: '14rem',
+                    width: '12rem',
+                    height: '12rem',
                     background: 'Gray',
                     borderRadius: '50%',
+                    marginTop: '7rem'
                   }}
                 >
                   <p className='ant-upload-drag-icon'>
@@ -104,7 +111,7 @@ function Register(props) {
           <Row justify='center'>
             <Col span={16}>
               <Form
-                style={{width: '100%', padding: '1rem'}}
+                style={{ width: '100%' }}
                 {...layout}
                 name='register'
                 onFinish={onFinish}
@@ -115,8 +122,7 @@ function Register(props) {
                 form={form}
                 initialValues={{
                   layout: formLayout,
-                }}
-              >
+                }}>
                 <Row>
                   <Col span={24}>
                     <Form.Item
@@ -128,11 +134,11 @@ function Register(props) {
                           message: 'Please input your Username!',
                         },
                       ]}
-                      style={{width: '100%'}}
+                      style={{ width: '100%' }}
                     >
                       <Input
                         placeholder='input Username'
-                        style={{width: '100%'}}
+                        style={{ width: '100%' }}
                       />
                     </Form.Item>
                   </Col>
@@ -199,7 +205,7 @@ function Register(props) {
                         },
                       ]}
                     >
-                      <Input placeholder='input Password' />
+                      <Input.Password placeholder='input Password' />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -216,7 +222,7 @@ function Register(props) {
                           required: true,
                           message: 'Please confirm your password!',
                         },
-                        ({getFieldValue}) => ({
+                        ({ getFieldValue }) => ({
                           validator(rule, value) {
                             if (!value || getFieldValue('password') === value) {
                               return Promise.resolve();
@@ -228,12 +234,12 @@ function Register(props) {
                         }),
                       ]}
                     >
-                      <Input placeholder='input Password' />
+                      <Input.Password placeholder='input Password' />
                     </Form.Item>
                   </Col>
                 </Row>
 
-                <Row>
+                <Row >
                   <Col span={24}>
                     <Form.Item
                       name='security'
@@ -266,11 +272,11 @@ function Register(props) {
                           name={['security', 'answer']}
                           noStyle
                           rules={[
-                            {required: true, message: 'Answer is required'},
+                            { required: true, message: 'Answer is required' },
                           ]}
                         >
                           <Input
-                            style={{width: '76%'}}
+                            style={{ width: '78.5%' }}
                             placeholder='Input answer'
                           />
                         </Form.Item>
@@ -279,13 +285,40 @@ function Register(props) {
                   </Col>
                 </Row>
 
+                <Row justify='center'>
+                  <Col>
+
+                    <Form style={{ width: "25rem", height: "10rem", overflowY: "scroll", display: "flex", flexDirection: "column" }}>
+                      Condition Cardddd contenttttttttttttttttttttttttttttttttttttttttt ttttttttttttttttttttttt
+                    </Form>
+
+                  </Col>
+                </Row>
+
+                <Row justify='center'>
+                  <Form>
+                    <Checkbox onChange={onChange}>Accept Terms and Conditions</Checkbox>
+                  </Form>
+                </Row>
+
+                <Row justify='center' >
+                  <Col>
+                    <Button type='primary' htmlType='submit' style={{ borderRadius: "50%", width: "3rem", height: "3rem", marginTop: "2rem" }}>
+                      F
+                  </Button>
+                  </Col>
+                </Row>
+
+
+
                 <Row
                   justify='space-around'
-                  style={{marginTop: '1rem', marginBottom: '3rem'}}
+                  style={{ marginTop: '1.5rem', marginBottom: '3rem' }}
                 >
                   <Button type='primary' htmlType='submit'>
                     Reset
                   </Button>
+
 
                   <Button type='primary' htmlType='submit'>
                     Register
