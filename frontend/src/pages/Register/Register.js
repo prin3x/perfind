@@ -27,7 +27,7 @@ function Register(props) {
 
   const onFinish = ({username, password, nickname: name}) => {
     axios
-      .post('/users/register', {username, password, name, profileUrl: fileName})
+      .post('/auth/register', {username, password, name, profileUrl: fileName})
       .then(res => {
         notification.success({
           description: 'Signup successfully',
