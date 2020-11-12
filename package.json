@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/prin3x/perfind/issues"
   },
-  "homepage": "https://github.com/prin3x/perfind#readme"
+  "homepage": "https://github.com/prin3x/perfind#readme",
+  "dependencies": {}
 }
