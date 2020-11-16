@@ -97,6 +97,7 @@ function Register(props) {
                   <p className='ant-upload-hint'>Profile Image</p>
                 </div>
               </Dragger>
+              <a href={`http://localhost:7000/auth/facebook`}>FACEBOOK</a>
             </div>
           </Row>
           <Divider />

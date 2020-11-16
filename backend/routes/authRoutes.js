@@ -42,7 +42,7 @@ route.get(
   '/facebook/callback',
   passport.authenticate('facebookToken'),
   (req, res) => {
-    res.status(200).send({message: 'login successfully'});
+    res.redirect('http://localhost:3000');
   }
 );
 
