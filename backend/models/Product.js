@@ -8,6 +8,12 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING(255),
       },
+      gender: {
+        type:DataTypes.ENUM('male', 'female', 'unisex')
+      },
+      size: {
+        type: DataTypes.ENUM(30,50,75,90,100)
+      },
       image: {
         type: DataTypes.STRING(255),
       },
