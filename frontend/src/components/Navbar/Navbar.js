@@ -5,6 +5,7 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { Input } from "antd";
 import { NavLink } from "react-router-dom";
 import { Divider } from "antd";
+import LocalStorageService from "../../services/LocalStorageService";
 
 const { Search } = Input;
 
@@ -177,12 +178,18 @@ const iconFontSize = {
   cursor: "pointer",
 };
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [show, setShow] = useState(false);
 
   const handleMenu = () => {
     setShow(!show);
   };
+
+  const logOut = () => {
+    LocalStorageService.removeToken();
+    props.setRole("GUEST");
+  };
+
   return (
     <NavbarWrapper>
       <Menu scale={show ? "250" : "0"} />
@@ -241,7 +248,7 @@ const Navbar = () => {
               <ListWrapper>
                 <List>My Account</List>
                 <List>My Transactions</List>
-                <List>Logout</List>
+                <List onClick={logOut}>Logout</List>
               </ListWrapper>
             </DropdownContent>
           </IconWrapper>

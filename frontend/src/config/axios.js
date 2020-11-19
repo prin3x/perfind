@@ -1,19 +1,46 @@
-import axios from 'axios';
-import localStorageService from '../services/LocalStorageService';
-import {BASE_BACKEND_URL} from './constants';
+import { notification } from "antd";
+import axios from "axios";
+import LocalStorageService from "../services/LocalStorageService";
+
+import { BASE_BACKEND_URL } from "./constants";
 
 axios.defaults.baseURL = BASE_BACKEND_URL;
 
-axios.interceptors.request.use(config => {
-  if (config.url.match(/ \/login|\/register /)) return config;
+axios.interceptors.request.use(
+  (config) => {
+    if (config.url.match(/ \/login|\/register /)) return config;
 
-  const token = localStorageService.getToken();
+    const token = LocalStorageService.getToken();
 
-  if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`;
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (err) => {
+    Promise.reject(err);
   }
+);
 
-  return config;
-});
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (err) => {
+    if (err.response?.status === 401) {
+      LocalStorageService.removeToken();
+      notification.error({
+        message: "Please try again",
+        placement: "topRight",
+      });
+      window.location.reload();
+
+      return Promise.reject(err);
+    }
+
+    return Promise.reject(err);
+  }
+);
 
 export default axios;
