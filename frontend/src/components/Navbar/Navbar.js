@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
-import {AiOutlineUser} from 'react-icons/ai';
-import {RiShoppingCartLine} from 'react-icons/ri';
-import {Input} from 'antd';
-const {Search} = Input;
+import React, { useState } from "react";
+import styled from "styled-components";
+import { AiOutlineUser } from "react-icons/ai";
+import { RiShoppingCartLine } from "react-icons/ri";
+import { Input } from "antd";
+import { NavLink } from "react-router-dom";
+import { Divider } from "antd";
+
+const { Search } = Input;
 
 const HamContainer = styled.div`
   display: inline-block;
@@ -35,6 +38,7 @@ const HamContainer = styled.div`
     transform: rotate(45deg) translate(-8px, -8px);
   }
 `;
+
 const NavbarWrapper = styled.div`
   min-height: 2rem;
   height: 7rem;
@@ -64,7 +68,6 @@ const LowerNavbar = styled.div`
 const MiddleContainer = styled.div`
   min-height: 2rem;
   width: 13rem;
-
   position: absolute;
   left: 47.5%;
   transform: translate(-50%, -50%);
@@ -74,7 +77,7 @@ const MiddleContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  background: url('assets/index/logo-3-without-bg.png') center center no-repeat;
+  background: url("assets/index/logo-3-without-bg.png") center center no-repeat;
   background-size: contain;
   min-height: 2rem;
   height: 5.25rem;
@@ -104,12 +107,12 @@ const Menu = styled.div`
   opacity: 0.5;
   z-index: -1;
   transition: transform 0.8s ease-in;
-  transform: scale(${props => props.scale});
-  display: ${props => props.display};
+  transform: scale(${(props) => props.scale});
+  display: ${(props) => props.display};
 `;
 
 const DropdownContent = styled.div`
-  display: ${props => props.display};
+  display: ${(props) => props.display};
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
@@ -135,29 +138,43 @@ const List = styled.li`
   font-size: 0.9rem;
 `;
 
-const MainNavWrapper = styled.ul`
+const MainNavWrapper = styled.div`
   position: fixed;
-  list-style: none;
-  left: 46%;
-  top: 25%;
-  display: ${props => props.display};
-  transform: translateX(${props => props.transform});
+  left: 7%;
+  top: 14.2%;
+  display: ${(props) => props.display};
+  transform: translateX(${(props) => props.transform});
   transition: all 0.75s ease-in;
   text-align: center;
+  box-shadow: 2px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-top: 2px solid #8a7d6b;
+`;
+
+const MainNavbarContainer = styled.ul`
+  width: 85vw;
+  height: 100vh;
+  display: ${(props) => props.display};
+  transition: all 0.75s ease-in;
+  text-align: center;
+  background: #fff;
+  z-index: 5;
+  list-style: none;
+  padding-top: 3rem;
 `;
 
 const MainNav = styled.li`
-  padding: 2rem 0;
-  color: #fff;
+  text-transform: uppercase;
+  color: #000;
   cursor: pointer;
   font-size: 1.5rem;
 `;
 
 const iconFontSize = {
-  fontSize: '1.75rem',
-  color: '#8a7d6b',
-  margin: '0 1.25rem',
-  cursor: 'pointer',
+  fontSize: "1.75rem",
+  color: "#8a7d6b",
+  margin: "0 1.25rem",
+  cursor: "pointer",
 };
 
 const Navbar = () => {
@@ -168,7 +185,7 @@ const Navbar = () => {
   };
   return (
     <NavbarWrapper>
-      <Menu scale={show ? '250' : '0'} />
+      <Menu scale={show ? "250" : "0"} />
       <UpperNavbar></UpperNavbar>
       <MiddleContainer>
         <ImageContainer />
@@ -176,26 +193,43 @@ const Navbar = () => {
       <LowerNavbar>
         <LeftContainer>
           <HamContainer onClick={handleMenu}>
-            <div className={`bar1 ${show ? 'change' : ''}`}></div>
-            <div className={`bar2 ${show ? 'change' : ''}`}></div>
-            <div className={`bar3 ${show ? 'change' : ''}`}></div>
+            <div className={`bar1 ${show ? "change" : ""}`}></div>
+            <div className={`bar2 ${show ? "change" : ""}`}></div>
+            <div className={`bar3 ${show ? "change" : ""}`}></div>
           </HamContainer>
         </LeftContainer>
         <MainNavWrapper
-          className='main-nav-wrapper1234'
-          display={show ? 'block' : 'none'}
-          transform={show ? '0' : '70rem'}
+          className="main-nav-wrapper1234"
+          display={show ? "block" : "none"}
+          transform={show ? "0" : "70rem"}
         >
-          <MainNav>Products</MainNav>
-          <MainNav>Brands</MainNav>
-          <MainNav>About</MainNav>
-          <MainNav>Contact</MainNav>
+          <MainNavbarContainer>
+            <NavLink to="/">
+              <MainNav>Home</MainNav>
+            </NavLink>
+            <Divider />
+            <NavLink to="/products">
+              <MainNav>All Products</MainNav>
+            </NavLink>
+            <Divider />
+            <NavLink to="/highlight">
+              <MainNav>Highlight Items</MainNav>
+            </NavLink>
+            <Divider />
+            <NavLink to="/about">
+              <MainNav>About Us</MainNav>
+            </NavLink>
+            <Divider />
+            <NavLink to="/contact">
+              <MainNav>Contact Us</MainNav>
+            </NavLink>
+          </MainNavbarContainer>
         </MainNavWrapper>
         <RightContainer>
           <Search
-            placeholder='input search text'
-            size='medium'
-            style={{borderRadius: '10px'}}
+            placeholder="input search text"
+            size="medium"
+            style={{ borderRadius: "10px" }}
             allowClear
           />
           <IconWrapper>
@@ -203,7 +237,7 @@ const Navbar = () => {
           </IconWrapper>
           <IconWrapper>
             <AiOutlineUser style={iconFontSize} />
-            <DropdownContent display='none' className='dropdown-content'>
+            <DropdownContent display="none" className="dropdown-content">
               <ListWrapper>
                 <List>My Account</List>
                 <List>My Transactions</List>
