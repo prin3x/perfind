@@ -24,7 +24,7 @@ const {Option} = Select;
 
 function Register(props) {
   const [fileName, setFileName] = useState('');
-
+  console.log('test')
   const onFinish = ({username, password, nickname: name}) => {
     axios
       .post('/auth/register', {username, password, name, profileUrl: fileName})
