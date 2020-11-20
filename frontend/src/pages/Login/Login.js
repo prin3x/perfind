@@ -59,13 +59,13 @@ function Login(props) {
       password: values.password,
     };
     axios
-      .post("/users/login", body)
+      .post("/auth/login", body)
       .then((res) => {
         notification.success({
           description: "Login success.",
         });
         LocalStorageService.setToken(res.data.token);
-        props.setRole("USER");
+        // props.setRole("USER");
       })
       .catch((err) => {
         console.log(err);

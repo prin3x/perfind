@@ -1,8 +1,6 @@
 import { notification } from "antd";
 import axios from "axios";
 import LocalStorageService from "../services/LocalStorageService";
-
-import axios from "axios";
 import { BASE_BACKEND_URL } from "./constants";
 
 axios.defaults.baseURL = BASE_BACKEND_URL;
