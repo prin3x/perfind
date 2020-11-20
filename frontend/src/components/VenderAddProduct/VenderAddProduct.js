@@ -211,6 +211,7 @@ function VenderAddProduct(props) {
                                     <Radio.Button value="b">bbbb</Radio.Button>
                                 </Radio.Group>
                             </Col>
+
                             <Col>
                                 <Radio.Group defaultValue="a" buttonStyle="solid">
                                     <Radio.Button value="a">aaaa</Radio.Button>
