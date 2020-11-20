@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Cart',
+    "Cart",
     {
       qty: {
         type: DataTypes.INTEGER,
@@ -8,13 +8,13 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'carts',
+      tableName: "carts",
     }
   );
 
-  model.associate = models => {
-    model.belongsTo(models.Product, {foreignKey: 'product_id'});
-    model.belongsTo(models.User, {foreignKey: 'user_id'});
+  model.associate = (models) => {
+    model.belongsTo(models.Product, { foreignKey: "product_id" });
+    model.belongsTo(models.User, { foreignKey: "user_id" });
   };
 
   return model;
