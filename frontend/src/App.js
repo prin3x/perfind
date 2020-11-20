@@ -1,22 +1,28 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import './App.less';
 import 'antd/dist/antd.less';
-import Navbar from './components/Navbar/Navbar';
+
 import LandingPage from './pages/LandingPage/LandingPage';
 import Register from './pages/Register/Register';
 import {Switch, Route} from 'react-router-dom';
 import ContactForm from './pages/ContactForm/ContactForm';
-import Footer from './components/Navbar/Footer';
+
+import VenderPage from './pages/VenderPage/VenderPage';
+import Layout from "../src/pages/Layout/Layout"
+
+
 
 const App = () => (
-  <Fragment>
-    <Navbar />
+ 
+  <Layout>
+    
     <Switch>
       <LandingPage exact path='/' />
       <Route exact path='/register' component={Register} />
       <Route exact path='/contact' component={ContactForm} />
+      <Route exact path='/vender' component={VenderPage} />
     </Switch>
-    <Footer/>
-  </Fragment>
+    
+  </Layout>
 );
 export default App;

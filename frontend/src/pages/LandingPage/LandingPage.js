@@ -1,55 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import {Button} from 'antd';
+import {Button, Row} from 'antd';
 
-const Background = styled.div`
-  min-height: 150rem;
-  height: 100%;
-  width: 100vw;
-  position: relative;
-`;
-
-const TopBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  background: url('/assets/index/bg-top.jpg') center center no-repeat;
-  background-size: cover;
-  z-index: 1;
-  position: fixed;
-`;
-
-const BottomBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  bottom: 0;
-  background: url('/assets/index/bg-bottom.jpg') center center no-repeat;
-  background-size: cover;
-  z-index: 1;
-`;
-
-const MainSection = styled.div`
-  margin-top: 4rem;
-  width: 100vw;
-  position: absolute;
-  top: 5%;
-  background: transparent;
-  z-index: 2;
-`;
-
-const InsideMainSection = styled.div`
-  box-shadow: 1px 0 45px 0.41px #33302a;
-  max-width: 90rem;
-  height: 100%;
-  background: #fff;
-  box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
-
-  margin: 0 auto;
-  padding: 5rem 7.5rem;
-  border-radius: 1rem;
-`;
 
 const ContentWrapper = styled.div`
   max-width: 80rem;
@@ -59,6 +11,7 @@ const ContentWrapper = styled.div`
   &:not(:first-of-type) {
     margin-top: 10rem;
   }
+
 `;
 
 const Content = styled.div`
@@ -85,12 +38,16 @@ const Paragraph = styled.p`
   font-size: 1.2rem;
 `;
 
+const MainSection =styled.div`
+padding: 5rem 7.5rem;
+`
+
 const LandingPage = () => {
   return (
-    <Background>
-      <TopBg />
-      <MainSection>
-        <InsideMainSection>
+    
+  <Fragment>
+    
+         <MainSection>
           <ContentWrapper>
             <Content>
               <Title>
@@ -175,9 +132,9 @@ const LandingPage = () => {
               </div>
             </Content>
           </ContentWrapper>
-        </InsideMainSection>
-      </MainSection>
-    </Background>
+          </MainSection>
+        </Fragment>
+      
   );
 };
 
