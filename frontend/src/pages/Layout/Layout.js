@@ -55,22 +55,22 @@ const InsideMainSection = styled.div`
 
 
 function Layout(props) {
-    return (
-        <Fragment>
-            <Background>
-                <TopBg />
-                <Navbar />
-                <MainSection>
-                    <InsideMainSection >
+  return (
+    <Fragment>
+      <Background>
+        <TopBg />
+        <Navbar />
+        <MainSection>
+          <InsideMainSection >
 
-                        {props.children}
+            {props.children}
 
-                    </InsideMainSection>
-                </MainSection>
-            </Background>
-            <Footer />
-        </Fragment>
-    );
+          </InsideMainSection>
+        </MainSection>
+      </Background>
+      <Footer />
+    </Fragment>
+  );
 }
 
 export default Layout;
