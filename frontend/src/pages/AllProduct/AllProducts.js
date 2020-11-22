@@ -14,7 +14,6 @@ import {
   Pagination,
 } from "antd";
 import axios from "../../config/axios";
-const _ = require("lodash");
 
 const { CheckableTag } = Tag;
 const { Panel } = Collapse;
@@ -64,17 +63,6 @@ const Image = styled.img`
   background: cover center;
 `;
 
-const searchArray = [];
-
-function onChange(a) {
-  const lastIndex = a.slice(-1)[0];
-  if (lastIndex && !searchArray.find((item) => item === lastIndex)) {
-    searchArray.push(lastIndex);
-  }
-}
-function deselect(a) {
-  console.log(a);
-}
 const contentStyle = {
   height: "160px",
   color: "#fff",
@@ -89,14 +77,14 @@ const ProductRow = styled.div`
   border-bottom: 1px solid #000;
 `;
 
-const AllProducts = () => {
+export default function AllProducts() {
+  const [form] = Form.useForm();
   const [selectTag, setSelectTag] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [products, setProducts] = React.useState([]);
   const [actualPresentedProduct, setActualPresentedProduct] = React.useState(
     products
   );
-
-  const [form] = Form.useForm();
 
   const [searchQuery, setSearchQuery] = React.useState({
     gender: [],
@@ -118,7 +106,14 @@ const AllProducts = () => {
 
   const [brands, setBrands] = React.useState(brandOptions);
 
-  const onSearch = (value) => console.log(value);
+  const onSearch = async (value) => {
+    setIsLoading(true);
+    const { data } = await axios.get(`/products/?_search=${value}`);
+    const searchProduct = data;
+    setProducts(searchProduct);
+    setActualPresentedProduct(searchProduct);
+    setIsLoading(false);
+  };
   const onSearchBrand = (e) => {
     const valueAsRegex = new RegExp(e.target.value, "gi");
     const searchBrand = brandOptions.filter((brand) =>
@@ -212,8 +207,8 @@ const AllProducts = () => {
             searchQuery.style.includes(item.style4)
           : true) &&
         (searchQuery.price.length
-          ? item.price > searchQuery.price[0] &&
-            item.price < searchQuery.price[1]
+          ? item.price >= searchQuery.price[0] &&
+            item.price <= searchQuery.price[1]
           : true)
     );
     setActualPresentedProduct(filteredProducts);
@@ -307,6 +302,7 @@ const AllProducts = () => {
             enterButton="Search"
             size="large"
             onSearch={onSearch}
+            loading={isLoading}
           />
           {tagsData.map((tag) => (
             <CheckableTag
@@ -348,6 +344,4 @@ const AllProducts = () => {
       </SearchAndProductContainer>
     </ProductContentContainer>
   );
-};
-
-export default AllProducts;
+}
