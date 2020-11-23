@@ -8,17 +8,54 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING(255),
       },
+      gender: {
+        type: DataTypes.STRING(255),
+      },
+      size: {
+        type: DataTypes.ENUM('30','50','75','90','100')
+      },
+      daynight: {
+        type: DataTypes.ENUM('day','night')
+      },
+      season: {
+        type: DataTypes.ENUM('fall','summer','winter','autumn','rainy')
+      },
       image: {
         type: DataTypes.STRING(255),
       },
       description: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING(1000),
       },
       brand: {
         type: DataTypes.STRING(255),
       },
-      category: {
+      style1: {
         type: DataTypes.STRING(255),
+      },
+      style2: {
+        type: DataTypes.STRING(255),
+      },
+      style3: {
+        type: DataTypes.STRING(255),
+      },
+      style4: {
+        type: DataTypes.STRING(255),
+      },
+      topscent: {
+        type: DataTypes.STRING(255),
+      },
+      secondscent: {
+        type: DataTypes.STRING(255),
+      },
+      thirdscent: {
+        type: DataTypes.STRING(255),
+      },
+
+      longevity: {
+        type: DataTypes.INTEGER,
+      },
+      sillage: {
+        type: DataTypes.INTEGER,
       },
       price: {
         type: DataTypes.INTEGER,
