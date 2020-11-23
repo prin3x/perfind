@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
-import styled from 'styled-components';
-import {Button, Row} from 'antd';
-
+import React, { Fragment } from "react";
+import styled from "styled-components";
+import { Button, Row } from "antd";
 
 const ContentWrapper = styled.div`
   max-width: 80rem;
@@ -11,7 +10,6 @@ const ContentWrapper = styled.div`
   &:not(:first-of-type) {
     margin-top: 10rem;
   }
-
 `;
 
 const Content = styled.div`
@@ -38,103 +36,100 @@ const Paragraph = styled.p`
   font-size: 1.2rem;
 `;
 
-const MainSection =styled.div`
-padding: 5rem 7.5rem;
-`
+const MainSection = styled.div`
+  padding: 5rem 7.5rem;
+`;
 
 const LandingPage = () => {
   return (
-    
-  <Fragment>
-    
-         <MainSection>
-          <ContentWrapper>
-            <Content>
-              <Title>
-                <SubTitle>Because</SubTitle> Scent
-                <br /> Define<SubTitle> Who</SubTitle> You Are
-              </Title>
-              <Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                architecto fugiat fugit est! Consequatur, expedita. Atque odit
-                aspernatur praesentium! Aperiam? Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Voluptas ea et iste odit.
-                Similique doloremque iure nesciunt quaerat sit sint perspiciatis
-                exercitationem. Sint, eligendi inventore?
-              </Paragraph>
-              <Button type='primary' style={{width: '15rem'}}>
-                DISCOVER YOUR PERFUME
-              </Button>
-            </Content>
-            <Content>
-              <div className='img-wrapper'>
-                <img
-                  src='/assets/index/index-banner.png'
-                  alt='women'
-                  style={{width: '55rem', marginLeft: '-15rem'}}
-                />
-              </div>
-            </Content>
-          </ContentWrapper>
-          <ContentWrapper>
-            <Content>
-              <div className='img-wrapper'>
-                <img
-                  src='/assets/index/index-perfume-01.png'
-                  alt='perfume'
-                  style={{width: '35rem'}}
-                />
-              </div>
-            </Content>
-            <Content style={{marginLeft: '5rem'}}>
-              <Title>
-                Because Scent
-                <br /> Define Who You Are
-              </Title>
-              <Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                architecto fugiat fugit est! Consequatur, expedita. Atque odit
-                aspernatur praesentium! Aperiam? Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Voluptas ea et iste odit.
-                Similique doloremque iure nesciunt quaerat sit sint perspiciatis
-                exercitationem. Sint, eligendi inventore?
-              </Paragraph>
-              <Button type='primary' style={{width: '15rem'}}>
-                DISCOVER YOUR PERFUME
-              </Button>
-            </Content>
-          </ContentWrapper>
-          <ContentWrapper>
-            <Content style={{marginLeft: '5rem'}}>
-              <Title>
-                Because Scent
-                <br /> Define Who You Are
-              </Title>
-              <Paragraph>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-                architecto fugiat fugit est! Consequatur, expedita. Atque odit
-                aspernatur praesentium! Aperiam? Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Voluptas ea et iste odit.
-                Similique doloremque iure nesciunt quaerat sit sint perspiciatis
-                exercitationem. Sint, eligendi inventore?
-              </Paragraph>
-              <Button type='primary' style={{width: '15rem'}}>
-                DISCOVER YOUR PERFUME
-              </Button>
-            </Content>
-            <Content>
-              <div className='img-wrapper'>
-                <img
-                  src='/assets/index/index-bottom-decoration.png'
-                  alt='perfume'
-                  style={{width: '35rem'}}
-                />
-              </div>
-            </Content>
-          </ContentWrapper>
-          </MainSection>
-        </Fragment>
-      
+    <Fragment>
+      <MainSection>
+        <ContentWrapper>
+          <Content>
+            <Title>
+              <SubTitle>Because</SubTitle> Scent
+              <br /> Define<SubTitle> Who</SubTitle> You Are
+            </Title>
+            <Paragraph>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              architecto fugiat fugit est! Consequatur, expedita. Atque odit
+              aspernatur praesentium! Aperiam? Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Voluptas ea et iste odit. Similique
+              doloremque iure nesciunt quaerat sit sint perspiciatis
+              exercitationem. Sint, eligendi inventore?
+            </Paragraph>
+            <Button type="primary" style={{ width: "15rem" }}>
+              DISCOVER YOUR PERFUME
+            </Button>
+          </Content>
+          <Content>
+            <div className="img-wrapper">
+              <img
+                src="/assets/index/index-banner.png"
+                alt="women"
+                style={{ width: "55rem", marginLeft: "-15rem" }}
+              />
+            </div>
+          </Content>
+        </ContentWrapper>
+        <ContentWrapper>
+          <Content>
+            <div className="img-wrapper">
+              <img
+                src="/assets/index/index-perfume-01.png"
+                alt="perfume"
+                style={{ width: "35rem" }}
+              />
+            </div>
+          </Content>
+          <Content style={{ marginLeft: "5rem" }}>
+            <Title>
+              Because Scent
+              <br /> Define Who You Are
+            </Title>
+            <Paragraph>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              architecto fugiat fugit est! Consequatur, expedita. Atque odit
+              aspernatur praesentium! Aperiam? Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Voluptas ea et iste odit. Similique
+              doloremque iure nesciunt quaerat sit sint perspiciatis
+              exercitationem. Sint, eligendi inventore?
+            </Paragraph>
+            <Button type="primary" style={{ width: "15rem" }}>
+              DISCOVER YOUR PERFUME
+            </Button>
+          </Content>
+        </ContentWrapper>
+        <ContentWrapper>
+          <Content style={{ marginLeft: "5rem" }}>
+            <Title>
+              Because Scent
+              <br /> Define Who You Are
+            </Title>
+            <Paragraph>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              architecto fugiat fugit est! Consequatur, expedita. Atque odit
+              aspernatur praesentium! Aperiam? Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Voluptas ea et iste odit. Similique
+              doloremque iure nesciunt quaerat sit sint perspiciatis
+              exercitationem. Sint, eligendi inventore?
+            </Paragraph>
+            <Button type="primary" style={{ width: "15rem" }}>
+              DISCOVER YOUR PERFUME
+            </Button>
+          </Content>
+          <Content>
+            <div className="img-wrapper">
+              <img
+                src="/assets/index/index-bottom-decoration.png"
+                alt="perfume"
+                style={{ width: "35rem" }}
+              />
+            </div>
+          </Content>
+        </ContentWrapper>
+      </MainSection>
+    </Fragment>
   );
 };
 
