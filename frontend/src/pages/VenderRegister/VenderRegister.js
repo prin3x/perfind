@@ -15,7 +15,7 @@ function VenderRegister(props) {
   const fileCertificate = [];
   const onFinish = ({ username, password, brandName, email, security, answer, fileCertificate }) => {
     axios
-      .post('/auth/register', { username, password, brandName, email, security, answer, profileUrl: fileBrandName, fileCertificate })
+      .post('/auth/vender/register', { username, password, brandName, email, security, answer, profileUrl: fileBrandName, fileCertificate })
       .then(res => {
         notification.success({
           description: 'Signup successfully',

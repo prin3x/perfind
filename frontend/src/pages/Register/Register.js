@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import {
   Row,
   Col,
@@ -82,24 +82,25 @@ function Register(props) {
       }
       : null;
   return (
-    <div style={{margin:'0rem',padding:"0rem"}}>
-      
-        <h2 style={{ 
-          background: "linear-gradient(to right, #b8956c, #e3d5b0)", 
-          width: "100%", 
-          height: "3.5rem", 
-          marginTop: "0rem", 
-          textAlign: "center", 
-          paddingTop: "0.5rem", 
-          paddingLeft: "0rem", 
-          paddingRight: "0rem", 
-          borderTopLeftRadius: "1rem", 
-          borderTopRightRadius: "1rem", 
-          color: "white", 
-          fontFamily: "Playfair" }}>
-          Register
+    <div style={{ margin: '0rem', padding: "0rem" }}>
+
+      <h2 style={{
+        background: "linear-gradient(to right, #b8956c, #e3d5b0)",
+        width: "100%",
+        height: "3.5rem",
+        marginTop: "0rem",
+        textAlign: "center",
+        paddingTop: "0.5rem",
+        paddingLeft: "0rem",
+        paddingRight: "0rem",
+        borderTopLeftRadius: "1rem",
+        borderTopRightRadius: "1rem",
+        color: "white",
+        fontFamily: "Playfair"
+      }}>
+        Register
               </h2>
-     
+
       <Row justify='center'>
         <Col span={16} className='Form' >
           <Row justify='center'>

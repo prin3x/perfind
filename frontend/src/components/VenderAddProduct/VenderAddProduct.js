@@ -230,6 +230,7 @@ function VenderAddProduct(props) {
                         <br></br>
                         <Row justify='center'>Note</Row>
                         <Row justify='space-around'>
+
                             <Select
                                 showSearch
                                 style={{ width: 200 }}
@@ -309,7 +310,7 @@ function VenderAddProduct(props) {
 
 
                             <Button type='primary' htmlType='submit'>
-                                send
+                                ADD
                   </Button>
                         </Row>
 
