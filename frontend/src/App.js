@@ -8,7 +8,7 @@ import { Switch, Route } from "react-router-dom";
 import ContactForm from "./pages/ContactForm/ContactForm";
 
 import VenderPage from "./pages/VenderPage/VenderPage";
-import Layout from "../src/pages/Layout/Layout";
+
 import VenderRegister from "./pages/VenderRegister/VenderRegister";
 import VenderEditProduct from "./components/VenderEditProduct.js/VenderEditProduct";
 import Layout from "../src/pages/Layout/Layout";
