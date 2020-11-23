@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
         allowNull: false,
       },
-
       isCheif: {
         type: DataTypes.BOOLEAN(),
         defaultValue: 1,

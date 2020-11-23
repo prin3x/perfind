@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Input } from "antd";
-import { NavLink } from "react-router-dom";
 import { Divider } from "antd";
+import { useHistory } from "react-router-dom";
 
 const { Search } = Input;
 
@@ -143,8 +143,9 @@ const MainNavWrapper = styled.div`
   left: 7%;
   top: 14.2%;
   display: ${(props) => props.display};
-  transform: translateX(${(props) => props.transform});
+  transform: scale(${(props) => props.scale});
   transition: all 0.75s ease-in;
+  transform-origin: left;
   text-align: center;
   box-shadow: 2px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -155,12 +156,15 @@ const MainNavbarContainer = styled.ul`
   width: 85vw;
   height: 100vh;
   display: ${(props) => props.display};
-  transition: all 0.75s ease-in;
+  transform-origin: left;
+  transform: scale(${(props) => props.scale});
+  transition: all 10s ease-in;
   text-align: center;
   background: #fff;
   z-index: 5;
   list-style: none;
   padding-top: 3rem;
+  position: absolute;
 `;
 
 const MainNav = styled.li`
@@ -179,6 +183,13 @@ const iconFontSize = {
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+
+  const history = useHistory();
+
+  const onRedirect = (path) => {
+    history.push(path);
+    setShow(!show);
+  }
 
   const handleMenu = () => {
     setShow(!show);
@@ -201,28 +212,18 @@ const Navbar = () => {
         <MainNavWrapper
           className="main-nav-wrapper1234"
           display={show ? "block" : "none"}
-          transform={show ? "0" : "70rem"}
+          transform={show ? "70rem" : "0"}
         >
           <MainNavbarContainer>
-            <NavLink to="/">
               <MainNav>Home</MainNav>
-            </NavLink>
             <Divider />
-            <NavLink to="/products">
-              <MainNav>All Products</MainNav>
-            </NavLink>
+              <MainNav onClick={() => onRedirect('/products')}>All Products</MainNav>
             <Divider />
-            <NavLink to="/highlight">
-              <MainNav>Highlight Items</MainNav>
-            </NavLink>
+              <MainNav onClick={() => onRedirect('/highligh')}>Highlight Items</MainNav>
             <Divider />
-            <NavLink to="/about">
-              <MainNav>About Us</MainNav>
-            </NavLink>
+              <MainNav onClick={() => onRedirect('/about')}>About Us</MainNav>
             <Divider />
-            <NavLink to="/contact">
-              <MainNav>Contact Us</MainNav>
-            </NavLink>
+              <MainNav onClick={() => onRedirect('/contact')}>Contact Us</MainNav>
           </MainNavbarContainer>
         </MainNavWrapper>
         <RightContainer>

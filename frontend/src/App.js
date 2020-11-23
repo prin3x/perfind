@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.less';
 import 'antd/dist/antd.less';
-
+import "./theme.less";
 import LandingPage from './pages/LandingPage/LandingPage';
 import Register from './pages/Register/Register';
 import { Switch, Route } from 'react-router-dom';
@@ -11,6 +11,8 @@ import VenderPage from './pages/VenderPage/VenderPage';
 import Layout from "../src/pages/Layout/Layout";
 import VenderRegister from './pages/VenderRegister/VenderRegister';
 import VenderEditProduct from './components/VenderEditProduct.js/VenderEditProduct';
+import Layout from "../src/pages/Layout/Layout";
+import AllProducts from './pages/AllProduct/AllProducts';
 
 
 
@@ -25,8 +27,10 @@ const App = () => (
       <Route exact path='/vender' component={VenderPage} />
       <Route exact path='/vender/register' component={VenderRegister} />
       <Route exact path='/vender/product/edit' component={VenderEditProduct} />
-    </Switch>
 
+
+      <Route exact path='/products' component={AllProducts} />
+    </Switch>
   </Layout>
 );
 export default App;
