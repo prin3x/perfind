@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Table, Input, InputNumber, Popconfirm, Form, Tag, Row, Col, } from 'antd';
+import { Link } from 'react-router-dom';
 
 
 
@@ -59,7 +60,7 @@ const EditableCell = ({
 
 
 
-function CardProductVender() {
+function CardProductVender(props) {
   const [form] = Form.useForm();
   const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState('');
@@ -222,10 +223,11 @@ function CardProductVender() {
             </Popconfirm>
             <a
               onClick={() => deleteProduct(record.key)} style={{ marginLeft: 8 }}>Delete</a>
+            <Link to="/vender/product/edit" className="btn btn-outline-info btn-sm pull-right">Edit2</Link>
           </span>
         ) : (
             <a disabled={editingKey !== ''} onClick={() => edit(record)}>
-              Edit
+              Edit1
             </a>
           );
       },

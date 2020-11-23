@@ -20,12 +20,8 @@ server.use(passport.session());
 server.use(cors());
 server.use(logger('tiny'));
 server.use(express.json());
-<<<<<<< HEAD
 server.use(express.static('public/images'));
-server.use(express.urlencoded({extended: false}));
-=======
 server.use(express.urlencoded({ extended: false }));
->>>>>>> origin/contectForm
 
 server.use('/auth', authRoutes);
 server.use('/products', productRoutes);
