@@ -189,7 +189,7 @@ const Navbar = () => {
   const onRedirect = (path) => {
     history.push(path);
     setShow(!show);
-  }
+  };
 
   const handleMenu = () => {
     setShow(!show);
@@ -215,15 +215,19 @@ const Navbar = () => {
           transform={show ? "70rem" : "0"}
         >
           <MainNavbarContainer>
-              <MainNav>Home</MainNav>
+            <MainNav>Home</MainNav>
             <Divider />
-              <MainNav onClick={() => onRedirect('/products')}>All Products</MainNav>
+            <MainNav onClick={() => onRedirect("/products")}>
+              All Products
+            </MainNav>
             <Divider />
-              <MainNav onClick={() => onRedirect('/highligh')}>Highlight Items</MainNav>
+            <MainNav onClick={() => onRedirect("/highligh")}>
+              Highlight Items
+            </MainNav>
             <Divider />
-              <MainNav onClick={() => onRedirect('/about')}>About Us</MainNav>
+            <MainNav onClick={() => onRedirect("/about")}>About Us</MainNav>
             <Divider />
-              <MainNav onClick={() => onRedirect('/contact')}>Contact Us</MainNav>
+            <MainNav onClick={() => onRedirect("/contact")}>Contact Us</MainNav>
           </MainNavbarContainer>
         </MainNavWrapper>
         <RightContainer>

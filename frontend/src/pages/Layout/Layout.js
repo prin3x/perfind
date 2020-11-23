@@ -1,9 +1,7 @@
-
-import React, { Fragment } from 'react';
-import styled from 'styled-components';
-import Navbar from '../../components/Navbar/Navbar';
-import Footer from '../../components/Navbar/Footer';
-
+import React, { Fragment } from "react";
+import styled from "styled-components";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Navbar/Footer";
 
 const Background = styled.div`
   min-height: 150rem;
@@ -16,7 +14,7 @@ const TopBg = styled.div`
   width: 100%;
   height: 100vh;
   top: 0;
-  background: url('/assets/index/bg-top.jpg') center center no-repeat;
+  background: url("/assets/index/bg-top.jpg") center center no-repeat;
   background-size: cover;
   z-index: -1;
   position: fixed;
@@ -39,26 +37,20 @@ const InsideMainSection = styled.div`
   box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
   margin: 0 auto;
   border-radius: 1rem;
-  height:100%;
+  height: 100%;
 `;
 
-
-
 function Layout(props) {
-    return (
-        <Fragment>
-            <Background>
-                <TopBg />
-                <Navbar />
-                <MainSection>
-
-                        {props.children}
-
-                </MainSection>
-            </Background>
-            <Footer />
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <Background>
+        <TopBg />
+        <Navbar />
+        <MainSection>{props.children}</MainSection>
+      </Background>
+      <Footer />
+    </Fragment>
+  );
 }
 
 export default Layout;

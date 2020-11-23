@@ -20,6 +20,7 @@ server.use(passport.session());
 server.use(cors());
 server.use(logger('tiny'));
 server.use(express.json());
+server.use(express.static('public/images'));
 server.use(express.urlencoded({ extended: false }));
 
 server.use('/auth', authRoutes);
