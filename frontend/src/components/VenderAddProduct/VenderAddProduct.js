@@ -44,7 +44,7 @@ function VenderAddProduct(props) {
   ];
 
   const onFinish = ({
-    nameproduct,
+    name,
     price,
     inventory,
     description,
@@ -52,8 +52,8 @@ function VenderAddProduct(props) {
     fileMain,
   }) => {
     axios
-      .post("/auth/Vendor", {
-        nameproduct,
+      .post('/vendor/products', {
+        name,
         price,
         inventory,
         description,
@@ -78,13 +78,13 @@ function VenderAddProduct(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-          labelCol: {
-            span: 10,
-          },
-          wrapperCol: {
-            span: 24,
-          },
-        }
+        labelCol: {
+          span: 10,
+        },
+        wrapperCol: {
+          span: 24,
+        },
+      }
       : null;
   function onChange(value) {
     console.log(`selected ${value}`);
@@ -139,8 +139,8 @@ function VenderAddProduct(props) {
             <Row style={{ marginTop: "2rem" }}>
               <Col span={20}>
                 <Form.Item
-                  name="nameproduct"
-                  label="NameProduct"
+                  name="name"
+                  label="Product"
                   rules={[
                     {
                       required: true,
@@ -177,7 +177,7 @@ function VenderAddProduct(props) {
             <Row>
               <Col span={20}>
                 <Form.Item
-                  name="inventory"
+                  name="countInStock"
                   label="Inventory"
                   rules={[
                     {
@@ -224,91 +224,173 @@ function VenderAddProduct(props) {
                 </Form.Item>
               </Col>
             </Row>
-            <Row justify="center">style</Row>
-            <Row justify="space-around">
-              <Col>
-                <Radio.Group defaultValue="a" buttonStyle="solid">
-                  <Radio.Button value="a">aaaa</Radio.Button>
-                  <Radio.Button value="b">bbbb</Radio.Button>
-                </Radio.Group>
-              </Col>
-              <Col>
-                <Radio.Group defaultValue="a" buttonStyle="solid">
-                  <Radio.Button value="a">aaaa</Radio.Button>
-                  <Radio.Button value="b">bbbb</Radio.Button>
+
+            <Row>
+              <Col style={{ marginRight: "2rem" }}>Gender</Col>
+              <Col style={{ marginRight: "4rem" }}>
+                <Radio.Group defaultValue="gender" buttonStyle="solid">
+                  <Radio.Button value="men">for men</Radio.Button>
+                  <Radio.Button value="women">for women</Radio.Button>
+                  <Radio.Button value="unisex">unisex</Radio.Button>
                 </Radio.Group>
               </Col>
 
-              <Col>
-                <Radio.Group defaultValue="a" buttonStyle="solid">
-                  <Radio.Button value="a">aaaa</Radio.Button>
-                  <Radio.Button value="b">bbbb</Radio.Button>
+            </Row>
+            <br></br>
+            <Row>
+              <Col style={{ marginRight: "2rem" }}>Style</Col>
+              <Col style={{ marginRight: "2rem" }}>
+                <Radio.Group defaultValue="style1" buttonStyle="solid">
+                  <Radio.Button value="gentle">Gentle</Radio.Button>
+                  <Radio.Button value="sport">Sport</Radio.Button>
                 </Radio.Group>
               </Col>
-              <Col>
-                <Radio.Group defaultValue="a" buttonStyle="solid">
-                  <Radio.Button value="a">aaaa</Radio.Button>
-                  <Radio.Button value="b">bbbb</Radio.Button>
+              <Col style={{ marginRight: "2rem" }}>
+                <Radio.Group defaultValue="style2" buttonStyle="solid">
+                  <Radio.Button value="playful">Playful</Radio.Button>
+                  <Radio.Button value="luxury">Luxury</Radio.Button>
+                </Radio.Group>
+              </Col>
+
+              <Col style={{ marginRight: "2rem" }}>
+                <Radio.Group defaultValue="style3" buttonStyle="solid">
+                  <Radio.Button value="fresh">Fresh</Radio.Button>
+                  <Radio.Button value="sweet">Sweet</Radio.Button>
+                </Radio.Group>
+              </Col>
+              <Col style={{ marginRight: "2rem" }}>
+                <Radio.Group defaultValue="style4" buttonStyle="solid">
+                  <Radio.Button value="sexy">Sexy</Radio.Button>
+                  <Radio.Button value="formal">Formal</Radio.Button>
                 </Radio.Group>
               </Col>
             </Row>
             <br></br>
-            <Row justify="center">Note</Row>
-            <Row justify="space-around">
-              <Select
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Select a person"
-                optionFilterProp="children"
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onSearch={onSearch}
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                }
-              >
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="tom">Tom</Option>
-              </Select>
-              <Select
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Select a person"
-                optionFilterProp="children"
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onSearch={onSearch}
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                }
-              >
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="tom">Tom</Option>
-              </Select>
-              <Select
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Select a person"
-                optionFilterProp="children"
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                onSearch={onSearch}
-                filterOption={(input, option) =>
-                  option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                  0
-                }
-              >
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="tom">Tom</Option>
-              </Select>
+
+
+            <Row>
+              <Col style={{ marginRight: "2rem" }}>Note</Col>
+              <Col style={{ marginRight: "2rem" }}>
+                <Select
+                  showSearch
+                  style={{ width: 200 }}
+                  placeholder="Select a note"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onSearch={onSearch}
+                  filterOption={(input, option) =>
+                    option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                    0
+                  }
+                >
+                  <Option value="floral">Floral</Option>
+                  <Option value="citrus">Citrus</Option>
+                  <Option value="powdery">Powdery</Option>
+                  <Option value="fruity">Fruity</Option>
+                  <Option value="aromatic">Aromatic</Option>
+                  <Option value="spicy">Spicy</Option>
+                  <Option value="woody">Woody</Option>
+                  <Option value="sweet">Sweet</Option>
+                </Select>
+              </Col>
+              <Col style={{ marginRight: "2rem" }}>
+                <Select
+                  showSearch
+                  style={{ width: 200 }}
+                  placeholder="Select a note"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onSearch={onSearch}
+                  filterOption={(input, option) =>
+                    option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                    0
+                  }
+                >
+                  <Option value="floral">Floral</Option>
+                  <Option value="citrus">Citrus</Option>
+                  <Option value="powdery">Powdery</Option>
+                  <Option value="fruity">Fruity</Option>
+                  <Option value="aromatic">Aromatic</Option>
+                  <Option value="spicy">Spicy</Option>
+                  <Option value="woody">Woody</Option>
+                  <Option value="sweet">Sweet</Option>
+                </Select>
+              </Col>
+              <Col style={{ marginRight: "2rem" }}>
+                <Select
+                  showSearch
+                  style={{ width: 200 }}
+                  placeholder="Select a note"
+                  optionFilterProp="children"
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onSearch={onSearch}
+                  filterOption={(input, option) =>
+                    option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                    0
+                  }
+                >
+                  <Option value="floral">Floral</Option>
+                  <Option value="citrus">Citrus</Option>
+                  <Option value="powdery">Powdery</Option>
+                  <Option value="fruity">Fruity</Option>
+                  <Option value="aromatic">Aromatic</Option>
+                  <Option value="spicy">Spicy</Option>
+                  <Option value="woody">Woody</Option>
+                  <Option value="sweet">Sweet</Option>
+                </Select>
+              </Col>
+            </Row>
+            <br></br>
+            <Row>
+              <Col style={{ marginRight: "2rem" }}>Day or Night</Col>
+              <Col style={{ marginRight: "5rem" }}>
+                <Radio.Group defaultValue="daynight" buttonStyle="solid">
+                  <Radio.Button value="day">Day</Radio.Button>
+                  <Radio.Button value="night">Night</Radio.Button>
+                </Radio.Group>
+              </Col>
+              <Col style={{ marginRight: "2rem" }}>Season</Col>
+              <Col style={{ marginRight: "2rem" }}>
+                <Radio.Group defaultValue="season" buttonStyle="solid">
+                  <Radio.Button value="fall">Fall</Radio.Button>
+                  <Radio.Button value="summer">Summer</Radio.Button>
+                  <Radio.Button value="winter">Winter</Radio.Button>
+                  <Radio.Button value="autumn">Autumn</Radio.Button>
+                  <Radio.Button value="rainy">Rainy</Radio.Button>
+                </Radio.Group>
+              </Col>
+            </Row>
+            <br></br>
+            <Row>
+              <Col style={{ marginRight: "2rem" }}>Longevity</Col>
+              <Col>
+                <Radio.Group defaultValue="longevity" buttonStyle="solid">
+                  <Radio.Button value="1-2">1-2 hours</Radio.Button>
+                  <Radio.Button value="2-3">2-3 hours</Radio.Button>
+                  <Radio.Button value="4-5">4-5 hours</Radio.Button>
+                  <Radio.Button value="5-6">5-6 hours</Radio.Button>
+                  <Radio.Button value="6-7">6-8 hours</Radio.Button>
+                </Radio.Group>
+              </Col>
+            </Row>
+            <br></br>
+            <Row>
+              <Col style={{ marginRight: "2rem" }}>Size</Col>
+              <Col>
+                <Radio.Group defaultValue="size" buttonStyle="solid">
+                  <Radio.Button value="30">30</Radio.Button>
+                  <Radio.Button value="50">50</Radio.Button>
+                  <Radio.Button value="75">75</Radio.Button>
+                  <Radio.Button value="90">90</Radio.Button>
+                  <Radio.Button value="100">100</Radio.Button>
+                </Radio.Group>
+              </Col>
             </Row>
             <br></br>
             <Row>

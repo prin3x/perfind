@@ -11,7 +11,7 @@ import VenderPage from "./pages/VenderPage/VenderPage";
 
 import VenderRegister from "./pages/VenderRegister/VenderRegister";
 import VenderEditProduct from "./components/VenderEditProduct.js/VenderEditProduct";
-import Layout from "../src/pages/Layout/Layout";
+import Layout from "./pages/Layout/Layout";
 import AllProducts from "./pages/AllProduct/AllProducts";
 
 const App = () => (

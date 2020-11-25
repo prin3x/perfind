@@ -22,6 +22,15 @@ const layout = {
   wrapperCol: { xs: 24, sm: 19, md: 20, lg: 19, xl: 19, xxl: 19 },
 };
 
+const InsideMainSection = styled.div`
+  box-shadow: 1px 0 45px 0.41px #33302a;
+  max-width: 70vw;
+  background: #fff;
+  box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
+  margin: 0 auto;
+  border-radius: 1rem;
+  height: 100%;
+`;
 const { Option } = Select;
 
 function Register(props) {
@@ -88,257 +97,258 @@ function Register(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-          labelCol: {
-            span: 10,
-          },
-          wrapperCol: {
-            span: 24,
-          },
-        }
+        labelCol: {
+          span: 10,
+        },
+        wrapperCol: {
+          span: 24,
+        },
+      }
       : null;
   return (
-    <div style={{ margin: "0rem", padding: "0rem" }}>
-      <h2
-        style={{
-          background: "linear-gradient(to right, #b8956c, #e3d5b0)",
-          width: "100%",
-          height: "3.5rem",
-          marginTop: "0rem",
-          textAlign: "center",
-          paddingTop: "0.5rem",
-          paddingLeft: "0rem",
-          paddingRight: "0rem",
-          borderTopLeftRadius: "1rem",
-          borderTopRightRadius: "1rem",
-          color: "white",
-          fontFamily: "Playfair",
-        }}
-      >
-        Register
+    <InsideMainSection>
+      <div style={{ margin: "0rem", padding: "0rem" }}>
+        <h2
+          style={{
+            background: "linear-gradient(to right, #b8956c, #e3d5b0)",
+            width: "100%",
+            height: "3.5rem",
+            marginTop: "0rem",
+            textAlign: "center",
+            paddingTop: "0.5rem",
+            paddingLeft: "0rem",
+            paddingRight: "0rem",
+            borderTopLeftRadius: "1rem",
+            borderTopRightRadius: "1rem",
+            color: "white",
+            fontFamily: "Playfair",
+          }}
+        >
+          Register
       </h2>
 
-      <Row justify="center">
-        <Col span={16} className="Form">
-          <Row justify="center">
-            <div>
-              <Dragger {...propsUpload}>
-                <div
+        <Row justify="center">
+          <Col span={22} className="Form">
+            <Row justify="center">
+              <div>
+                <Dragger {...propsUpload}>
+                  <div
+                    style={{
+                      width: "12rem",
+                      height: "12rem",
+                      background: "Gray",
+                      borderRadius: "50%",
+                      marginTop: "1rem",
+                    }}
+                  >
+                    <p className="ant-upload-drag-icon">
+                      <br></br>
+                      <br></br>
+                    </p>
+
+                    <p className="ant-upload-text">Upload</p>
+                    <p className="ant-upload-hint">Profile Image</p>
+                  </div>
+                </Dragger>
+              </div>
+            </Row>
+            <Divider />
+
+            <Row justify="center">
+              <Col span={24}>
+                <Form
                   style={{
-                    width: "12rem",
-                    height: "12rem",
-                    background: "Gray",
-                    borderRadius: "50%",
-                    marginTop: "1rem",
+                    width: "100%",
+                    marginRight: "3rem",
+                    marginLeft: "5rem",
+                  }}
+                  {...layout}
+                  name="register"
+                  onFinish={onFinish}
+                  scrollToFirstError
+                  ///
+                  {...formItemLayout}
+                  layout={formLayout}
+                  form={form}
+                  initialValues={{
+                    layout: formLayout,
                   }}
                 >
-                  <p className="ant-upload-drag-icon">
-                    <br></br>
-                    <br></br>
-                  </p>
-
-                  <p className="ant-upload-text">Upload</p>
-                  <p className="ant-upload-hint">Profile Image</p>
-                </div>
-              </Dragger>
-            </div>
-          </Row>
-          <Divider />
-
-          <Row justify="center">
-            <Col span={24}>
-              <Form
-                style={{
-                  width: "100%",
-                  marginRight: "3rem",
-                  marginLeft: "5rem",
-                }}
-                {...layout}
-                name="register"
-                onFinish={onFinish}
-                scrollToFirstError
-                ///
-                {...formItemLayout}
-                layout={formLayout}
-                form={form}
-                initialValues={{
-                  layout: formLayout,
-                }}
-              >
-                <Row>
-                  <Col span={20}>
-                    <Form.Item
-                      name="username"
-                      label="Username"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your Username!",
-                        },
-                      ]}
-                      style={{ width: "100%" }}
-                    >
-                      <Input
-                        placeholder="input Username"
-                        style={{ width: "100%" }}
-                      />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col span={9}>
-                    <Form.Item
-                      name="firstname"
-                      label="First Name"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your First Name!",
-                        },
-                      ]}
-                    >
-                      <Input placeholder="input First Name" />
-                    </Form.Item>
-                  </Col>
-                  <Col span={2}></Col>
-                  <Col span={9}>
-                    <Form.Item
-                      name="lastname"
-                      label="Last name"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your Last name!",
-                        },
-                      ]}
-                    >
-                      <Input placeholder="input Last name" />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col span={20}>
-                    <Form.Item
-                      name="email"
-                      label="E-mail"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your E-mail!!",
-                        },
-                      ]}
-                    >
-                      <Input placeholder="input E-mail!" />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col span={20}>
-                    <Form.Item
-                      name="password"
-                      label="Password"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your Password",
-                        },
-                      ]}
-                    >
-                      <Input.Password placeholder="input Password" />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col span={20}>
-                    <Form.Item
-                      name="confirm"
-                      label="Confirm Password"
-                      dependencies={["password"]}
-                      hasFeedback
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please confirm your password!",
-                        },
-                        ({ getFieldValue }) => ({
-                          validator(rule, value) {
-                            if (!value || getFieldValue("password") === value) {
-                              return Promise.resolve();
-                            }
-                            return Promise.reject(
-                              "The two passwords that you entered do not match!"
-                            );
+                  <Row>
+                    <Col span={20}>
+                      <Form.Item
+                        name="username"
+                        label="Username"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your Username!",
                           },
-                        }),
-                      ]}
-                    >
-                      <Input.Password placeholder="input Password" />
-                    </Form.Item>
-                  </Col>
-                </Row>
+                        ]}
+                        style={{ width: "100%" }}
+                      >
+                        <Input
+                          placeholder="input Username"
+                          style={{ width: "100%" }}
+                        />
+                      </Form.Item>
+                    </Col>
+                  </Row>
 
-                <Row>
-                  <Col span={20}>
-                    <Form.Item
-                      name="security"
-                      label="Security Question"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your Security Question!",
-                        },
-                      ]}
-                    >
-                      <Input.Group compact>
-                        <Form.Item
-                          name={["security", "question"]}
-                          label="Security Question"
-                          noStyle
-                          rules={[
-                            {
-                              required: true,
-                              message: "Question is required",
+                  <Row>
+                    <Col span={9}>
+                      <Form.Item
+                        name="firstname"
+                        label="First Name"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your First Name!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="input First Name" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={2}></Col>
+                    <Col span={9}>
+                      <Form.Item
+                        name="lastname"
+                        label="Last name"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your Last name!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="input Last name" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col span={20}>
+                      <Form.Item
+                        name="email"
+                        label="E-mail"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your E-mail!!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="input E-mail!" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col span={20}>
+                      <Form.Item
+                        name="password"
+                        label="Password"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your Password",
+                          },
+                        ]}
+                      >
+                        <Input.Password placeholder="input Password" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col span={20}>
+                      <Form.Item
+                        name="confirm"
+                        label="Confirm Password"
+                        dependencies={["password"]}
+                        hasFeedback
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please confirm your password!",
+                          },
+                          ({ getFieldValue }) => ({
+                            validator(rule, value) {
+                              if (!value || getFieldValue("password") === value) {
+                                return Promise.resolve();
+                              }
+                              return Promise.reject(
+                                "The two passwords that you entered do not match!"
+                              );
                             },
-                          ]}
-                        >
-                          <Select placeholder="Select question">
-                            <Option value="เกิดเดือนอะไร">เกิดเดือนอะไร</Option>
-                            <Option value="ชอบสีอะไร">ชอบสีอะไร</Option>
-                          </Select>
-                        </Form.Item>
-                        <Form.Item
-                          name={["security", "answer"]}
-                          noStyle
-                          rules={[
-                            { required: true, message: "Answer is required" },
-                          ]}
-                        >
-                          <Input
-                            style={{ width: "82.5%" }}
-                            placeholder="Input answer"
-                          />
-                        </Form.Item>
-                      </Input.Group>
-                    </Form.Item>
-                  </Col>
-                </Row>
+                          }),
+                        ]}
+                      >
+                        <Input.Password placeholder="input Password" />
+                      </Form.Item>
+                    </Col>
+                  </Row>
 
-                <Row justify="center">
-                  <Col>
-                    <Form
-                      style={{
-                        width: "25rem",
-                        height: "10rem",
-                        overflowY: "scroll",
-                        display: "flex",
-                        flexDirection: "column",
-                        marginRight: "9rem",
-                      }}
-                    >
-                      เงื่อนไข<br></br>• สำหรับผู้สมัครบัตรเครดิตเทสโก้ โลตัส
+                  <Row>
+                    <Col span={20}>
+                      <Form.Item
+                        name="security"
+                        label="Security Question"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your Security Question!",
+                          },
+                        ]}
+                      >
+                        <Input.Group compact>
+                          <Form.Item
+                            name={["security", "question"]}
+                            label="Security Question"
+                            noStyle
+                            rules={[
+                              {
+                                required: true,
+                                message: "Question is required",
+                              },
+                            ]}
+                          >
+                            <Select placeholder="Select question">
+                              <Option value="เกิดเดือนอะไร">เกิดเดือนอะไร</Option>
+                              <Option value="ชอบสีอะไร">ชอบสีอะไร</Option>
+                            </Select>
+                          </Form.Item>
+                          <Form.Item
+                            name={["security", "answer"]}
+                            noStyle
+                            rules={[
+                              { required: true, message: "Answer is required" },
+                            ]}
+                          >
+                            <Input
+                              style={{ width: "82.5%" }}
+                              placeholder="Input answer"
+                            />
+                          </Form.Item>
+                        </Input.Group>
+                      </Form.Item>
+                    </Col>
+                  </Row>
+
+                  <Row justify="center">
+                    <Col>
+                      <Form
+                        style={{
+                          width: "25rem",
+                          height: "10rem",
+                          overflowY: "scroll",
+                          display: "flex",
+                          flexDirection: "column",
+                          marginRight: "9rem",
+                        }}
+                      >
+                        เงื่อนไข<br></br>• สำหรับผู้สมัครบัตรเครดิตเทสโก้ โลตัส
                       วีซ่า ที่มียอดใช้จ่ายสะสมตั้งแต่ 5,000 บาทขึ้นไป
                       รับเครดิตเงินคืนสูงสุด 5% หรือ 250 บาท ภายใน 30
                       วันนับจากวันที่บัตรอนุมัติ และพิเศษในวันดับเบิ้ลเดย์
@@ -391,69 +401,70 @@ function Register(props) {
                       ให้บริการสินเชื่อโดยบริษัท เทสโก้ โลตัส มันนี่ เซอร์วิสเซส
                       จำกัด
                     </Form>
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
 
-                <Row justify="center">
-                  <Form.Item
-                    name="agreement"
-                    valuePropName="checked"
-                    rules={[
-                      {
-                        validator: (_, value) =>
-                          value
-                            ? Promise.resolve()
-                            : Promise.reject("Should accept agreement"),
-                      },
-                    ]}
-                    style={{ marginRight: "10rem", marginTop: "1rem" }}
-                  >
-                    <Checkbox>
-                      I have read the <a href="">agreement</a>
-                    </Checkbox>
-                  </Form.Item>
-                </Row>
-
-                <Row justify="center">
-                  <Col>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      style={{
-                        borderRadius: "50%",
-                        width: "3rem",
-                        height: "3rem",
-                        marginTop: "2rem",
-                        marginRight: "9rem",
-                      }}
+                  <Row justify="center">
+                    <Form.Item
+                      name="agreement"
+                      valuePropName="checked"
+                      rules={[
+                        {
+                          validator: (_, value) =>
+                            value
+                              ? Promise.resolve()
+                              : Promise.reject("Should accept agreement"),
+                        },
+                      ]}
+                      style={{ marginRight: "10rem", marginTop: "1rem" }}
                     >
-                      F
+                      <Checkbox>
+                        I have read the <a href="">agreement</a>
+                      </Checkbox>
+                    </Form.Item>
+                  </Row>
+
+                  <Row justify="center">
+                    <Col>
+                      <Button
+                        type="primary"
+                        htmlType="submit"
+                        style={{
+                          borderRadius: "50%",
+                          width: "3rem",
+                          height: "3rem",
+                          marginTop: "2rem",
+                          marginRight: "9rem",
+                        }}
+                      >
+                        F
                     </Button>
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
 
-                <Row
-                  justify="space-around"
-                  style={{
-                    marginTop: "1.5rem",
-                    marginBottom: "3rem",
-                    marginRight: "9rem",
-                  }}
-                >
-                  <Button type="primary" htmlType="submit">
-                    Reset
+                  <Row
+                    justify="space-around"
+                    style={{
+                      marginTop: "1.5rem",
+                      marginBottom: "3rem",
+                      marginRight: "9rem",
+                    }}
+                  >
+                    <Button type="primary" htmlType="submit">
+                      Reset
                   </Button>
 
-                  <Button type="primary" htmlType="submit">
-                    Register
+                    <Button type="primary" htmlType="submit">
+                      Register
                   </Button>
-                </Row>
-              </Form>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
+                  </Row>
+                </Form>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
+    </InsideMainSection>
   );
 }
 
