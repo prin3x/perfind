@@ -25,22 +25,6 @@ function VenderAllProduct(props) {
         </h2>
       </Row>
       <br></br>
-      {/* <Row style={{ marginLeft: "5rem" }}>
-
-
-        <Col style={{ marginLeft: "25rem" }}>
-
-          <Search
-            placeholder="input search text"
-            size="medium"
-            style={{ borderRadius: "10px", width: "25rem" }}
-            allowClear
-            mode="product"
-            onChange={handleChange} tokenSeparators={[',']}
-          >{children}</Search>
-        </Col>
-      </Row> */}
-
       <CardProductVender />
     </div>
   );

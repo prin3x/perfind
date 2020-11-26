@@ -12,6 +12,7 @@ import {
 } from "antd";
 import axios from "../../config/axios";
 import { UploadOutlined } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
 
 const { Option } = Select;
 const layout = {
@@ -25,6 +26,7 @@ for (let i = 10; i < 36; i++) {
 }
 
 function VenderAddProduct(props) {
+  const history = useHistory();
   const fileMain = [];
   const fileList = [
     {
@@ -43,35 +45,22 @@ function VenderAddProduct(props) {
     },
   ];
 
-  const onFinish = ({
-    name,
-    price,
-    inventory,
-    description,
-    fileList,
-    fileMain,
-  }) => {
-    axios
-      .post('/vendor/products', {
-        name,
-        price,
-        inventory,
-        description,
-        fileList,
-        fileMain,
-      })
-      .then((res) => {
+  const onFinish = async (values) => {
+    const res = await axios.post('/vender/products', {
+      ...values
+    });
+    try {
+      if (res)
         notification.success({
           description: "successfully",
         });
-        props.history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        notification.error({
-          description: "wrong.",
-        });
+      history.push("/vender");
+
+    } catch (error) {
+      notification.error({
+        description: "wrong.",
       });
+    }
   };
   const [form] = Form.useForm();
   const formLayout = "vertical";
@@ -117,7 +106,7 @@ function VenderAddProduct(props) {
             fontFamily: "Playfair",
           }}
         >
-          ADD NEW PROJECT
+          EDIT PROJECT
         </h2>
       </Row>
       <Row justify="center">
@@ -272,6 +261,7 @@ function VenderAddProduct(props) {
               <Col style={{ marginRight: "2rem" }}>Note</Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Select
+                  name="topscent"
                   showSearch
                   style={{ width: 200 }}
                   placeholder="Select a note"
@@ -297,6 +287,7 @@ function VenderAddProduct(props) {
               </Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Select
+                  name="secondscent"
                   showSearch
                   style={{ width: 200 }}
                   placeholder="Select a note"
@@ -322,6 +313,7 @@ function VenderAddProduct(props) {
               </Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Select
+                  name="thirdscent"
                   showSearch
                   style={{ width: 200 }}
                   placeholder="Select a note"
@@ -413,7 +405,7 @@ function VenderAddProduct(props) {
                 marginRight: "9rem",
               }}
             >
-              <Button type="primary" htmlType="submit">
+              <Button type="" htmlType="">
                 Reset
               </Button>
 

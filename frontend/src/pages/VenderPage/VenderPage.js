@@ -34,7 +34,6 @@ function VenderPage(props) {
             }
             key="1"
           >
-            <Tabs defaultActiveKey="1" centered></Tabs>
             <VenderAllProduct />
           </TabPane>
           <TabPane

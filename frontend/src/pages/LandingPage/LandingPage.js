@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import { Button, Row } from "antd";
+import { Button } from "antd";
 
 const ContentWrapper = styled.div`
   max-width: 80rem;

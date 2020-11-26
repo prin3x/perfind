@@ -39,7 +39,7 @@ const addProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-  const targetId = Number(req.params.id);
+  const targetId = req.params.id;
   await db.Product.update({
     ...req.body
   }, {
@@ -49,11 +49,11 @@ const updateProduct = async (req, res) => {
 };
 
 const deleteProduct = async (req, res) => {
-  const targetId = Number(req.params.id);
+  const targetId = req.params.id;
   await db.Product.destroy({
     where: { id: targetId }
   });
-  res.status(204).send();
+  res.status(204).send({ message: "success" });
 };
 
 module.exports = {

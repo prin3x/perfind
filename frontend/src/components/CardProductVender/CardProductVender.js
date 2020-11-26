@@ -59,6 +59,8 @@ function CardProductVender(props) {
   const [products, setProducts] = React.useState([]);
 
 
+
+
   const isEditing = (record) => record.key === editingKey;
 
   const onSearch = async (value) => {
@@ -81,10 +83,11 @@ function CardProductVender(props) {
 
 
 
-  const deleteProduct = (name) => {
-    const newData = [...products];
-    const newProduct = newData.filter((e) => e.name !== name);
-    setProducts(newProduct);
+  const deleteProduct = async (id) => {
+    await axios.delete(`vender/product/${id}`);
+    setProducts(products.filter((product) => product.id !== id));
+    ///@@@@@@
+    // fetchAllProducts();
     setEditingKey("");
   };
 
@@ -142,7 +145,7 @@ function CardProductVender(props) {
             <Col>
               <button style={{ width: "3rem", }}>
                 <Link
-                  to="/vender/product/edit"
+                  to={`/vender/product/edit/${record.id}`}
                   className="btn btn-outline-info btn-sm pull-right"
                 >Edit
             </Link>
@@ -152,13 +155,13 @@ function CardProductVender(props) {
             <Col>
               <button style={{ width: "3rem" }}
 
-                onClick={() => deleteProduct(record.name)}
+                onClick={() => deleteProduct(record.id)}
               >
                 Delete
           </button>
             </Col>
 
-          </Row>
+          </Row >
 
         );
 
