@@ -4,7 +4,6 @@ import axios from "../../config/axios";
 import LocalStorageService from "../../services/LocalStorageService";
 import styled from "styled-components";
 import { InsideMainSection } from "../Layout/Layout";
-import roles from "../../config/role";
 
 const Background = styled.div`
   min-height: 150rem;
@@ -41,21 +40,20 @@ const MainSection = styled.div`
   z-index: 2;
 `;
 
-function Login(props) {
+function VenderLogin(props) {
   const onFinish = (values) => {
     const body = {
       username: values.username,
       password: values.password,
     };
     axios
-      .post("/auth/login", body)
+      .post("/auth/vender/login", body)
       .then((res) => {
         notification.success({
           description: "Login success.",
         });
-        // props.setRole("USER");
-        props.history.push("/");
         LocalStorageService.setToken(res.data.token);
+        props.history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -90,17 +88,11 @@ function Login(props) {
               <Form.Item name="password" label="Password">
                 <Input.Password />
               </Form.Item>
-              <Row justify="center" name="fbLoginBtn">
-                <p>Login With</p>
-                <Button>
-                  <a href="http://localhost:7000/auth/facebook">Facebook</a>
-                </Button>
-              </Row>
               <Row justify="center">
-                <Button htmlType="submit" onClick={Login}>
+                <Button htmlType="submit" onClick={VenderLogin}>
                   SIGN IN
                 </Button>
-                <Link to="/register">
+                <Link to="/vender/register">
                   <Button>SIGN UP</Button>
                 </Link>
               </Row>
@@ -112,4 +104,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default VenderLogin;

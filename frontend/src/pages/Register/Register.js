@@ -27,7 +27,7 @@ const InsideMainSection = styled.div`
   box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
   margin: 0 auto;
   margin-bottom: 10rem;
-  margin-top: 10rem;
+  margin-bottom: 10rem;
   border-radius: 1rem;
   height: 100%;
 `;

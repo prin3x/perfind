@@ -24,7 +24,8 @@ server.use(express.static("public/images"));
 server.use(express.urlencoded({ extended: false }));
 
 server.use("/auth", authRoutes);
-server.use("/products", productRoutes);
+server.use("/vender/login", authRoutes);
+server.use("/vender/register", authRoutes);
 
 db.sequelize
   .sync({ force: false })

@@ -185,9 +185,9 @@ const Navbar = (props) => {
     setShow(!show);
   };
 
-  const logOut = () => {
+  const logOut = (props) => {
     LocalStorageService.removeToken();
-    props.setRole("GUEST");
+    // props.setRole("GUEST");
   };
 
   return (
