@@ -17,10 +17,17 @@ const InsideMainSection = styled.div`
 `;
 
 function VenderPage(props) {
+
+
+
+
   return (
+
     <Fragment>
       <InsideMainSection>
-        <Tabs defaultActiveKey="1" centered style={{ borderRadius: "1rem" }}>
+        <Tabs defaultActiveKey="1"
+          // activeKey="1"
+          centered style={{ borderRadius: "1rem" }}>
           <TabPane
             tab={
               <span

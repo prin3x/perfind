@@ -7,6 +7,7 @@ const db = require('./models');
 const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const productVendorRoutes = require('./routes/productVendorRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 const passport = require('passport');
 const logger = require('morgan');
 
@@ -27,6 +28,7 @@ server.use(express.urlencoded({ extended: false }));
 server.use('/auth', authRoutes);
 server.use('/products', productRoutes);
 server.use('/vender', productVendorRoutes);
+server.use('/carts', cartRoutes);
 
 db.sequelize
   .sync({ force: false })

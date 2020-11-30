@@ -1,38 +1,90 @@
-import { Checkbox, Col, Divider, Row } from 'antd';
-import React from 'react';
+import React, { createContext, useEffect, useState, useReducer } from 'react';
+import { Checkbox, Row, Col, Button } from 'antd';
+import axios from '../../config/axios';
+import { ProductReducer } from './ProductReducer';
 
-const CheckboxGroup = Checkbox.Group;
+export const ProductContext = createContext();
 
-const plainOptions = ['Apple', 'Pear', 'Orange'];
-const defaultCheckedList = ['Apple', 'Orange'];
+export default function Cart({ props }) {
+  const { image, name, price, product_id, qty, size } = props;
+  const [selectItem, dispatch] = useReducer(ProductReducer, []);
 
-export default function Cart() {
-  const [indeterminate, setIndeterminate] = React.useState(true);
-  const [checkedList, setCheckedList] = React.useState(defaultCheckedList);
-  const [checkAll, setCheckAll] = React.useState(false);
 
-  const onCheckAllChange = e => {
-    setCheckedList(e.target.checked ? plainOptions : []);
-    setIndeterminate(false);
-    setCheckAll(e.target.checked);
+  const retreiveItems = async () => {
+    const { data } = await axios.get('/carts');
+    if (data) dispatch({ type: 'RETRIEVE_ALL_ITEMS', data });
   };
 
-  const onChange = list => {
-    setCheckedList(list);
-    setIndeterminate(!!list.length && list.length < plainOptions.length);
-    setCheckAll(list.length === plainOptions.length);
+  const sendUpdatedData = async id => {
+    await axios.patch(`/carts/${id}`, {
+      qty: selectItem.find(item => item.product_id === id).qty,
+    });
   };
 
+  const updateQty = async (id, qty) => {
+    qty === 0
+      ? deleteProduct(id)
+      : await dispatch({ type: 'UPDATE_QTY', id, qty });
+  };
+  const deleteProduct = async id => {
+    await axios.delete(`/carts/${id}`);
+    dispatch({ type: 'DELETE_ITEM_FROM_CART', id });
+  };
+
+  useEffect(() => {
+    retreiveItems();
+  }, []);
+
+  useEffect(() => {
+    sendUpdatedData(product_id);
+  }, [selectItem]);
 
   return (
+    <Row justify="center">
+      <Col >
+        <Checkbox style={{ marginLeft: "1rem", marginTop: "1rem" }}>
+          <Row>
+            <Col>
+              <img src={image} alt={name} style={{ width: "10rem", height: "10rem", marginLeft: "2rem" }} />
+            </Col>
+            <Col style={{ marginLeft: "2rem", marginRight: "2rem" }}>
+              <div>
+                Product : {name}
+              </div>
+              <div>
+                Price: {price}
+              </div>
+              <div>
+                Size : {size}
+              </div>
+            </Col>
+            <Col style={{ marginLeft: "2rem", marginRight: "0.5rem" }}>
+              <Button type="primary" onClick={() => {
+                updateQty(product_id, qty - 1);
+              }}>-</Button>
+            </Col>
+            <div>
+              Quantity: {qty}
+            </div>
 
-    <>
-      <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
-        Check all
-      </Checkbox>
-      <Divider />
-      <CheckboxGroup options={plainOptions} value={checkedList} onChange={onChange} />
-    </>
 
+            <Col style={{ marginRight: "2rem", marginLeft: "0.5rem" }}>
+              <Button type="primary" oonClick={() => {
+                updateQty(product_id, qty + 1);
+              }}>+</Button>
+            </Col>
+
+            <Col>
+              <Button type="primary" onClick={() => {
+                deleteProduct(product_id);
+              }}>Delete</Button>
+            </Col>
+          </Row>
+
+        </Checkbox>
+        <hr></hr>
+      </Col>
+    </Row >
   );
 }
+

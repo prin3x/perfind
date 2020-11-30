@@ -54,7 +54,7 @@ function VenderAddProduct(props) {
         notification.success({
           description: "successfully",
         });
-      history.push("/vender");
+
 
     } catch (error) {
       notification.error({
@@ -89,6 +89,10 @@ function VenderAddProduct(props) {
   function onSearch(val) {
     console.log("search:", val);
   }
+
+  const onReset = () => {
+    form.resetFields();
+  };
   return (
     <>
       <Row justify="center">
@@ -405,7 +409,7 @@ function VenderAddProduct(props) {
                 marginRight: "9rem",
               }}
             >
-              <Button type="" htmlType="">
+              <Button htmlType="button" onClick={onReset}>
                 Reset
               </Button>
 

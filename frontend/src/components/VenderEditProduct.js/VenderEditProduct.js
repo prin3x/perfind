@@ -34,9 +34,19 @@ const layout = {
 
 function VenderEditProduct(props) {
   // console.log(props.match.params.id);
-  const [products, setProducts] = React.useState([]);
+
+  const [products, setProducts] = React.useState({});
   console.log(products);
-  const fileMain = [];
+  const mainList = [
+    {
+      uid: "-1",
+      name: "image",
+      status: "done",
+      url:
+        products.image,
+    }
+  ];
+
   const fileList = [
     {
       uid: "-1",
@@ -44,14 +54,7 @@ function VenderEditProduct(props) {
       status: "done",
       url:
         products.image,
-      thumbUrl:
-        products.image,
-    },
-    {
-      uid: "-2",
-      name: "yyy.png",
-      status: "error",
-    },
+    }
   ];
 
   const onFinish = async (values) => {
@@ -135,6 +138,10 @@ function VenderEditProduct(props) {
   function onSearch(val) {
     console.log("search:", val);
   }
+
+  const onReset = () => {
+    form.resetFields();
+  };
   return (
     < InsideMainSection >
       <Row justify="center">
@@ -179,7 +186,7 @@ function VenderEditProduct(props) {
                   label="Product"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your Name product!",
                     },
                   ]}
@@ -203,7 +210,7 @@ function VenderEditProduct(props) {
                   label="Price"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your Price!",
                     },
                   ]}
@@ -221,7 +228,7 @@ function VenderEditProduct(props) {
                   label="Inventory"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your inventory",
                     },
                   ]}
@@ -241,7 +248,7 @@ function VenderEditProduct(props) {
 
                   rules={[
                     {
-                      // required: true,
+                      required: false,
                       message: "Please input your image",
                     },
                   ]}
@@ -249,7 +256,8 @@ function VenderEditProduct(props) {
                   <Upload
                     action={"https://fimgs.net/mdimg/perfume/375x500.52002.jpg"}
                     listType="picture"
-                    defaultFileList={products.image}
+                    // defaultFileList={products.image}
+                    fileList={mainList}
                   >
                     <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
@@ -264,7 +272,7 @@ function VenderEditProduct(props) {
                   label="Description"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your description",
                     },
                   ]}
@@ -284,7 +292,7 @@ function VenderEditProduct(props) {
                   label="gender"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your gender",
                     },
                   ]}
@@ -592,8 +600,9 @@ function VenderEditProduct(props) {
               <Upload
                 action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                 listType="picture"
-                defaultFileList={[...fileList]}
+                fileList={[...fileList]}
               >
+                {fileList.length < 5}
                 <Button icon={<UploadOutlined />}>Upload</Button>
               </Upload>
             </Row>
@@ -605,7 +614,7 @@ function VenderEditProduct(props) {
                 marginRight: "9rem",
               }}
             >
-              <Button type="primary" htmlType="submit">
+              <Button htmlType="button" onClick={onReset}>
                 Reset
               </Button>
 

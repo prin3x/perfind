@@ -12,7 +12,7 @@ const HamContainer = styled.div`
   display: inline-block;
   cursor: pointer;
   height: 12px;
-  z-index: 5000;
+  z-index: 1000;
   background: transparent;
 
   .bar1,
@@ -46,7 +46,7 @@ const NavbarWrapper = styled.div`
   position: relative;
   position: fixed;
   top: 0;
-  z-index: 5000;
+  z-index: 1000;
 `;
 
 const UpperNavbar = styled.div`
