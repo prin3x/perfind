@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Product',
+    "Product",
     {
       sku: {
         type: DataTypes.STRING(255),
@@ -12,15 +12,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
       },
       size: {
-        type: DataTypes.ENUM('30','50','75','90','100')
+        type: DataTypes.ENUM("30", "50", "75", "90", "100"),
       },
       daynight: {
-        type: DataTypes.ENUM('day','night')
+        type: DataTypes.ENUM("day", "night"),
       },
       season: {
-        type: DataTypes.ENUM('fall','summer','winter','autumn','rainy')
+        type: DataTypes.STRING(255),
       },
-      image: {
+      main_image: {
         type: DataTypes.STRING(255),
       },
       description: {
@@ -68,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'products',
+      tableName: "products",
       timestamps: false,
     }
   );

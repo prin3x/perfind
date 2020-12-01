@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const passport = require('passport');
 const logger = require('morgan');
+const uploadFiles = require("./routes/uploadRoutes");
 
 const server = express();
 
@@ -25,13 +26,14 @@ server.use(express.urlencoded({ extended: false }));
 
 server.use('/auth', authRoutes);
 server.use('/products', productRoutes);
+server.use("/upload", uploadFiles);
 
 db.sequelize
   .sync({ force: false })
   .then(() => {
     console.log(`DABATSE HAS BEEN SYNCING`.cyan.bold.underline);
   })
-  .catch(err =>
+  .catch((err) =>
     console.log(`There might be some err : ${err}`.red.bold.bgWhite)
   );
 

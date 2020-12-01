@@ -100,10 +100,10 @@ ELSE '0' END AS total_17
 
 
 FROM products
-WHERE gender = "${gender}" ) AS result
+WHERE gender = "${gender}" AND size = '50' ) AS result
 
 order by total desc
-limit 5`;
+limit 10`;
   try {
     const [similarProduct, meta] = await db.sequelize.query(rawQuery);
 
