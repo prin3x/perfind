@@ -28,9 +28,10 @@ const getAllCarts = async (req, res) => {
 const addCarts = async (req, res) => {
   const { qty } = req.body;
   const targetId = req.params.id;
+
   const getCart = await db.Cart.findOne({
-    // where: { product_id: targetId },
-    where: { product_id: targetId, user_id: req.user.id },
+    where: { product_id: targetId },
+    // where: { product_id: targetId, user_id: req.user.id },
     include: [db.Product],
   });
   if (getCart) {
@@ -39,7 +40,7 @@ const addCarts = async (req, res) => {
   } else {
     const cartProduct = await db.Cart.create({
       product_id: +getCart,
-      user_id: req.user.id,
+      // user_id: req.user.id,
       qty: +qty,
     });
     res.status(200).send(cartProduct);
@@ -53,8 +54,10 @@ const addCarts = async (req, res) => {
 const updateCarts = async (req, res) => {
   const targetId = req.params.id;
   const { qty } = req.body;
+
   const targetCart = await db.Cart.findOne({
-    where: { product_id: targetId, user_id: req.user.id },
+    // where: { product_id: targetId, user_id: req.user.id },
+    where: { product_id: targetId },
     include: [db.Product],
   });
   if (targetCart) {
@@ -63,10 +66,14 @@ const updateCarts = async (req, res) => {
   }
 };
 
+
+
 const deleteCarts = async (req, res) => {
   const targetId = req.params.id;
+
   const targetCart = await db.Cart.findOne({
-    where: { product_id: targetId, user_id: req.user.id },
+    // where: { product_id: targetId, user_id: req.user.id },
+    where: { product_id: targetId },
     include: [db.Product],
   });
   await targetCart.destroy();

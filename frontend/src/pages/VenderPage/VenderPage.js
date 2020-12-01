@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Tabs } from "antd";
 
 import VenderAddProduct from "../../components/VenderAddProduct/VenderAddProduct";
@@ -18,15 +18,20 @@ const InsideMainSection = styled.div`
 
 function VenderPage(props) {
 
+  const [activePane, setActivePane] = useState("1");
 
-
+  const changeActivePane = (value) => {
+    setActivePane(value);
+  };
 
   return (
 
     <Fragment>
       <InsideMainSection>
-        <Tabs defaultActiveKey="1"
-          // activeKey="1"
+        <Tabs
+          defaultActiveKey={activePane}
+          onTabClick={(k) => setActivePane(k)}
+          activeKey={activePane}
           centered style={{ borderRadius: "1rem" }}>
           <TabPane
             tab={
@@ -57,7 +62,7 @@ function VenderPage(props) {
             key="2"
             style={{ background: "white" }}
           >
-            <VenderAddProduct />
+            <VenderAddProduct changeActivePane={changeActivePane} />
           </TabPane>
           <TabPane
             tab={

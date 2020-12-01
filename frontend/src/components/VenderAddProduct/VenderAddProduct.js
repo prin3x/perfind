@@ -46,15 +46,15 @@ function VenderAddProduct(props) {
   ];
 
   const onFinish = async (values) => {
-    const res = await axios.post('/vender/products', {
-      ...values
-    });
     try {
+      const res = await axios.post('/vender/products', {
+        ...values
+      });
       if (res)
         notification.success({
           description: "successfully",
         });
-
+      props.changeActivePane("1");
 
     } catch (error) {
       notification.error({
@@ -420,6 +420,7 @@ function VenderAddProduct(props) {
           </Form>
         </Col>
       </Row>
+      <button onClick={() => { props.changeActivePane("1"); }}>Click</button>
     </>
   );
 }
