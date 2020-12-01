@@ -16,10 +16,17 @@ const getRole = () => {
   }
   return "GUEST";
 };
+const setRole = () => {
+  if (getToken()) {
+    return "USER";
+  }
+  return "GUEST";
+};
 
 export default {
   setToken,
   getToken,
   removeToken,
+  setRole,
   getRole,
 };

@@ -12,6 +12,8 @@ import Layout from "../src/pages/Layout/Layout";
 import VenderRegister from "./pages/VenderRegister/VenderRegister";
 import VenderEditProduct from "./components/VenderEditProduct.js/VenderEditProduct";
 import AllProducts from "./pages/AllProduct/AllProducts";
+import Login from "./pages/Login/Login";
+import VenderLogin from "./pages/Login/VendorLogin";
 
 const App = () => (
   <Layout>
@@ -24,6 +26,11 @@ const App = () => (
       <Route exact path="/vender/product/edit" component={VenderEditProduct} />
 
       <Route exact path="/products" component={AllProducts} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/contact" component={ContactForm} />
+      <Route exact path="/vender/register" component={VenderRegister} />
+      <Route exact path="/vender/login" component={VenderLogin} />
     </Switch>
   </Layout>
 );

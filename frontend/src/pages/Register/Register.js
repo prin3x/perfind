@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import {
   Row,
   Col,
@@ -23,6 +23,18 @@ const layout = {
 };
 
 const { Option } = Select;
+
+const InsideMainSection = styled.div`
+  box-shadow: 1px 0 45px 0.41px #33302a;
+  max-width: 90rem;
+  background: #fff;
+  box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
+  margin: 0 auto;
+  margin-bottom: 10rem;
+  margin-bottom: 10rem;
+  border-radius: 1rem;
+  height: 100%;
+`;
 
 function Register(props) {
   const [fileName, setFileName] = useState("");
@@ -97,28 +109,29 @@ function Register(props) {
         }
       : null;
   return (
-    <div style={{ margin: "0rem", padding: "0rem" }}>
-      <h2
-        style={{
-          background: "linear-gradient(to right, #b8956c, #e3d5b0)",
-          width: "100%",
-          height: "3.5rem",
-          marginTop: "0rem",
-          textAlign: "center",
-          paddingTop: "0.5rem",
-          paddingLeft: "0rem",
-          paddingRight: "0rem",
-          borderTopLeftRadius: "1rem",
-          borderTopRightRadius: "1rem",
-          color: "white",
-          fontFamily: "Playfair",
-        }}
-      >
-        Register
-      </h2>
-
+    <InsideMainSection>
       <Row justify="center">
-        <Col span={16} className="Form">
+        <h2
+          style={{
+            background: "linear-gradient(to right, #b8956c, #e3d5b0)",
+            width: "100%",
+            height: "3.5rem",
+            margin: "0 auto",
+            textAlign: "center",
+            paddingTop: "0.5rem",
+            paddingLeft: "0rem",
+            paddingRight: "0rem",
+            borderTopLeftRadius: "1rem",
+            borderTopRightRadius: "1rem",
+            color: "white",
+            fontFamily: "Playfair",
+          }}
+        >
+          Register
+        </h2>
+      </Row>
+      <Row justify="center">
+        <Col span={24} className="Form">
           <Row justify="center">
             <div>
               <Dragger {...propsUpload}>
@@ -150,7 +163,7 @@ function Register(props) {
                 style={{
                   width: "100%",
                   marginRight: "3rem",
-                  marginLeft: "5rem",
+                  marginLeft: "4rem",
                 }}
                 {...layout}
                 name="register"
@@ -313,6 +326,21 @@ function Register(props) {
                           name={["security", "answer"]}
                           noStyle
                           rules={[
+                            {
+                              required: true,
+                              message: "Question is required",
+                            },
+                          ]}
+                        >
+                          <Select placeholder="Select question">
+                            <Option value="เกิดเดือนอะไร">เกิดเดือนอะไร</Option>
+                            <Option value="ชอบสีอะไร">ชอบสีอะไร</Option>
+                          </Select>
+                        </Form.Item>
+                        <Form.Item
+                          name={["security", "answer"]}
+                          noStyle
+                          rules={[
                             { required: true, message: "Answer is required" },
                           ]}
                         >
@@ -453,7 +481,7 @@ function Register(props) {
           </Row>
         </Col>
       </Row>
-    </div>
+    </InsideMainSection>
   );
 }
 
