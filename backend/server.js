@@ -1,14 +1,17 @@
-require("dotenv").config();
-require("colors");
+require('dotenv').config();
+require('colors');
 
-const express = require("express");
-const cors = require("cors");
-const db = require("./models");
-const authRoutes = require("./routes/authRoutes");
-const productRoutes = require("./routes/productRoutes");
-const passport = require("passport");
-const logger = require("morgan");
+const express = require('express');
+const cors = require('cors');
+const db = require('./models');
+const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes');
+const productVendorRoutes = require('./routes/productVendorRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const passport = require('passport');
+const logger = require('morgan');
 const uploadFiles = require("./routes/uploadRoutes");
+
 
 const server = express();
 
@@ -30,6 +33,8 @@ server.use("/upload", uploadFiles);
 server.use("/auth", authRoutes);
 server.use("/vender/login", authRoutes);
 server.use("/vender/register", authRoutes);
+server.use('/vender', productVendorRoutes);
+server.use('/carts', cartRoutes);
 
 db.sequelize
   .sync({ force: false })
