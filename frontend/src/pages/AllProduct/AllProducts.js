@@ -12,6 +12,7 @@ import {
   Slider,
   Form,
   Pagination,
+  Typography,
 } from "antd";
 import axios from "../../config/axios";
 
@@ -73,7 +74,7 @@ const contentStyle = {
 
 const ProductRow = styled.div`
   width: 10rem;
-  height: 10rem;
+  height: 13rem;
   border-bottom: 1px solid #000;
 `;
 
@@ -101,7 +102,7 @@ export default function AllProducts() {
     { label: "Montblac", value: "Montblac" },
     { label: "Givonchy", value: "Givonchy" },
     { label: "Channel", value: "Channel" },
-    { label: "Apple", value: "Apple" },
+    { label: "Aventus", value: "Aventus" },
   ];
 
   const [brands, setBrands] = React.useState(brandOptions);
@@ -111,7 +112,6 @@ export default function AllProducts() {
     const { data } = await axios.get(`/products/?_search=${value}`);
     const searchProduct = data;
     setProducts(searchProduct);
-    setActualPresentedProduct(searchProduct);
     setIsLoading(false);
   };
   const onSearchBrand = (e) => {
@@ -182,6 +182,9 @@ export default function AllProducts() {
   React.useEffect(() => {
     fetchAllProducts();
   }, []);
+  React.useEffect(() => {
+    setActualPresentedProduct(products)
+  }, [products]);
 
   React.useEffect(() => {
     const filteredProducts = products.filter(
@@ -331,10 +334,13 @@ export default function AllProducts() {
         <ProductContainer>
           <Row align="middle" justify="center">
             {actualPresentedProduct &&
-              actualPresentedProduct.map(({ sku, name, image }) => (
+              actualPresentedProduct.map(({ sku, name, main_image }) => (
                 <Col span={6} key={sku}>
                   <ProductRow>
-                    <Image src={image} alt="" />
+                    <Image src={main_image} alt="" />
+                    <Typography.Text>
+                      {name}
+                    </Typography.Text>
                   </ProductRow>
                 </Col>
               ))}
