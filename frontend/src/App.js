@@ -16,6 +16,7 @@ import Login from "./pages/Login/Login";
 import VenderLogin from "./pages/Login/VendorLogin";
 import Layout from "./pages/Layout/Layout";
 import AllCart from "./pages/AllCard/AllCart";
+import OmiseCheckout from "./components/OmiseCheckout/OmiseCheckout";
 
 
 const App = () => (
@@ -26,7 +27,11 @@ const App = () => (
       <Route exact path="/contact" component={ContactForm} />
       <Route exact path="/vender" component={VenderPage} />
       <Route exact path="/vender/register" component={VenderRegister} />
-      <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
+      <Route
+        exact
+        path="/vender/product/edit/:id"
+        component={VenderEditProduct}
+      />
 
       <Route exact path="/products" component={AllProducts} />
       <Route exact path="/login" component={Login} />
@@ -35,8 +40,8 @@ const App = () => (
       <Route exact path="/vender/register" component={VenderRegister} />
       <Route exact path="/vender/login" component={VenderLogin} />
       <Route exact path="/cart" component={AllCart} />
-
+      <Route exact path="/checkout" component={OmiseCheckout} />
     </Switch>
-  </Layout >
+  </Layout>
 );
 export default App;

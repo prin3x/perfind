@@ -11,6 +11,7 @@ const cartRoutes = require('./routes/cartRoutes');
 const passport = require('passport');
 const logger = require('morgan');
 const uploadFiles = require("./routes/uploadRoutes");
+const chargRoutes = require("./routes/chargeRoute");
 
 
 const server = express();
@@ -35,6 +36,7 @@ server.use("/vender/login", authRoutes);
 server.use("/vender/register", authRoutes);
 server.use('/vender', productVendorRoutes);
 server.use('/carts', cartRoutes);
+server.use("/charge", chargRoutes);
 
 db.sequelize
   .sync({ force: false })
