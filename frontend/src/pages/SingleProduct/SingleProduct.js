@@ -295,6 +295,7 @@ function SingleProduct() {
               >
                 <Row>
                   <Col span={12}>
+                    {/* JS */}
                     <h1 className="Product-h1">COACH</h1>
                     <p className="Product-text-md">Floral Eau De Parfum</p>
                   </Col>
@@ -358,6 +359,7 @@ function SingleProduct() {
                     letterSpacing: "0.055em",
                   }}
                 >
+                  {/* JS */}
                   <p>
                     {" "}
                     The feminine scent opens with a splash of Citrus Coeur and a
@@ -420,6 +422,7 @@ function SingleProduct() {
                     }}
                   >
                     {" "}
+                    {/* JS */}
                     <h4 className="Product-h4"> Quantity :</h4>
                   </Col>
                   <Col span={6}>
@@ -445,6 +448,7 @@ function SingleProduct() {
                       }}
                     >
                       {" "}
+                      {/* JS */}
                       26 Remains{" "}
                     </h4>
                   </Col>
@@ -574,9 +578,10 @@ function SingleProduct() {
               </h1>
               <Row>
                 <Col span={1}></Col>
-                <Col span={12}>
-                  <Carousel autoplay style={{ height: "400px" }}>
+                <Col span={12} className="Product-carousel" >
+                  <Carousel autoplay style={{ height: "400px" }} >
                     <div>
+                      {/* JS */}
                       <Image
                         className="Carousel-img"
                         src="https://images-na.ssl-images-amazon.com/images/I/81XWoMr6P6L._SX425_.jpg"

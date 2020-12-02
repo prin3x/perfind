@@ -238,8 +238,8 @@
   border: 16px solid #ffffffdc;
 }
 
-.ant-carousel {
-  transform: rotate(358.5deg);
+.Product-carousel .ant-carousel {
+  transform: rotate(358.5deg) ;
 }
 
 .Product-desc-h1 {
