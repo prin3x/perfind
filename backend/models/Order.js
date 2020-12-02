@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Order',
+    "Order",
     {
       total_points: {
         type: DataTypes.INTEGER,
@@ -14,9 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       shipping_fees: {
         type: DataTypes.INTEGER,
       },
+      status: {
+        type: DataTypes.STRING(50),
+      },
     },
     {
-      tableName: 'orders',
+      tableName: "orders",
     }
   );
 

@@ -1,6 +1,7 @@
+
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Order_Detail',
+    "Order_Detail",
     {
       qty: {
         type: DataTypes.INTEGER,
@@ -13,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'order_details',
+      tableName: "order_details",
     }
   );
 
