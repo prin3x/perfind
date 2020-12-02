@@ -14,21 +14,11 @@ import React, { useState } from "react";
 import { BASE_BACKEND_URL } from "../../config/constants";
 import axios from "../../config/axios";
 import { UploadOutlined } from "@ant-design/icons";
-import styled from "styled-components";
+
 const layout = {
   labelCol: { xs: 24, sm: 5, md: 4, lg: 5, xl: 5, xxl: 5 },
   wrapperCol: { xs: 24, sm: 19, md: 20, lg: 19, xl: 19, xxl: 19 },
 };
-const InsideMainSection = styled.div`
-  box-shadow: 1px 0 45px 0.41px #33302a;
-  max-width: 70vw;
-  background: #fff;
-  box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
-  margin: 0 auto;
-  border-radius: 1rem;
-  height: 100%;
-`;
-
 function VenderRegister(props) {
   const [fileBrandName, setFileBrandName] = useState("");
   const fileCertificate = [];
@@ -88,16 +78,16 @@ function VenderRegister(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-        labelCol: {
-          span: 10,
-        },
-        wrapperCol: {
-          span: 24,
-        },
-      }
+          labelCol: {
+            span: 10,
+          },
+          wrapperCol: {
+            span: 24,
+          },
+        }
       : null;
   return (
-    <InsideMainSection>
+    <div>
       <h2
         style={{
           background: "linear-gradient(to right, #b8956c, #e3d5b0)",
@@ -118,7 +108,7 @@ function VenderRegister(props) {
       </h2>
 
       <Row justify="center">
-        <Col span={20} className="Form">
+        <Col span={16} className="Form">
           <Row justify="center">
             <div>
               <Dragger {...propsUpload}>
@@ -375,7 +365,7 @@ function VenderRegister(props) {
           </Row>
         </Col>
       </Row>
-    </InsideMainSection>
+    </div>
   );
 }
 

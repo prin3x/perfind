@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'User',
+    "User",
     {
       facebook_id: {
         type: DataTypes.STRING(255),
@@ -20,9 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
       },
       gender: {
-        type: DataTypes.ENUM('male', 'female', 'lgbtq'),
+        type: DataTypes.ENUM("male", "female", "lgbtq"),
       },
       email: {
+        type: DataTypes.STRING(255),
+      },
+      profile_image_url: {
         type: DataTypes.STRING(255),
       },
       phone_number: {
@@ -37,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'users',
+      tableName: "users",
     }
   );
 

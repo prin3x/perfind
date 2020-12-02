@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Product',
+    "Product",
     {
       sku: {
         type: DataTypes.STRING(255),
@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM('50','90','100')
       },
       daynight: {
-        type: DataTypes.ENUM('day','night')
+        type: DataTypes.ENUM('day', 'night')
       },
       season: {
         type: DataTypes.STRING(255)
       },
-      image: {
+      main_image: {
         type: DataTypes.STRING(255),
       },
       description: {
@@ -66,19 +66,22 @@ module.exports = (sequelize, DataTypes) => {
       totalRating: {
         type: DataTypes.INTEGER,
       },
+      // slug: {
+      //   type: DataTypes.STRING,
+      // }
     },
     {
-      tableName: 'products',
+      tableName: "products",
       timestamps: false,
     }
   );
 
   model.associate = models => {
-    model.belongsTo(models.User, {foreignKey: 'user_id'});
-    model.hasMany(models.Order_Detail, {foreignKey: 'product_id'});
-    model.belongsTo(models.Category, {foreignKey: 'category_id'});
-    model.hasMany(models.Cart, {foreignKey: 'product_id'});
-    model.belongsTo(models.Vendor, {foreignKey: 'vendor_id'});
+    model.belongsTo(models.User, { foreignKey: 'user_id' });
+    model.hasMany(models.Order_Detail, { foreignKey: 'product_id' });
+    model.belongsTo(models.Category, { foreignKey: 'category_id' });
+    model.hasMany(models.Cart, { foreignKey: 'product_id' });
+    model.belongsTo(models.Vendor, { foreignKey: 'vendor_id' });
   };
 
   return model;

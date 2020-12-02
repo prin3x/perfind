@@ -30,7 +30,7 @@ const MainSection = styled.div`
   margin: 0 2rem;
 `;
 
-const InsideMainSection = styled.div`
+export const InsideMainSection = styled.div`
   box-shadow: 1px 0 45px 0.41px #33302a;
   max-width: 95vw;
   background: #fff;
