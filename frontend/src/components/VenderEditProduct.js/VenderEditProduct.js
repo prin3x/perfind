@@ -40,10 +40,10 @@ function VenderEditProduct(props) {
   const mainList = [
     {
       uid: "-1",
-      name: "image",
+      name: "main_image",
       status: "done",
       url:
-        products.image,
+        products.main_image,
     }
   ];
 
@@ -85,7 +85,7 @@ function VenderEditProduct(props) {
       price: data.price,
       countInStock: data.countInStock,
       description: data.description,
-      image: data.image,
+      main_image: data.main_image,
       gender: data.gender,
       style1: data.style1,
       style2: data.style2,
@@ -244,7 +244,7 @@ function VenderEditProduct(props) {
             <Row>
               <Col>
                 <Form.Item
-                  name="image"
+                  name="main_image"
 
                   rules={[
                     {

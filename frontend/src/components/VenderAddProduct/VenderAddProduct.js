@@ -26,23 +26,19 @@ for (let i = 10; i < 36; i++) {
 }
 
 function VenderAddProduct(props) {
+  const [products, setProducts] = React.useState({});
+
   const history = useHistory();
-  const fileMain = [];
-  const fileList = [
+  const mainList = [
     {
       uid: "-1",
-      name: "xxx.png",
+      name: "main_image",
       status: "done",
       url:
-        "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      thumbUrl:
-        "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+        setProducts.main_image,
+
     },
-    {
-      uid: "-2",
-      name: "yyy.png",
-      status: "error",
-    },
+
   ];
 
   const onFinish = async (values) => {
@@ -136,7 +132,7 @@ function VenderAddProduct(props) {
                   label="Product"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your Name product!",
                     },
                   ]}
@@ -157,7 +153,7 @@ function VenderAddProduct(props) {
                   label="Price"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your Price!",
                     },
                   ]}
@@ -174,7 +170,7 @@ function VenderAddProduct(props) {
                   label="Inventory"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your inventory",
                     },
                   ]}
@@ -188,13 +184,24 @@ function VenderAddProduct(props) {
             </Row>
             <Row>
               <Col>
-                <Upload
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                  listType="picture"
-                  defaultFileList={[...fileMain]}
+                <Form.Item
+                  name="main_image"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your image",
+                    },
+                  ]}
                 >
-                  <Button icon={<UploadOutlined />}>Upload</Button>
-                </Upload>
+                  <Upload
+                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                    listType="picture"
+                    defaultFileList={[...mainList]}
+                  >
+                    <Button icon={<UploadOutlined />}>Upload</Button>
+                  </Upload>
+                </Form.Item>
               </Col>
             </Row>
             <br></br>
@@ -205,7 +212,7 @@ function VenderAddProduct(props) {
                   label="Description"
                   rules={[
                     {
-                      required: true,
+                      required: false,
                       message: "Please input your description",
                     },
                   ]}
@@ -221,11 +228,22 @@ function VenderAddProduct(props) {
             <Row>
               <Col style={{ marginRight: "2rem" }}>Gender</Col>
               <Col style={{ marginRight: "4rem" }}>
-                <Radio.Group defaultValue="gender" buttonStyle="solid">
-                  <Radio.Button value="men">for men</Radio.Button>
-                  <Radio.Button value="women">for women</Radio.Button>
-                  <Radio.Button value="unisex">unisex</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="gender"
+                  label=""
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your gender",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="gender" buttonStyle="solid">
+                    <Radio.Button value="men">for men</Radio.Button>
+                    <Radio.Button value="women">for women</Radio.Button>
+                    <Radio.Button value="unisex">unisex</Radio.Button>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
 
             </Row>
@@ -233,29 +251,71 @@ function VenderAddProduct(props) {
             <Row>
               <Col style={{ marginRight: "2rem" }}>Style</Col>
               <Col style={{ marginRight: "2rem" }}>
-                <Radio.Group defaultValue="style1" buttonStyle="solid">
-                  <Radio.Button value="gentle">Gentle</Radio.Button>
-                  <Radio.Button value="sport">Sport</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="style1"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your style1",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="style1" buttonStyle="solid">
+                    <Radio.Button value="gentle">Gentle</Radio.Button>
+                    <Radio.Button value="sport">Sport</Radio.Button>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
-                <Radio.Group defaultValue="style2" buttonStyle="solid">
-                  <Radio.Button value="playful">Playful</Radio.Button>
-                  <Radio.Button value="luxury">Luxury</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="style2"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your style2",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="style2" buttonStyle="solid">
+                    <Radio.Button value="playful">Playful</Radio.Button>
+                    <Radio.Button value="luxury">Luxury</Radio.Button>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
 
               <Col style={{ marginRight: "2rem" }}>
-                <Radio.Group defaultValue="style3" buttonStyle="solid">
-                  <Radio.Button value="fresh">Fresh</Radio.Button>
-                  <Radio.Button value="sweet">Sweet</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="style3"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your style3",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="style3" buttonStyle="solid">
+                    <Radio.Button value="fresh">Fresh</Radio.Button>
+                    <Radio.Button value="sweet">Sweet</Radio.Button>
+                  </Radio.Group></Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
-                <Radio.Group defaultValue="style4" buttonStyle="solid">
-                  <Radio.Button value="sexy">Sexy</Radio.Button>
-                  <Radio.Button value="formal">Formal</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="style4"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your style4",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="style4" buttonStyle="solid">
+                    <Radio.Button value="sexy">Sexy</Radio.Button>
+                    <Radio.Button value="formal">Formal</Radio.Button>
+                  </Radio.Group></Form.Item>
               </Col>
             </Row>
             <br></br>
@@ -264,128 +324,198 @@ function VenderAddProduct(props) {
             <Row>
               <Col style={{ marginRight: "2rem" }}>Note</Col>
               <Col style={{ marginRight: "2rem" }}>
-                <Select
+                <Form.Item
                   name="topscent"
-                  showSearch
-                  style={{ width: 200 }}
-                  placeholder="Select a note"
-                  optionFilterProp="children"
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  onSearch={onSearch}
-                  filterOption={(input, option) =>
-                    option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                    0
-                  }
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your topscent",
+                    },
+                  ]}
                 >
-                  <Option value="floral">Floral</Option>
-                  <Option value="citrus">Citrus</Option>
-                  <Option value="powdery">Powdery</Option>
-                  <Option value="fruity">Fruity</Option>
-                  <Option value="aromatic">Aromatic</Option>
-                  <Option value="spicy">Spicy</Option>
-                  <Option value="woody">Woody</Option>
-                  <Option value="sweet">Sweet</Option>
-                </Select>
+                  <Select
+                    name="topscent"
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="Select a note"
+                    optionFilterProp="children"
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onSearch={onSearch}
+                    filterOption={(input, option) =>
+                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                      0
+                    }
+                  >
+                    <Option value="floral">Floral</Option>
+                    <Option value="citrus">Citrus</Option>
+                    <Option value="powdery">Powdery</Option>
+                    <Option value="fruity">Fruity</Option>
+                    <Option value="aromatic">Aromatic</Option>
+                    <Option value="spicy">Spicy</Option>
+                    <Option value="woody">Woody</Option>
+                    <Option value="sweet">Sweet</Option>
+                  </Select></Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
-                <Select
+                <Form.Item
                   name="secondscent"
-                  showSearch
-                  style={{ width: 200 }}
-                  placeholder="Select a note"
-                  optionFilterProp="children"
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  onSearch={onSearch}
-                  filterOption={(input, option) =>
-                    option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                    0
-                  }
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your secondscent",
+                    },
+                  ]}
                 >
-                  <Option value="floral">Floral</Option>
-                  <Option value="citrus">Citrus</Option>
-                  <Option value="powdery">Powdery</Option>
-                  <Option value="fruity">Fruity</Option>
-                  <Option value="aromatic">Aromatic</Option>
-                  <Option value="spicy">Spicy</Option>
-                  <Option value="woody">Woody</Option>
-                  <Option value="sweet">Sweet</Option>
-                </Select>
+                  <Select
+                    name="secondscent"
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="Select a note"
+                    optionFilterProp="children"
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onSearch={onSearch}
+                    filterOption={(input, option) =>
+                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                      0
+                    }
+                  >
+                    <Option value="floral">Floral</Option>
+                    <Option value="citrus">Citrus</Option>
+                    <Option value="powdery">Powdery</Option>
+                    <Option value="fruity">Fruity</Option>
+                    <Option value="aromatic">Aromatic</Option>
+                    <Option value="spicy">Spicy</Option>
+                    <Option value="woody">Woody</Option>
+                    <Option value="sweet">Sweet</Option>
+                  </Select> </Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
-                <Select
+                <Form.Item
                   name="thirdscent"
-                  showSearch
-                  style={{ width: 200 }}
-                  placeholder="Select a note"
-                  optionFilterProp="children"
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  onSearch={onSearch}
-                  filterOption={(input, option) =>
-                    option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                    0
-                  }
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your thirdscent",
+                    },
+                  ]}
                 >
-                  <Option value="floral">Floral</Option>
-                  <Option value="citrus">Citrus</Option>
-                  <Option value="powdery">Powdery</Option>
-                  <Option value="fruity">Fruity</Option>
-                  <Option value="aromatic">Aromatic</Option>
-                  <Option value="spicy">Spicy</Option>
-                  <Option value="woody">Woody</Option>
-                  <Option value="sweet">Sweet</Option>
-                </Select>
+                  <Select
+                    name="thirdscent"
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="Select a note"
+                    optionFilterProp="children"
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onSearch={onSearch}
+                    filterOption={(input, option) =>
+                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
+                      0
+                    }
+                  >
+                    <Option value="floral">Floral</Option>
+                    <Option value="citrus">Citrus</Option>
+                    <Option value="powdery">Powdery</Option>
+                    <Option value="fruity">Fruity</Option>
+                    <Option value="aromatic">Aromatic</Option>
+                    <Option value="spicy">Spicy</Option>
+                    <Option value="woody">Woody</Option>
+                    <Option value="sweet">Sweet</Option>
+                  </Select></Form.Item>
               </Col>
             </Row>
             <br></br>
             <Row>
               <Col style={{ marginRight: "2rem" }}>Day or Night</Col>
               <Col style={{ marginRight: "5rem" }}>
-                <Radio.Group defaultValue="daynight" buttonStyle="solid">
-                  <Radio.Button value="day">Day</Radio.Button>
-                  <Radio.Button value="night">Night</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="daynight"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your daynight",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="daynight" buttonStyle="solid">
+                    <Radio.Button value="day">Day</Radio.Button>
+                    <Radio.Button value="night">Night</Radio.Button>
+                  </Radio.Group></Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>Season</Col>
               <Col style={{ marginRight: "2rem" }}>
-                <Radio.Group defaultValue="season" buttonStyle="solid">
-                  <Radio.Button value="fall">Fall</Radio.Button>
-                  <Radio.Button value="summer">Summer</Radio.Button>
-                  <Radio.Button value="winter">Winter</Radio.Button>
-                  <Radio.Button value="autumn">Autumn</Radio.Button>
-                  <Radio.Button value="rainy">Rainy</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="season"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your season",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="season" buttonStyle="solid">
+                    <Radio.Button value="fall">Fall</Radio.Button>
+                    <Radio.Button value="summer">Summer</Radio.Button>
+                    <Radio.Button value="winter">Winter</Radio.Button>
+                    <Radio.Button value="autumn">Autumn</Radio.Button>
+                    <Radio.Button value="rainy">Rainy</Radio.Button>
+                  </Radio.Group></Form.Item>
               </Col>
             </Row>
             <br></br>
             <Row>
               <Col style={{ marginRight: "2rem" }}>Longevity</Col>
               <Col>
-                <Radio.Group defaultValue="longevity" buttonStyle="solid">
-                  <Radio.Button value="1-2">1-2 hours</Radio.Button>
-                  <Radio.Button value="2-3">2-3 hours</Radio.Button>
-                  <Radio.Button value="4-5">4-5 hours</Radio.Button>
-                  <Radio.Button value="5-6">5-6 hours</Radio.Button>
-                  <Radio.Button value="6-7">6-8 hours</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="longevity"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your longevity",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="longevity" buttonStyle="solid">
+                    <Radio.Button value="1-2">1-2 hours</Radio.Button>
+                    <Radio.Button value="2-3">2-3 hours</Radio.Button>
+                    <Radio.Button value="4-5">4-5 hours</Radio.Button>
+                    <Radio.Button value="5-6">5-6 hours</Radio.Button>
+                    <Radio.Button value="6-7">6-8 hours</Radio.Button>
+                  </Radio.Group></Form.Item>
               </Col>
             </Row>
             <br></br>
             <Row>
               <Col style={{ marginRight: "2rem" }}>Size</Col>
               <Col>
-                <Radio.Group defaultValue="size" buttonStyle="solid">
-                  <Radio.Button value="30">30</Radio.Button>
-                  <Radio.Button value="50">50</Radio.Button>
-                  <Radio.Button value="75">75</Radio.Button>
-                  <Radio.Button value="90">90</Radio.Button>
-                  <Radio.Button value="100">100</Radio.Button>
-                </Radio.Group>
+                <Form.Item
+                  name="size"
+
+                  rules={[
+                    {
+                      required: false,
+                      message: "Please input your size",
+                    },
+                  ]}
+                >
+                  <Radio.Group defaultValue="size" buttonStyle="solid">
+                    <Radio.Button value="30">30</Radio.Button>
+                    <Radio.Button value="50">50</Radio.Button>
+                    <Radio.Button value="75">75</Radio.Button>
+                    <Radio.Button value="90">90</Radio.Button>
+                    <Radio.Button value="100">100</Radio.Button>
+                  </Radio.Group></Form.Item>
               </Col>
             </Row>
             <br></br>
@@ -393,13 +523,23 @@ function VenderAddProduct(props) {
               <div>Sup pic</div>
             </Row>
             <Row>
-              <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture"
-                defaultFileList={[...fileList]}
+              <Form.Item
+                name="main_image"
+
+                rules={[
+                  {
+                    required: false,
+                    message: "Please input your image",
+                  },
+                ]}
               >
-                <Button icon={<UploadOutlined />}>Upload</Button>
-              </Upload>
+                <Upload
+                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                  listType="picture"
+                  defaultFileList={[...mainList]}
+                >
+                  <Button icon={<UploadOutlined />}>Upload</Button>
+                </Upload></Form.Item>
             </Row>
             <Row
               justify="space-around"
@@ -420,7 +560,7 @@ function VenderAddProduct(props) {
           </Form>
         </Col>
       </Row>
-      <button onClick={() => { props.changeActivePane("1"); }}>Click</button>
+      {/* <button onClick={() => { props.changeActivePane("1"); }}>Click</button> */}
     </>
   );
 }

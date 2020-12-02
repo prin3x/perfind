@@ -104,8 +104,8 @@ function CardProductVender(props) {
     },
     {
       title: "Img",
-      dataIndex: "image",
-      render: (text, record) => <img src={record.image} style={{ width: "3rem", height: "3rem", }} />,
+      dataIndex: "main_image",
+      render: (text, record) => <img src={record.main_image} style={{ width: "3rem", height: "3rem", }} />,
       width: "10%",
       align: "center",
 

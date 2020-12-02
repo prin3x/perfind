@@ -30,7 +30,6 @@ server.use(express.urlencoded({ extended: false }));
 server.use("/auth", authRoutes);
 server.use("/products", productRoutes);
 server.use("/upload", uploadFiles);
-server.use("/auth", authRoutes);
 server.use("/vender/login", authRoutes);
 server.use("/vender/register", authRoutes);
 server.use('/vender', productVendorRoutes);

@@ -1,8 +1,9 @@
 import { Button, Checkbox, Col, Row } from 'antd';
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from "styled-components";
 import Cart from '../../components/Cart/Cart';
-import { ProductReducer } from '../../components/Cart/ProductReducer';
+import { ProductContext } from '../../Context/productContext';
+
 
 
 
@@ -20,10 +21,14 @@ const InsideMainSection = styled.div`
 
 
 export default function AllCart() {
-  let total = 0;
-  const [selectItem, dispatch] = useReducer(ProductReducer, []);
+  let totalPrice = 0;
 
+  const { selectItem, retrieveAllItems } = useContext(ProductContext);
+  useEffect(() => {
+    retrieveAllItems();
+  }, []);
 
+  console.log(selectItem);
   return (
     <InsideMainSection>
       <Row justify="center">
@@ -58,15 +63,17 @@ export default function AllCart() {
       <br></br>
 
       <Row>
-        {selectItem &&
+        {selectItem.length &&
           selectItem.map(item => {
-            total = total + item.qty * item.price;
-            return <Cart key={item.id} props={{ ...item }} />;
+            const { Product } = item;
+            totalPrice += +item.qty * +item.Product.price;
+            return <Cart key={item.id} props={{ ...Product }} qty={item.qty} />;
           })}
       </Row>
 
-      <Row><hr></hr><Col style={{ marginLeft: "50rem" }}>Total : {total}</Col></Row>
+      <Row><hr></hr><Col style={{ marginLeft: "50rem" }}>Total : {totalPrice}</Col></Row>
       <Button type="primary" style={{ margin: "2rem", marginLeft: "57rem", }}>Pay</Button>
+      {/* <Omise totalPrice={totalPrice} /> */}
     </InsideMainSection>
   );
 }

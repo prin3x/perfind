@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM('day', 'night')
       },
       season: {
-        type: DataTypes.ENUM('fall', 'summer', 'winter', 'autumn', 'rainy')
+        type: DataTypes.STRING(255)
       },
       main_image: {
         type: DataTypes.STRING(255),

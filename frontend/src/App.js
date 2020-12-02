@@ -16,25 +16,29 @@ import Login from "./pages/Login/Login";
 import VenderLogin from "./pages/Login/VendorLogin";
 import Layout from "./pages/Layout/Layout";
 import AllCart from "./pages/AllCard/AllCart";
+import { ProductContextProvider } from "./Context/productContext";
 
 
 const App = () => (
   <Layout>
     <Switch>
       <LandingPage exact path="/" />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/contact" component={ContactForm} />
-      <Route exact path="/vender" component={VenderPage} />
-      <Route exact path="/vender/register" component={VenderRegister} />
-      <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
+      <ProductContextProvider>
 
-      <Route exact path="/products" component={AllProducts} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/contact" component={ContactForm} />
-      <Route exact path="/vender/register" component={VenderRegister} />
-      <Route exact path="/vender/login" component={VenderLogin} />
-      <Route exact path="/cart" component={AllCart} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/contact" component={ContactForm} />
+        <Route exact path="/vender" component={VenderPage} />
+        <Route exact path="/vender/register" component={VenderRegister} />
+        <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
+
+        <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/contact" component={ContactForm} />
+        <Route exact path="/vender/register" component={VenderRegister} />
+        <Route exact path="/vender/login" component={VenderLogin} />
+        <Route exact path="/cart" component={AllCart} />
+      </ProductContextProvider>
 
     </Switch>
   </Layout >
