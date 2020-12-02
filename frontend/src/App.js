@@ -17,6 +17,7 @@ import VenderLogin from "./pages/Login/VendorLogin";
 import Layout from "./pages/Layout/Layout";
 import AllCart from "./pages/AllCard/AllCart";
 import { ProductContextProvider } from "./Context/productContext";
+import OmiseCheckout from "./components/OmiseCheckout/OmiseCheckout";
 
 
 const App = () => (
@@ -38,9 +39,10 @@ const App = () => (
         <Route exact path="/vender/register" component={VenderRegister} />
         <Route exact path="/vender/login" component={VenderLogin} />
         <Route exact path="/cart" component={AllCart} />
+        <Route exact path="/checkout" component={OmiseCheckout} />
       </ProductContextProvider>
 
     </Switch>
-  </Layout >
+  </Layout>
 );
 export default App;

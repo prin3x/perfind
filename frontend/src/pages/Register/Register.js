@@ -100,13 +100,13 @@ function Register(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-        labelCol: {
-          span: 10,
-        },
-        wrapperCol: {
-          span: 24,
-        },
-      }
+          labelCol: {
+            span: 10,
+          },
+          wrapperCol: {
+            span: 24,
+          },
+        }
       : null;
   return (
     <InsideMainSection>

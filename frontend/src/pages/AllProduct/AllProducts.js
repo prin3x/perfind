@@ -15,6 +15,7 @@ import {
   Typography,
 } from "antd";
 import axios from "../../config/axios";
+import { useHistory } from "react-router-dom";
 
 const { CheckableTag } = Tag;
 const { Panel } = Collapse;
@@ -76,6 +77,7 @@ const ProductRow = styled.div`
   width: 10rem;
   height: 13rem;
   border-bottom: 1px solid #000;
+  cursor: pointer;
 `;
 
 export default function AllProducts() {
@@ -86,6 +88,8 @@ export default function AllProducts() {
   const [actualPresentedProduct, setActualPresentedProduct] = React.useState(
     products
   );
+
+  const history = useHistory();
 
   const [searchQuery, setSearchQuery] = React.useState({
     gender: [],
@@ -185,6 +189,10 @@ export default function AllProducts() {
   React.useEffect(() => {
     setActualPresentedProduct(products)
   }, [products]);
+
+  const handleNextPage = (slug) => {
+    history.push(`/${slug}`);
+  };
 
   React.useEffect(() => {
     const filteredProducts = products.filter(
@@ -336,11 +344,9 @@ export default function AllProducts() {
             {actualPresentedProduct &&
               actualPresentedProduct.map(({ sku, name, main_image }) => (
                 <Col span={6} key={sku}>
-                  <ProductRow>
+                  <ProductRow onClick={() => handleNextPage(name)}>
                     <Image src={main_image} alt="" />
-                    <Typography.Text>
-                      {name}
-                    </Typography.Text>
+                    <Typography.Text>{name}</Typography.Text>
                   </ProductRow>
                 </Col>
               ))}
