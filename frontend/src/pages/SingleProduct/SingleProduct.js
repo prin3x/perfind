@@ -12,31 +12,46 @@ import {
   Image,
 } from "antd";
 import {
-  HeartOutlined,
-  ShareAltOutlined,
+  // HeartOutlined,
+  // ShareAltOutlined,
   ShoppingCartOutlined,
   ShoppingOutlined,
 } from "@ant-design/icons";
 import "../../App.less";
 import "../../App.css";
 import "./SingleProduct.css";
-import headerTag from "../../assets/header-tag.png";
 import product from "../../assets/product-01.png";
 import dec from "../../assets/dec.png";
+import { useParams } from "react-router-dom";
+import axios from "../../config/axios";
+import SimilarProduct from "../../components/SimilarProduct/SimilarProduct";
 
 function SingleProduct() {
+  const { id } = useParams();
   const [rateLongevity, setRateLongevity] = useState("");
   const [rateSillage, setRateSillage] = useState("");
-  const [productImg, setProductImg] = useState(
-    "https://l.lnwfile.com/2zkj4k.jpg"
-  );
+  const [productImg, setProductImg] = useState("");
+  const [data, setData] = useState({});
+  const [similarList, setSimilarList] = useState([]);
 
   useEffect(() => {
-    const longevity = rateGraph(data.longevity);
-    const sillage = rateGraph(data.sillage);
-    setRateLongevity(longevity);
-    setRateSillage(sillage);
+    fetchProduct();
   }, []);
+
+  const fetchProduct = async () => {
+    axios.get(`/products/${id}`).then((res) => {
+      setData(res.data);
+      const longevity = rateGraph(res.data.longevity);
+      const sillage = rateGraph(res.data.sillage);
+      setRateLongevity(longevity);
+      setRateSillage(sillage);
+      setProductImg(res.data.main_image);
+    });
+
+    axios.get(`/products/find/${id}`).then((res) => {
+      setSimilarList(res.data);
+    });
+  };
 
   function onChange(value) {
     console.log("changed", value);
@@ -50,63 +65,6 @@ function SingleProduct() {
     console.log(`selected ${value}`);
   }
 
-  const simlarProductList = [
-    {
-      imgSrc: "https://cdn.thebeautrium.com/image-product/B0052891.png",
-      brand: "GUCCI",
-      name: "Guilty Pour Femme Eau De Parfum",
-    },
-    {
-      imgSrc: "https://cdn.thebeautrium.com/image-product/B0052891.png",
-      brand: "GUCCI",
-      name: "Guilty Pour Femme Eau De Parfum",
-    },
-    {
-      imgSrc: "https://cdn.thebeautrium.com/image-product/B0052891.png",
-      brand: "GUCCI",
-      name: "Guilty Pour Femme Eau De Parfum",
-    },
-    {
-      imgSrc: "https://cdn.thebeautrium.com/image-product/B0052891.png",
-      brand: "GUCCI",
-      name: "Guilty Pour Femme Eau De Parfum",
-    },
-    {
-      imgSrc: "https://cdn.thebeautrium.com/image-product/B0052891.png",
-      brand: "GUCCI",
-      name: "Guilty Pour Femme Eau De Parfum",
-    },
-  ];
-
-  const data = {
-    id: 1,
-    sku: "versace_01",
-    name: "Versace Man Eau Fraiche Versace",
-    gender: "men",
-    size: "50",
-    daynight: "day",
-    season: "fall",
-    image: "https://fimgs.net/mdimg/perfume/375x500.644.jpg",
-    description:
-      "Versace Man Eau Fraiche by Versace is a Woody Aquatic fragrance for men. Versace Man Eau Fraiche was launched in 2006. The nose behind this fragrance is Olivier Cresp. ",
-    brand: "Versace",
-    style1: "sport",
-    style2: "luxury",
-    style3: "fresh",
-    style4: "cozy",
-    topscent: "citrus",
-    secondscent: "aromatic",
-    thirdscent: "woody",
-    longevity: 5,
-    sillage: 4,
-    price: 2399,
-    countInStock: 50,
-    totalRating: 5,
-    category_id: null,
-    user_id: null,
-    vendor_id: null,
-  };
-
   const InsideMainSection = styled.div`
     max-width: 90vw;
     background: #fff;
@@ -118,20 +76,16 @@ function SingleProduct() {
 
   const routes = [
     {
-      path: "index",
+      path: "/index",
       breadcrumbName: "Home",
     },
     {
-      path: "brand",
-      breadcrumbName: "Coach",
+      path: "/products",
+      breadcrumbName: data.brand,
     },
     {
-      path: "gender",
-      breadcrumbName: "Women",
-    },
-    {
-      path: "productName",
-      breadcrumbName: "Floral Eau De Parfum",
+      path: "/product/:id",
+      breadcrumbName: cutString(data.name, 30),
     },
   ];
 
@@ -186,24 +140,24 @@ function SingleProduct() {
     }
   };
 
-  const onChangeProductImg01 = () => {
-    setProductImg(
-      "https://www.app-perfume.com/public/upload/product/original/product4531D5eff8c02da62609de8d20be44d1639ec1.jpg"
-    );
-  };
+  function cutString(str = "", max = 28) {
+    if (str.length > max) {
+      return str.slice(0, max) + "...";
+    } else {
+      return str;
+    }
+  }
 
-  const onChangeProductImg02 = () => {
-    setProductImg(
-      "https://www.fragrancedirect.co.uk/dw/image/v2/BBNB_PRD/on/demandware.static/-/Sites-fragrance-master-catalog/default/dw7bc98ebb/images/large/0095631-1.jpg?sw=340&sh=340&sm=fit"
-    );
-  };
-  const onChangeProductImg03 = () => {
-    setProductImg("https://l.lnwfile.com/2zkj4k.jpg");
+  function numberWithCommas(x = 0) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const onChangeProductImg01 = () => {
+    setProductImg(`${data.main_image}`);
   };
 
   return (
     <InsideMainSection style={{ padding: "20px 20px 20px 20px" }}>
-      {/* start part link */}
       <PageHeader
         style={{
           display: "inline-flex",
@@ -217,9 +171,6 @@ function SingleProduct() {
         }}
         breadcrumb={{ routes }}
       />
-      {/* end part link */}
-
-      {/* start main product container */}
       <Row>
         <Col
           span={24}
@@ -232,58 +183,29 @@ function SingleProduct() {
           }}
         >
           <Row>
-            {/*start sub-img products */}
             <Col span={3}>
               <div
                 onClick={onChangeProductImg01}
                 className="Product-sub-img"
                 style={{
-                  backgroundImage:
-                    "url(" +
-                    "https://www.app-perfume.com/public/upload/product/original/product4531D5eff8c02da62609de8d20be44d1639ec1.jpg" +
-                    ")",
-                }}
-              ></div>
-              <div
-                onClick={onChangeProductImg02}
-                className="Product-sub-img"
-                style={{
-                  backgroundImage:
-                    "url(" +
-                    "https://www.fragrancedirect.co.uk/dw/image/v2/BBNB_PRD/on/demandware.static/-/Sites-fragrance-master-catalog/default/dw7bc98ebb/images/large/0095631-1.jpg?sw=340&sh=340&sm=fit" +
-                    ")",
-                }}
-              ></div>
-              <div
-                onClick={onChangeProductImg03}
-                className="Product-sub-img"
-                style={{
-                  backgroundImage:
-                    "url(" +
-                    "https://l.lnwfile.com/2zkj4k.jpg" +
-                    ")",
+                  backgroundImage: "url(" + `${data.main_image}` + ")",
                 }}
               ></div>
             </Col>
-            {/*end sub-img products */}
-            {/* start main product img */}
             <Col span={9} style={{ paddingTop: "2em" }}>
               <div
                 style={{
                   backgroundImage: "url(" + productImg + ")",
-                  width: "36em",
-                  height: "36em",
+                  width: "auto",
+                  height: "34em",
                   margin: "0 auto",
-                  backgroundSize: "cover",
+                  backgroundSize: "contain",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                 }}
               ></div>
             </Col>
-            {/* end main product img */}
-            <Col span={2}></Col>{" "}
-            {/* just a blank space baby... and I'll write your name */}
-            {/* start product side information */}
+            <Col span={2}></Col>
             <Col span={10} style={{ paddingRight: "2em" }}>
               <div
                 style={{
@@ -295,54 +217,28 @@ function SingleProduct() {
               >
                 <Row>
                   <Col span={12}>
-                    {/* JS */}
-                    <h1 className="Product-h1">COACH</h1>
-                    <p className="Product-text-md">Floral Eau De Parfum</p>
+                    <h1 className="Product-h1">{cutString(data.brand)}</h1>
                   </Col>
-                  <Col span={12}>
-                    <Row>
-                      <Col
-                        span={24}
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <div>
-                          <ShareAltOutlined
-                            style={{
-                              color: "#CDB67D",
-                              fontSize: "1.8em",
-                              marginRight: "1em",
-                            }}
-                          />
-                        </div>
-                        <div>
-                          <HeartOutlined
-                            style={{ color: "#CDB67D", fontSize: "1.8em" }}
-                          />
-                        </div>
-                      </Col>
-                      <Col
-                        span={24}
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          marginTop: "1em",
-                        }}
-                      >
-                        <Rate
-                          disabled
-                          allowHalf
-                          value={4.5}
-                          style={{ color: "#CDB67D" }}
-                        />
-                      </Col>
-                    </Row>
+                  <Col
+                    span={12}
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <Rate
+                      disabled
+                      allowHalf
+                      value={data.totalRating}
+                      style={{ color: "#CDB67D" }}
+                    />
+                  </Col>
+                  <Col span={24}>
+                    <p className="Product-text-md">
+                      {cutString(data.name, 35)}
+                    </p>
                   </Col>
                 </Row>
-                {/* header product side information */}
                 <div
                   style={{
                     width: "100%",
@@ -359,26 +255,19 @@ function SingleProduct() {
                     letterSpacing: "0.055em",
                   }}
                 >
-                  {/* JS */}
-                  <p>
-                    {" "}
-                    The feminine scent opens with a splash of Citrus Coeur and a
-                    touch of effervescent Pink Peppercorn with radiant Pineapple
-                    Sorbet. The heart reveals a bouquet of fragrant flowers—Rose
-                    Tea, Jasmine Sambac and Gardenia—before an enveloping
-                    dry-down to elegant Creamy Wood, Patchouli Essence and Musky
-                    notes.
-                  </p>
+                  <p> {data.description}</p>
                 </div>
                 <Row style={{ marginTop: "3em" }}>
                   <Col span={12}>
-                    <h1 className="Product-h1">4,500 THB</h1>
+                    <h1 className="Product-h1">
+                      {numberWithCommas(data.price)} THB
+                    </h1>
                   </Col>
                   <Col
                     span={12}
                     style={{ textAlign: "end", padding: "8px 0 0 0 " }}
                   >
-                    <h3 className="Product-h3">90 ml</h3>
+                    <h3 className="Product-h3">{data.size} ml.</h3>
                   </Col>
                 </Row>
                 <div
@@ -397,7 +286,6 @@ function SingleProduct() {
                       padding: "4px 20px 0 0",
                     }}
                   >
-                    {" "}
                     <h4 className="Product-h4"> Size :</h4>
                   </Col>
                   <Col span={17}>
@@ -406,10 +294,9 @@ function SingleProduct() {
                       style={{ width: "80%", color: "#85755e" }}
                       onChange={handleChange}
                       bordered={true}
+                      defaultValue={data.size}
                     >
-                      <Option value="90ml">90 ml.</Option>
-                      <Option value="50ml">50 ml.</Option>
-                      <Option value="30ml">30 ml.</Option>
+                      <Option value={data.size}>{data.size} ml.</Option>
                     </Select>
                   </Col>
                 </Row>
@@ -421,14 +308,12 @@ function SingleProduct() {
                       padding: "4px 20px 0 0",
                     }}
                   >
-                    {" "}
-                    {/* JS */}
                     <h4 className="Product-h4"> Quantity :</h4>
                   </Col>
                   <Col span={6}>
                     <InputNumber
                       min={1}
-                      max={10}
+                      max={data.countInStock}
                       defaultValue={1}
                       onChange={onChange}
                     />
@@ -447,9 +332,7 @@ function SingleProduct() {
                         fontWeight: "300",
                       }}
                     >
-                      {" "}
-                      {/* JS */}
-                      26 Remains{" "}
+                      {data.countInStock} Remains
                     </h4>
                   </Col>
                 </Row>
@@ -469,93 +352,11 @@ function SingleProduct() {
                 </Row>
               </div>
             </Col>
-            {/* end product side information */}
           </Row>
         </Col>
       </Row>
-      {/* end main-product container */}
-      {/* -------------------------------------------------------------------------- */}
+      <SimilarProduct similarProductList={similarList} />
       <Row>
-        {/* start similar-product container */}
-        <Col
-          span={24}
-          style={{
-            marginTop: "3em",
-            border: "1px solid #B69F5B",
-            paddingTop: "2em",
-          }}
-        >
-          <img
-            src={headerTag}
-            style={{
-              width: "20%",
-              position: "relative",
-              marginTop: "-64px",
-              marginLeft: "40px",
-            }}
-          ></img>
-          <div
-            style={{
-              width: "20%",
-              position: "relative",
-              marginTop: "-52px",
-              marginLeft: "40px",
-              textAlign: "center",
-              // backgroundColor: "white",
-              // padding: "1em 3em",
-              // border: "2px solid #B59E5A",
-              // borderRadius: "8px"
-            }}
-          >
-            <h4 className="Product-h4">YOU MIGHT ALSO LIKE</h4>
-          </div>
-          <Row
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              padding: "1.5em 2.5em 1.5em 1em",
-              flexWrap: "nowrap",
-              overflow: "auto",
-              scroll: "none",
-            }}
-          >
-            {simlarProductList.map((product, idx) => (
-              <Col span={4} key={idx}>
-                <div className="product-card">
-                  <img alt="example" src={product.imgSrc}></img>
-                  <div className="desc">
-                    <h4 className="Product-h4">{product.brand}</h4>
-                    <Row>
-                      <Col span={18}>
-                        <p className="Product-text-sm">{product.name}</p>
-                      </Col>
-                      <Col
-                        span={6}
-                        style={{
-                          display: "flex",
-                          alignItems: "flex-end",
-                          justifyContent: "flex-end",
-                          paddingBottom: "6px",
-                          fontSize: "1.3em",
-                          color: "#85755e",
-                        }}
-                      >
-                        <ShoppingCartOutlined />
-                      </Col>
-                    </Row>
-                  </div>
-                </div>
-              </Col>
-            ))}
-            {/* end similar-product card */}
-          </Row>
-        </Col>
-      </Row>
-      {/* end similar-product container */}
-
-      <Row>
-        {/* start product-description container */}
         <Col
           span={24}
           style={{
@@ -573,15 +374,13 @@ function SingleProduct() {
               key="1"
             >
               <h1 style={{ margin: "1.2em 0" }} className="Product-desc-h1">
-                {" "}
-                " {data.name}"{" "}
+                " {data.name}"
               </h1>
               <Row>
                 <Col span={1}></Col>
-                <Col span={12} className="Product-carousel" >
-                  <Carousel autoplay style={{ height: "400px" }} >
+                <Col span={12} className="Product-carousel">
+                  <Carousel autoplay style={{ height: "400px" }}>
                     <div>
-                      {/* JS */}
                       <Image
                         className="Carousel-img"
                         src="https://images-na.ssl-images-amazon.com/images/I/81XWoMr6P6L._SX425_.jpg"
@@ -635,9 +434,6 @@ function SingleProduct() {
                 </Col>
                 <Col span={1}></Col>
               </Row>
-
-              {/* -------------- End Impage Carousel and contents -------------- */}
-
               <Row style={{ marginTop: "4em", marginBottom: "5em" }}>
                 <Col span={4}></Col>
                 <Col span={4} className="style-scent-btn">
@@ -713,7 +509,6 @@ function SingleProduct() {
                 </Col>
               </Row>
             </TabPane>
-            {/* -------------- End Tab 2 -------------- */}
             <TabPane
               tab={
                 <span style={{ letterSpacing: "0.08em" }}>PRODUCT DETAILS</span>
@@ -883,7 +678,6 @@ function SingleProduct() {
           </Tabs>
         </Col>
       </Row>
-      {/* end product-description container */}
     </InsideMainSection>
   );
 }

@@ -182,6 +182,13 @@ export default function AllProducts() {
   React.useEffect(() => {
     fetchAllProducts();
   }, []);
+  React.useEffect(() => {
+    setActualPresentedProduct(products);
+  }, [products]);
+
+  const handleNextPage = (id) => {
+    history.push(`/product/${id}`);
+  };
 
   React.useEffect(() => {
     const filteredProducts = products.filter(
@@ -331,10 +338,11 @@ export default function AllProducts() {
         <ProductContainer>
           <Row align="middle" justify="center">
             {actualPresentedProduct &&
-              actualPresentedProduct.map(({ sku, name, image }) => (
+              actualPresentedProduct.map(({ sku, name, main_image, id }) => (
                 <Col span={6} key={sku}>
-                  <ProductRow>
-                    <Image src={image} alt="" />
+                  <ProductRow onClick={() => handleNextPage(id)}>
+                    <Image src={main_image} alt="" />
+                    <Typography.Text>{name}</Typography.Text>
                   </ProductRow>
                 </Col>
               ))}
