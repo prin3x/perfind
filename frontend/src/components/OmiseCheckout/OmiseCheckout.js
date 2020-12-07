@@ -1,34 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "../../config/axios";
 import { Form, Input, Button, Select } from "antd";
+import { useHistory } from "react-router-dom";
+import Modal from "antd/lib/modal/Modal";
 const layout = {
   labelCol: {
     span: 8,
   },
   wrapperCol: {
-    span: 16,
+    span: 8,
   },
 };
 
 export default function OmiseCheckout(props) {
+  const [confirmPayment, setConfirmPayment] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
+  const history = useHistory();
+
+  const handleOk = () => {
+    if (confirmPayment) {
+      history.push('/');
+    } else {
+      setConfirmModal(false);
+    }
+  };
+
   useEffect(() => {
     window.Omise.setPublicKey("pkey_test_5lqb94ap04wi1yhb1xx");
   }, []);
-  console.log(props.children);
+
+  useEffect(() => {
+    if (confirmPayment) setConfirmModal(true);
+  }, [confirmPayment]);
+
   const handleFieldSubmit = (values) => {
     window.Omise.createToken("card", values, function (statusCode, response) {
       if (statusCode === 200) {
         axios
           .post("/charge", {
             token: response.id,
-            amount: "30000", // 300 Baht
+            amount: props.totalPrice || '300000',
           })
           .then((response) => {
-            // charge success
-            console.log("response; ", response);
+            if (response.request.statusText === 'OK') setConfirmPayment(true);
           });
       } else {
-        // Error: display an error message.
         alert(response.code + ": " + response.message);
       }
     });
@@ -45,18 +61,19 @@ export default function OmiseCheckout(props) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="4242424242424242" />
         </Form.Item>
         <Form.Item
           name="name"
           label="Name"
+
           rules={[
             {
               required: true,
             },
           ]}
         >
-          <Input />
+          <Input placeholder="John Doe" />
         </Form.Item>
         <Form.Item
           name="expiration_month"
@@ -67,7 +84,7 @@ export default function OmiseCheckout(props) {
             },
           ]}
         >
-          <Select>
+          <Select placeholder="11">
             <Select.Option value="1">1</Select.Option>
             <Select.Option value="2">2</Select.Option>
             <Select.Option value="3">3</Select.Option>
@@ -91,7 +108,7 @@ export default function OmiseCheckout(props) {
             },
           ]}
         >
-          <Select>
+          <Select placeholder="2022">
             <Select.Option value="2020">2020</Select.Option>
             <Select.Option value="2021">2021</Select.Option>
             <Select.Option value="2022">2022</Select.Option>
@@ -109,7 +126,7 @@ export default function OmiseCheckout(props) {
             },
           ]}
         >
-          <Input />
+          <Input placeholder="123" />
         </Form.Item>
 
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
@@ -118,6 +135,18 @@ export default function OmiseCheckout(props) {
           </Button>
         </Form.Item>
       </Form>
+
+      <Modal
+        title="Basic Modal"
+        visible={confirmModal}
+        closable={false}
+        footer={null}
+        centered
+      >
+        <p>Congrat!</p>
+        <p>Successful Payment</p>
+        <Button type='primary' onClick={handleOk}>Ok</Button>
+      </Modal>
     </React.Fragment>
   );
 }

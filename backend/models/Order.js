@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Order',
+    "Order",
     {
 
       total_price: {
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     {
-      tableName: 'orders',
+      tableName: "orders",
     }
   );
 
