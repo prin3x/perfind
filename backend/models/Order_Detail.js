@@ -1,6 +1,7 @@
+
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Order_Detail',
+    "Order_Detail",
     {
       qty: {
         type: DataTypes.INTEGER,
@@ -8,18 +9,16 @@ module.exports = (sequelize, DataTypes) => {
       price: {
         type: DataTypes.INTEGER,
       },
-      point: {
-        type: DataTypes.INTEGER,
-      },
+
     },
     {
-      tableName: 'order_details',
+      tableName: "order_details",
     }
   );
 
   model.associate = models => {
-    model.belongsTo(models.Order, {foreignKey: 'order_id'});
-    model.belongsTo(models.Product, {foreignKey: 'product_id'});
+    model.belongsTo(models.Order, { foreignKey: 'order_id' });
+    model.belongsTo(models.Product, { foreignKey: 'product_id' });
   };
 
   return model;

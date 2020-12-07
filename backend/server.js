@@ -6,8 +6,13 @@ const cors = require("cors");
 const db = require("./models");
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
+const productVendorRoutes = require("./routes/productVendorRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 const passport = require("passport");
 const logger = require("morgan");
+const uploadFiles = require("./routes/uploadRoutes");
+const chargeRoutes = require("./routes/chargeRoute");
+const checkoutRoutes = require("./routes/checkoutRoutes");
 const reviewsRoutes = require("./routes/reviewRoutes");
 const server = express();
 
@@ -24,8 +29,14 @@ server.use(express.static("public/images"));
 server.use(express.urlencoded({ extended: false }));
 
 server.use("/auth", authRoutes);
+server.use("/products", productRoutes);
+server.use("/upload", uploadFiles);
 server.use("/vender/login", authRoutes);
 server.use("/vender/register", authRoutes);
+server.use("/vender", productVendorRoutes);
+server.use("/carts", cartRoutes);
+server.use("/charge", chargeRoutes);
+server.use("/checkout", checkoutRoutes);
 
 server.use("/reviews", reviewsRoutes);
 db.sequelize

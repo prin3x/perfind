@@ -1,28 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Order',
+    "Order",
     {
-      total_points: {
-        type: DataTypes.INTEGER,
-      },
+
       total_price: {
         type: DataTypes.INTEGER,
       },
       address: {
         type: DataTypes.STRING(255),
       },
-      shipping_fees: {
-        type: DataTypes.INTEGER,
-      },
+      status: {
+        type: DataTypes.ENUM("pending", "success"),
+        defaultValue: ("pending")
+      }
     },
     {
-      tableName: 'orders',
+      tableName: "orders",
     }
   );
 
   model.associate = models => {
-    model.belongsTo(models.User, {foreignKey: 'user_id'});
-    model.hasOne(models.Tracking_Number, {foreignKey: 'order_id'});
+    model.belongsTo(models.User, { foreignKey: 'user_id' });
+    model.hasMany(models.Order_Detail, { foreignKey: 'order_id' });
   };
   return model;
 };

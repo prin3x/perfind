@@ -3,32 +3,17 @@ import {
   Table,
   Input,
   InputNumber,
-  Popconfirm,
   Form,
-  Tag,
   Row,
   Col,
 } from "antd";
 import { Link } from "react-router-dom";
+import axios from "../../config/axios";
+
 
 const { Search } = Input;
 
-const onSearch = (value) => console.log(value);
 
-const originData = [];
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    img: `img ${i}`,
-    product: `Edrward ${i}`,
-    price: 32,
-    style: ["nice", "developer", "loser"],
-    size: `ml  ${i}`,
-    scents: ["nice", "developer", "loser"],
-    inventory: `no. ${i}`,
-    description: `description  ${i}`,
-  });
-}
 const EditableCell = ({
   editing,
   dataIndex,
@@ -58,191 +43,128 @@ const EditableCell = ({
           {inputNode}
         </Form.Item>
       ) : (
-        children
-      )}
+          children
+        )}
     </td>
   );
 };
 
 function CardProductVender(props) {
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState("");
+
+
+
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [products, setProducts] = React.useState([]);
+
+
+
 
   const isEditing = (record) => record.key === editingKey;
 
-  const edit = (record) => {
-    form.setFieldsValue({
-      product: "",
-      price: "",
-      inventory: "",
-      scents: "",
-      style: "",
-      description: "",
-      ...record,
-    });
-    setEditingKey(record.key);
+  const onSearch = async (value) => {
+    setIsLoading(true);
+    const { data } = await axios.get(`/products/?_search=${value}`);
+    const searchProduct = data;
+    setProducts(searchProduct);
+    setProducts(searchProduct);
+    setIsLoading(false);
   };
 
-  const cancel = () => {
+  const fetchAllProducts = async () => {
+    const { data } = await axios.get("/products/");
+    setProducts(data);
+  };
+
+  React.useEffect(() => {
+    fetchAllProducts();
+  }, []);
+
+
+
+  const deleteProduct = async (id) => {
+    await axios.delete(`vender/product/${id}`);
+    setProducts(products.filter((product) => product.id !== id));
+    ///@@@@@@
+    // fetchAllProducts();
     setEditingKey("");
   };
 
-  const deleteProduct = (key) => {
-    const newData = [...data];
-    const newProduct = newData.filter((e) => e.key !== key);
-    setData(newProduct);
-    setEditingKey("");
-  };
 
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        setData(newData);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        setData(newData);
-        setEditingKey("");
-      }
-    } catch (errInfo) {
-      console.log("Validate Failed:", errInfo);
-    }
-  };
 
   const columns = [
     {
       title: "Product",
-      dataIndex: "product",
+      dataIndex: "name",
       width: "15%",
-      editable: true,
+      align: "center",
+
+
     },
     {
       title: "Img",
-      dataIndex: "img",
-      width: "15%",
-      editable: true,
+      dataIndex: "main_image",
+      render: (text, record) => <img src={record.main_image} style={{ width: "3rem", height: "3rem", }} />,
+      width: "10%",
+      align: "center",
+
     },
-    {
-      title: "style",
-      key: "style",
-      dataIndex: "style",
-      editable: true,
-      width: "7%",
-      render: (style) => (
-        <span>
-          {style.map((style) => {
-            let color = style.length > 5 ? "geekblue" : "green";
-            if (style === "loser") {
-              color = "volcano";
-            }
-            return (
-              <Tag color={color} key={style}>
-                {style.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </span>
-      ),
-    },
-    ,
-    {
-      title: "scents",
-      key: "scents",
-      dataIndex: "scents",
-      editable: true,
-      width: "7%",
-      render: (scents) => (
-        <span>
-          {scents.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if (tag === "loser") {
-              color = "volcano";
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </span>
-      ),
-    },
+
     {
       title: "price",
       dataIndex: "price",
-      width: "7%",
-      editable: true,
+      width: "10%",
+
       align: "center",
     },
     {
       title: "Size",
       dataIndex: "size",
-      width: "7%",
-      editable: true,
+      width: "10%",
+
       align: "center",
     },
     {
       title: "Inventory",
-      dataIndex: "inventory",
-      width: "7%",
-      editable: true,
+      dataIndex: "countInStock",
+      width: "10%",
+
       align: "center",
     },
-    {
-      title: "Description",
-      dataIndex: "description",
-      width: "40%",
-      overflowY: "scroll",
-      display: "flex",
-      flexDirection: "column",
-      editable: true,
-      align: "center",
-    },
+
     {
       title: "operation",
       dataIndex: "operation",
       align: "center",
+      width: "15%",
       render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <a
-              href="javascript:;"
-              onClick={() => save(record.key)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </a>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
-            </Popconfirm>
-            <a
-              onClick={() => deleteProduct(record.key)}
-              style={{ marginLeft: 8 }}
-            >
-              Delete
-            </a>
-            <Link
-              to="/vender/product/edit"
-              className="btn btn-outline-info btn-sm pull-right"
-            >
-              Edit2
+
+        return (
+          <Row justify="space-around">
+            <Col>
+              <button style={{ width: "3rem", }}>
+                <Link
+                  to={`/vender/product/edit/${record.id}`}
+                  className="btn btn-outline-info btn-sm pull-right"
+                >Edit
             </Link>
-          </span>
-        ) : (
-          <a disabled={editingKey !== ""} onClick={() => edit(record)}>
-            Edit1
-          </a>
+
+              </button>
+            </Col>
+            <Col>
+              <button style={{ width: "3rem" }}
+
+                onClick={() => deleteProduct(record.id)}
+              >
+                Delete
+          </button>
+            </Col>
+
+          </Row >
+
         );
+
       },
     },
   ];
@@ -272,6 +194,7 @@ function CardProductVender(props) {
             placeholder="input search text"
             allowClear
             onSearch={onSearch}
+            loading={isLoading}
             style={{ width: "25rem", margin: "0 10px" }}
           />
         </Col>
@@ -279,19 +202,20 @@ function CardProductVender(props) {
 
       <Form form={form} component={false}>
         <Table
-          style={{ margin: "3rem" }}
+          style={{ margin: "3rem", border: "2px solid #ddd" }}
           components={{
             body: {
               cell: EditableCell,
+
             },
           }}
+
           bordered
-          dataSource={data}
+          dataSource={products}
           columns={mergedColumns}
           rowClassName="editable-row"
-          pagination={{
-            onChange: cancel,
-          }}
+          rowKey={record => record.id}
+
         />
       </Form>
     </>

@@ -12,8 +12,10 @@ import {
   Slider,
   Form,
   Pagination,
+  Typography,
 } from "antd";
 import axios from "../../config/axios";
+import { useHistory } from "react-router-dom";
 
 const { CheckableTag } = Tag;
 const { Panel } = Collapse;
@@ -73,8 +75,9 @@ const contentStyle = {
 
 const ProductRow = styled.div`
   width: 10rem;
-  height: 10rem;
+  height: 13rem;
   border-bottom: 1px solid #000;
+  cursor: pointer;
 `;
 
 export default function AllProducts() {
@@ -85,6 +88,8 @@ export default function AllProducts() {
   const [actualPresentedProduct, setActualPresentedProduct] = React.useState(
     products
   );
+
+  const history = useHistory();
 
   const [searchQuery, setSearchQuery] = React.useState({
     gender: [],
@@ -101,7 +106,7 @@ export default function AllProducts() {
     { label: "Montblac", value: "Montblac" },
     { label: "Givonchy", value: "Givonchy" },
     { label: "Channel", value: "Channel" },
-    { label: "Apple", value: "Apple" },
+    { label: "Aventus", value: "Aventus" },
   ];
 
   const [brands, setBrands] = React.useState(brandOptions);
@@ -111,7 +116,6 @@ export default function AllProducts() {
     const { data } = await axios.get(`/products/?_search=${value}`);
     const searchProduct = data;
     setProducts(searchProduct);
-    setActualPresentedProduct(searchProduct);
     setIsLoading(false);
   };
   const onSearchBrand = (e) => {
@@ -182,6 +186,13 @@ export default function AllProducts() {
   React.useEffect(() => {
     fetchAllProducts();
   }, []);
+  React.useEffect(() => {
+    setActualPresentedProduct(products);
+  }, [products]);
+
+  const handleNextPage = (id) => {
+    history.push(`/product/${id}`);
+  };
 
   React.useEffect(() => {
     const filteredProducts = products.filter(
@@ -194,21 +205,21 @@ export default function AllProducts() {
           : true) &&
         (searchQuery.scent.length
           ? searchQuery.scent.includes(item.topscent) ||
-            searchQuery.scent.includes(item.secondscent) ||
-            searchQuery.scent.includes(item.thirdscent)
+          searchQuery.scent.includes(item.secondscent) ||
+          searchQuery.scent.includes(item.thirdscent)
           : true) &&
         (searchQuery.size.length
           ? searchQuery.size.includes(item.size)
           : true) &&
         (searchQuery.style.length
           ? searchQuery.style.includes(item.style1) ||
-            searchQuery.style.includes(item.style2) ||
-            searchQuery.style.includes(item.style3) ||
-            searchQuery.style.includes(item.style4)
+          searchQuery.style.includes(item.style2) ||
+          searchQuery.style.includes(item.style3) ||
+          searchQuery.style.includes(item.style4)
           : true) &&
         (searchQuery.price.length
           ? item.price >= searchQuery.price[0] &&
-            item.price <= searchQuery.price[1]
+          item.price <= searchQuery.price[1]
           : true)
     );
     setActualPresentedProduct(filteredProducts);
@@ -331,10 +342,11 @@ export default function AllProducts() {
         <ProductContainer>
           <Row align="middle" justify="center">
             {actualPresentedProduct &&
-              actualPresentedProduct.map(({ sku, name, image }) => (
+              actualPresentedProduct.map(({ sku, name, main_image, id }) => (
                 <Col span={6} key={sku}>
-                  <ProductRow>
-                    <Image src={image} alt="" />
+                  <ProductRow onClick={() => handleNextPage(id)}>
+                    <Image src={main_image} alt="" />
+                    <Typography.Text>{name}</Typography.Text>
                   </ProductRow>
                 </Col>
               ))}

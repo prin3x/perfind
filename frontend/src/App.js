@@ -8,27 +8,49 @@ import { Switch, Route } from "react-router-dom";
 import ContactForm from "./pages/ContactForm/ContactForm";
 
 import VenderPage from "./pages/VenderPage/VenderPage";
-import Layout from "../src/pages/Layout/Layout";
+
 import VenderRegister from "./pages/VenderRegister/VenderRegister";
 import VenderEditProduct from "./components/VenderEditProduct/VenderEditProduct";
 import AllProducts from "./pages/AllProduct/AllProducts";
 import Login from "./pages/Login/Login";
 import VenderLogin from "./pages/Login/VendorLogin";
 import RatingSystem from "./components/RatingSystem/RatingSystem";
+import Layout from "./pages/Layout/Layout";
+import AllCart from "./pages/AllCard/AllCart";
+import { ProductContextProvider } from "./Context/productContext";
+import OmiseCheckout from "./components/OmiseCheckout/OmiseCheckout";
+import { OrderContextProvider } from "./Context/orderContext";
+
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
 
 const App = () => (
   <Layout>
     <Switch>
       <LandingPage exact path="/" />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/contact" component={ContactForm} />
-      <Route exact path="/vender" component={VenderPage} />
-      <Route exact path="/vender/register" component={VenderRegister} />
-      <Route exact path="/vender/login" component={VenderLogin} />
-      <Route exact path="/products" component={AllProducts} />
-      <Route exact path="/vender/product/edit" component={VenderEditProduct} />
-      <Route exact path="/reviews/:id" component={RatingSystem} />
+      <ProductContextProvider>
+        <OrderContextProvider>
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/contact" component={ContactForm} />
+          <Route exact path="/vender" component={VenderPage} />
+          <Route exact path="/vender/register" component={VenderRegister} />
+          <Route
+            exact
+            path="/vender/product/edit/:id"
+            component={VenderEditProduct}
+          />
+
+          <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/product/:id" component={SingleProduct} />
+          <Route exact path="/login" component={Login} />
+
+          <Route exact path="/vender/register" component={VenderRegister} />
+          <Route exact path="/vender/login" component={VenderLogin} />
+          <Route exact path="/reviews/:id" component={RatingSystem} />
+
+          <Route exact path="/cart" component={AllCart} />
+          <Route exact path="/checkout" component={OmiseCheckout} />
+        </OrderContextProvider>
+      </ProductContextProvider>
     </Switch>
   </Layout>
 );
