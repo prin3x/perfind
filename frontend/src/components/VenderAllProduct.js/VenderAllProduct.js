@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Row } from "antd";
 
 import React from "react";
 import CardProductVender from "../CardProductVender/CardProductVender";

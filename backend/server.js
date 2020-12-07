@@ -8,7 +8,7 @@ const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const passport = require("passport");
 const logger = require("morgan");
-
+const reviewsRoutes = require("./routes/reviewRoutes");
 const server = express();
 
 require("./config/passport/passport");
@@ -27,10 +27,11 @@ server.use("/auth", authRoutes);
 server.use("/vender/login", authRoutes);
 server.use("/vender/register", authRoutes);
 
+server.use("/reviews", reviewsRoutes);
 db.sequelize
   .sync({ force: false })
   .then(() => {
-    console.log(`DABATSE HAS BEEN SYNCING`.cyan.bold.underline);
+    console.log(`DATABASE HAS BEEN SYNCING`.cyan.bold.underline);
   })
   .catch((err) =>
     console.log(`There might be some err : ${err}`.red.bold.bgWhite)

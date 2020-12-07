@@ -4,34 +4,7 @@ import axios from "../../config/axios";
 import LocalStorageService from "../../services/LocalStorageService";
 import styled from "styled-components";
 import { InsideMainSection } from "../Layout/Layout";
-import roles from "../../config/role";
 
-const Background = styled.div`
-  min-height: 150rem;
-  height: 100%;
-  width: 100vw;
-  position: relative;
-`;
-
-const TopBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  background: url("/assets/index/bg-top.jpg") center center no-repeat;
-  background-size: cover;
-  z-index: 1;
-  position: fixed;
-`;
-const BottomBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  bottom: 0;
-  background: url("/assets/index/bg-bottom.jpg") center center no-repeat;
-  background-size: cover;
-  z-index: 1;
-`;
 const MainSection = styled.div`
   margin-top: 4rem;
   width: 100vw;
@@ -53,7 +26,7 @@ function Login(props) {
         notification.success({
           description: "Login success.",
         });
-        // props.setRole("USER");
+
         props.history.push("/");
         LocalStorageService.setToken(res.data.token);
       })

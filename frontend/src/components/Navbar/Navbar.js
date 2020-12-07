@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
-import { Input } from "antd";
-import { Divider } from "antd";
+import { Divider, Input, notification } from "antd";
 import { useHistory } from "react-router-dom";
 import LocalStorageService from "../../services/LocalStorageService";
 
@@ -196,9 +195,11 @@ const Navbar = (props) => {
     setShow(!show);
   };
 
-  const logOut = (props) => {
+  const LogOut = () => {
     LocalStorageService.removeToken();
-    // props.setRole("GUEST");
+    notification.success({
+      description: "You are logged out!",
+    });
   };
 
   return (
@@ -253,7 +254,7 @@ const Navbar = (props) => {
               <ListWrapper>
                 <List>My Account</List>
                 <List>My Transactions</List>
-                <List onClick={logOut}>Logout</List>
+                <List onClick={LogOut}>Logout</List>
               </ListWrapper>
             </DropdownContent>
           </IconWrapper>
