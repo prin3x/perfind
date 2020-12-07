@@ -16,6 +16,7 @@ const chargeControl = async (req, res) => {
     },
     function (err, resp) {
       if (err) {
+        console.log(err);
         res.status(404).send(err);
       }
       res.status(200).send({
