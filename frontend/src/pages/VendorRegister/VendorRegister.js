@@ -59,13 +59,14 @@ function VenderRegister(props) {
   const propsUpload = {
     name: "img",
     multiple: false,
-    action: `${BASE_BACKEND_URL}/auth/vender/register`,
+    action: `${BASE_BACKEND_URL}/auth/upload`,
     onChange(info) {
       const { status } = info.file;
       if (status !== "uploading") {
         console.log(info.file, info.fileList);
       }
       if (status === "done") {
+        console.log("url", info.file.response.url);
         setFileBrandName(info.file.response.url);
         message.success(`${info.file.name} file uploaded successfully.`);
       } else if (status === "error") {
@@ -116,7 +117,9 @@ function VenderRegister(props) {
                   style={{
                     width: "12rem",
                     height: "12rem",
-                    background: "Gray",
+                    backgroundImage: fileBrandName
+                      ? `url(${fileBrandName})`
+                      : "Gray",
                     borderRadius: "50%",
                     marginTop: "1rem",
                   }}

@@ -91,7 +91,7 @@ function VenderRegister(props) {
           fontFamily: "Playfair",
         }}
       >
-        Vendor Register
+        Vender Register
       </h2>
 
       <Row justify="center">
