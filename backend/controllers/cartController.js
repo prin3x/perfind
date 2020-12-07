@@ -11,7 +11,7 @@ const getAllCarts = async (req, res) => {
   // `;
   const cartProducts = await db.Cart.findAll({
     // attributes: ['id', 'qty', 'product_id'],
-    where: { user_id: 1 },
+    where: { user_id: req.user.id },
     include: [
       {
         model: db.Product,

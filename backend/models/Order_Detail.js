@@ -8,9 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       price: {
         type: DataTypes.INTEGER,
       },
-      point: {
-        type: DataTypes.INTEGER,
-      },
+
     },
     {
       tableName: 'order_details',
@@ -18,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   model.associate = models => {
-    model.belongsTo(models.Order, {foreignKey: 'order_id'});
-    model.belongsTo(models.Product, {foreignKey: 'product_id'});
+    model.belongsTo(models.Order, { foreignKey: 'order_id' });
+    model.belongsTo(models.Product, { foreignKey: 'product_id' });
   };
 
   return model;

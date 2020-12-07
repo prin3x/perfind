@@ -1,9 +1,13 @@
-import { Button, Checkbox, Col, Row } from 'antd';
-import React, { useContext, useEffect } from 'react';
+import { Button, Checkbox, Col, notification, Row } from 'antd';
+import Form from 'antd/lib/form/Form';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Cart from '../../components/Cart/Cart';
+import OmiseCheckout from '../../components/OmiseCheckout/OmiseCheckout';
+import axios from '../../config/axios';
 import { ProductContext } from '../../Context/productContext';
-
+import { OrderContext } from '../../Context/orderContext';
 
 
 
@@ -20,15 +24,24 @@ const InsideMainSection = styled.div`
 
 
 
-export default function AllCart() {
+export default function AllCart(props) {
   let totalPrice = 0;
 
+  const { totalPriceOrder, setTotalPriceOrder } = useContext(OrderContext);
+
   const { selectItem, retrieveAllItems } = useContext(ProductContext);
+
+  const putPay = async (totalPrice) => {
+    await axios.post('/checkout', { totalPrice });
+    props.history.push("/checkout");
+  };
+
   useEffect(() => {
     retrieveAllItems();
-  }, []);
 
-  console.log(selectItem);
+  }, []);
+  console.log(totalPrice);
+  // console.log(selectItem);
   return (
     <InsideMainSection>
       <Row justify="center">
@@ -67,13 +80,18 @@ export default function AllCart() {
           selectItem.map(item => {
             const { Product } = item;
             totalPrice += +item.qty * +item.Product.price;
+
+            setTotalPriceOrder(totalPrice);
             return <Cart key={item.id} props={{ ...Product }} qty={item.qty} />;
           })}
       </Row>
 
       <Row><hr></hr><Col style={{ marginLeft: "50rem" }}>Total : {totalPrice}</Col></Row>
-      <Button type="primary" style={{ margin: "2rem", marginLeft: "57rem", }}>Pay</Button>
-      {/* <Omise totalPrice={totalPrice} /> */}
+      <Button onClick={() => putPay(totalPrice)} >Pay</Button>
+
+
+
+
     </InsideMainSection>
   );
 }

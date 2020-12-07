@@ -12,6 +12,7 @@ const passport = require('passport');
 const logger = require('morgan');
 const uploadFiles = require("./routes/uploadRoutes");
 const chargRoutes = require("./routes/chargeRoute");
+const checkoutRoutes = require("./routes/checkoutRoutes");
 
 
 const server = express();
@@ -36,11 +37,12 @@ server.use("/vender/register", authRoutes);
 server.use('/vender', productVendorRoutes);
 server.use('/carts', cartRoutes);
 server.use("/charge", chargRoutes);
+server.use("/checkout", checkoutRoutes);
 
 db.sequelize
   .sync({ force: false })
   .then(() => {
-    console.log(`DABATSE HAS BEEN SYNCING`.cyan.bold.underline);
+    console.log(`DATABASE HAS BEEN SYNCING`.cyan.bold.underline);
   })
   .catch((err) =>
     console.log(`There might be some err : ${err}`.red.bold.bgWhite)

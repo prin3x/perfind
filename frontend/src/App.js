@@ -18,6 +18,7 @@ import Layout from "./pages/Layout/Layout";
 import AllCart from "./pages/AllCard/AllCart";
 import { ProductContextProvider } from "./Context/productContext";
 import OmiseCheckout from "./components/OmiseCheckout/OmiseCheckout";
+import { OrderContextProvider } from "./Context/orderContext";
 
 
 const App = () => (
@@ -25,21 +26,23 @@ const App = () => (
     <Switch>
       <LandingPage exact path="/" />
       <ProductContextProvider>
+        <OrderContextProvider>
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/contact" component={ContactForm} />
+          <Route exact path="/vender" component={VenderPage} />
+          <Route exact path="/vender/register" component={VenderRegister} />
+          <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
 
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/contact" component={ContactForm} />
-        <Route exact path="/vender" component={VenderPage} />
-        <Route exact path="/vender/register" component={VenderRegister} />
-        <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
+          <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/login" component={Login} />
 
-        <Route exact path="/products" component={AllProducts} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/contact" component={ContactForm} />
-        <Route exact path="/vender/register" component={VenderRegister} />
-        <Route exact path="/vender/login" component={VenderLogin} />
-        <Route exact path="/cart" component={AllCart} />
-        <Route exact path="/checkout" component={OmiseCheckout} />
+
+          <Route exact path="/vender/register" component={VenderRegister} />
+          <Route exact path="/vender/login" component={VenderLogin} />
+
+          <Route exact path="/cart" component={AllCart} />
+          <Route exact path="/checkout" component={OmiseCheckout} />
+        </OrderContextProvider>
       </ProductContextProvider>
 
     </Switch>
