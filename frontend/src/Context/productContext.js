@@ -21,13 +21,13 @@ export function ProductContextProvider({ children }) {
   };
 
   const sendUpdatedData = async productId => {
-    await axios.patch(`/carts/${productId}`, {
+    await axios.post(`/carts/${productId}`, {
       qty: selectItem.find(item => item.product_id === productId)
     });
   };
 
   const updateQty = async (productId, qty) => {
-    await axios.patch(`/carts/${productId}`, { qty });
+    await axios.post(`/carts/${productId}`, { qty });
     qty === 0
       ? deleteProduct(productId)
       : await dispatch({ type: 'UPDATE_QTY', productId, qty });

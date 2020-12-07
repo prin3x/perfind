@@ -9,7 +9,7 @@ import ContactForm from "./pages/ContactForm/ContactForm";
 
 import VenderPage from "./pages/VenderPage/VenderPage";
 
-import VenderRegister from "./pages/VenderRegister/VenderRegister";
+import VendorRegister from "./pages/VendorRegister/VendorRegister";
 import VenderEditProduct from "./components/VenderEditProduct.js/VenderEditProduct";
 import AllProducts from "./pages/AllProduct/AllProducts";
 import Login from "./pages/Login/Login";
@@ -31,7 +31,7 @@ const App = () => (
           <Route exact path="/register" component={Register} />
           <Route exact path="/contact" component={ContactForm} />
           <Route exact path="/vender" component={VenderPage} />
-          <Route exact path="/vender/register" component={VenderRegister} />
+          <Route exact path="/vender/register" component={VendorRegister} />
           <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
 
           <Route exact path="/products" component={AllProducts} />
@@ -39,7 +39,7 @@ const App = () => (
           <Route exact path="/login" component={Login} />
 
 
-          <Route exact path="/vender/register" component={VenderRegister} />
+
           <Route exact path="/vender/login" component={VenderLogin} />
 
           <Route exact path="/cart" component={AllCart} />

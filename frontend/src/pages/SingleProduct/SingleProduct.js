@@ -26,13 +26,14 @@ import { useParams } from "react-router-dom";
 import axios from "../../config/axios";
 import SimilarProduct from "../../components/SimilarProduct/SimilarProduct";
 
-function SingleProduct() {
+function SingleProduct(props) {
   const { id } = useParams();
   const [rateLongevity, setRateLongevity] = useState("");
   const [rateSillage, setRateSillage] = useState("");
   const [productImg, setProductImg] = useState("");
   const [data, setData] = useState({});
   const [similarList, setSimilarList] = useState([]);
+  const [qty, setQty] = useState(0);
 
   useEffect(() => {
     fetchProduct();
@@ -53,8 +54,15 @@ function SingleProduct() {
     });
   };
 
+  const putAddCart = async () => {
+    axios.post(`/carts/${id}`, { qty });
+    props.history.push("/cart");
+  };
+
+
   function onChange(value) {
     console.log("changed", value);
+    setQty(value);
   }
 
   const { Option } = Select;
@@ -338,7 +346,8 @@ function SingleProduct() {
                 </Row>
                 <Row style={{ marginTop: "1.6em" }}>
                   <Col span={12} align="center">
-                    <button className="style-btn-lightColor btn-effect">
+                    <button className="style-btn-lightColor btn-effect"
+                      onClick={putAddCart}>
                       <ShoppingCartOutlined />
                       <p style={{ marginLeft: "10px" }}>ADD TO CART</p>
                     </button>

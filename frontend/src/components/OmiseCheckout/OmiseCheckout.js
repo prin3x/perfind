@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../config/axios";
-import { Form, Input, Button, Select } from "antd";
+import { Form, Input, Button, Select, Modal } from "antd";
 import { useHistory } from "react-router-dom";
-import Modal from "antd/lib/modal/Modal";
+
 const layout = {
   labelCol: {
     span: 8,
@@ -26,7 +26,7 @@ export default function OmiseCheckout(props) {
   };
 
   useEffect(() => {
-    window.Omise.setPublicKey("pkey_test_5lqb94ap04wi1yhb1xx");
+    window.Omise.setPublicKey("pkey_test_5m4dyglwj7eqrxmkix2");
   }, []);
 
   useEffect(() => {
