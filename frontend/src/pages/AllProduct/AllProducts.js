@@ -187,11 +187,11 @@ export default function AllProducts() {
     fetchAllProducts();
   }, []);
   React.useEffect(() => {
-    setActualPresentedProduct(products)
+    setActualPresentedProduct(products);
   }, [products]);
 
-  const handleNextPage = (slug) => {
-    history.push(`/${slug}`);
+  const handleNextPage = (id) => {
+    history.push(`/product/${id}`);
   };
 
   React.useEffect(() => {
@@ -342,9 +342,9 @@ export default function AllProducts() {
         <ProductContainer>
           <Row align="middle" justify="center">
             {actualPresentedProduct &&
-              actualPresentedProduct.map(({ sku, name, main_image }) => (
+              actualPresentedProduct.map(({ sku, name, main_image, id }) => (
                 <Col span={6} key={sku}>
-                  <ProductRow onClick={() => handleNextPage(name)}>
+                  <ProductRow onClick={() => handleNextPage(id)}>
                     <Image src={main_image} alt="" />
                     <Typography.Text>{name}</Typography.Text>
                   </ProductRow>

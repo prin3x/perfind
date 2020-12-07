@@ -7,19 +7,19 @@ const getAllProducts = async (req, res) => {
     const product = await db.Product.findAll({
       where: searchString
         ? {
-            [Op.or]: [
-              db.sequelize.where(
-                db.sequelize.fn("lower", db.sequelize.col("name")),
-                "LIKE",
-                `%${searchString}%`
-              ),
-              { gender: { [Op.substring]: searchString } },
-              { style1: { [Op.substring]: searchString } },
-              { style2: { [Op.substring]: searchString } },
-              { style3: { [Op.substring]: searchString } },
-              { style4: { [Op.substring]: searchString } },
-            ],
-          }
+          [Op.or]: [
+            db.sequelize.where(
+              db.sequelize.fn("lower", db.sequelize.col("name")),
+              "LIKE",
+              `%${searchString}%`
+            ),
+            { gender: { [Op.substring]: searchString } },
+            { style1: { [Op.substring]: searchString } },
+            { style2: { [Op.substring]: searchString } },
+            { style3: { [Op.substring]: searchString } },
+            { style4: { [Op.substring]: searchString } },
+          ],
+        }
         : null,
     });
     res.status(200).send(product);
@@ -60,7 +60,7 @@ const getSimilarProduct = async (req, res) => {
   } = await db.Product.findOne({ where: { id: req.params.id } });
   const rawQuery = `
   
-  SELECT result.id,result.name,result.price, result.image, result.total_1 + result.total_2 + result.total_3 + result.total_4 + result.total_5 + result.total_6 + result.total_7 + result.total_8 + result.total_9 + result.total_10 + result.total_11 + result.total_12 + result.total_13 + result.total_14 + result.total_15 + result.total_16 + result.total_17 as total
+  SELECT result.id, result.name, result.price, result.main_image, result.total_1 + result.total_2 + result.total_3 + result.total_4 + result.total_5 + result.total_6 + result.total_7 + result.total_8 + result.total_9 + result.total_10 + result.total_11 + result.total_12 + result.total_13 + result.total_14 + result.total_15 + result.total_16 + result.total_17 as total
 FROM
 ( SELECT *,
 CASE WHEN topscent LIKE "${topscent}" THEN '500'  
@@ -110,7 +110,7 @@ limit 10`;
     res.status(200).send(similarProduct);
   } catch (error) {
     console.log(error);
-    res.status(401).send({ message: "something wrong" });
+    res.status(400).send({ message: "something wrong" });
   }
 };
 

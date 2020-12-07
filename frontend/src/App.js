@@ -20,6 +20,7 @@ import { ProductContextProvider } from "./Context/productContext";
 import OmiseCheckout from "./components/OmiseCheckout/OmiseCheckout";
 import { OrderContextProvider } from "./Context/orderContext";
 
+import SingleProduct from "./pages/SingleProduct/SingleProduct";
 
 const App = () => (
   <Layout>
@@ -34,6 +35,7 @@ const App = () => (
           <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
 
           <Route exact path="/products" component={AllProducts} />
+          <Route exact path="/product/:id" component={SingleProduct} />
           <Route exact path="/login" component={Login} />
 
 
