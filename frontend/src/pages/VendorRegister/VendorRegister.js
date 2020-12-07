@@ -46,7 +46,7 @@ function VenderRegister(props) {
         notification.success({
           description: "Signup successfully",
         });
-        props.history.push("/");
+        props.history.push("/vender");
       })
       .catch((err) => {
         console.log(err);
@@ -79,13 +79,13 @@ function VenderRegister(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-          labelCol: {
-            span: 10,
-          },
-          wrapperCol: {
-            span: 24,
-          },
-        }
+        labelCol: {
+          span: 10,
+        },
+        wrapperCol: {
+          span: 24,
+        },
+      }
       : null;
   return (
     <div>
@@ -265,11 +265,27 @@ function VenderRegister(props) {
                     <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
                 </Row>
+                <Row
+                  justify="space-around"
+                  style={{
+                    marginTop: "1.5rem",
+                    marginBottom: "3rem",
+                    marginRight: "9rem",
+                  }}
+                >
+                  <Button type="primary" htmlType="submit">
+                    Reset
+            </Button>
+
+                  <Button type="primary" htmlType="submit">
+                    Register
+            </Button>
+                </Row>
               </Form>
             </Col>
           </Row>
 
-          <Row justify="center">
+          {/* <Row justify="center">
             <Col>
               <Form
                 style={{
@@ -349,23 +365,8 @@ function VenderRegister(props) {
                 I have read the <a href="">agreement</a>
               </Checkbox>
             </Form.Item>
-          </Row>
-          <Row
-            justify="space-around"
-            style={{
-              marginTop: "1.5rem",
-              marginBottom: "3rem",
-              marginRight: "9rem",
-            }}
-          >
-            <Button type="primary" htmlType="submit">
-              Reset
-            </Button>
+          </Row> */}
 
-            <Button type="primary" htmlType="submit">
-              Register
-            </Button>
-          </Row>
         </Col>
       </Row>
     </div>

@@ -9,8 +9,8 @@ import ContactForm from "./pages/ContactForm/ContactForm";
 
 import VenderPage from "./pages/VenderPage/VenderPage";
 
-import VenderRegister from "./pages/VenderRegister/VenderRegister";
-import VenderEditProduct from "./components/VenderEditProduct/VenderEditProduct";
+import VenderRegister from "./pages/VendorRegister/VendorRegister";
+import VenderEditProduct from "./components/VenderEditProduct.js/VenderEditProduct";
 import AllProducts from "./pages/AllProduct/AllProducts";
 import Login from "./pages/Login/Login";
 import VenderLogin from "./pages/Login/VendorLogin";
@@ -43,7 +43,8 @@ const App = () => (
           <Route exact path="/product/:id" component={SingleProduct} />
           <Route exact path="/login" component={Login} />
 
-          <Route exact path="/vender/register" component={VenderRegister} />
+
+
           <Route exact path="/vender/login" component={VenderLogin} />
           <Route exact path="/reviews/:id" component={RatingSystem} />
 

@@ -32,7 +32,7 @@ export default function AllCart(props) {
   const { selectItem, retrieveAllItems } = useContext(ProductContext);
 
   const putPay = async (totalPrice) => {
-    await axios.post('/checkout', { totalPrice });
+    axios.post('/checkout', { totalPrice });
     props.history.push("/checkout");
   };
 
