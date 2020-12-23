@@ -55,11 +55,11 @@ function SingleProduct(props) {
   };
 
   const putAddCart = async () => {
-    axios.post(`/carts/${id}`, { qty });
+    await axios.post(`/carts/${id}`, { qty });
   };
 
   const BuyNow = async () => {
-    axios.post(`/carts/${id}`, { qty });
+    await axios.post(`/carts/${id}`, { qty });
     props.history.push("/cart");
   };
 
