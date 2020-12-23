@@ -2,17 +2,14 @@ module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
     "Order",
     {
-
       total_price: {
         type: DataTypes.INTEGER,
       },
-      address: {
-        type: DataTypes.STRING(255),
-      },
+
       status: {
-        type: DataTypes.ENUM("pending", "success"),
-        defaultValue: ("pending")
-      }
+        type: DataTypes.STRING,
+
+      },
     },
     {
       tableName: "orders",

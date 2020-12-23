@@ -1,3 +1,5 @@
+const db = require("../models");
+
 const omise = require("omise")({
   secretKey: process.env.OMISE_SECRET_KEY,
   omiseVersion: "2015-09-10",
@@ -8,17 +10,27 @@ const chargeControl = async (req, res) => {
   const amount = req.body.amount;
   omise.charges.create(
     {
-      description: "Charge for order ID: 00001",
+      description: tokenId,
       amount: amount,
       currency: "thb",
       capture: true,
       card: tokenId,
     },
-    function (err, resp) {
+    async function (err, resp) {
       if (err) {
         console.log(err);
         res.status(404).send(err);
       }
+      await db.Cart.destroy({
+        where: {
+          user_id: req.user.id
+        }
+      })
+      await db.Order.create({
+        total_price : amount/100,
+        status: "success",
+        user_id: req.user.id
+      });
       res.status(200).send({
         id: resp.id,
         amount,

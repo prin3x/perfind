@@ -1,16 +1,16 @@
 module.exports = (sequelize, DataTypes) => {
   const model = sequelize.define(
-    'Review',
+    "Review",
     {
       rating: {
         type: DataTypes.INTEGER,
       },
       comment: {
-        type: DataTypes.STRING(255),
+        type: DataTypes.STRING,
       },
     },
     {
-      tableName: 'reviews',
+      tableName: "reviews",
     }
   );
 

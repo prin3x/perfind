@@ -1,7 +1,7 @@
 const route = require("express").Router();
 const passport = require("passport");
 const controller = require("../controllers/authController");
-
+const authentication = passport.authenticate("jwt", { session: false });
 // Uploadfiles
 const multer = require("multer");
 const path = require("path");
@@ -46,6 +46,10 @@ route.get(
   (req, res) => {
     res.status(200).send({ message: "login successfully" });
   }
+);
+
+route.get("/myinfo", authentication, async (req, res) =>
+  res.status(200).send(req.user)
 );
 
 module.exports = route;

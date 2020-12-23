@@ -12,6 +12,7 @@
     "axios": "^0.21.0",
     "craco-less": "^1.17.0",
     "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-highlight-words": "^0.16.0",

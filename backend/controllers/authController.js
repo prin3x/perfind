@@ -87,7 +87,9 @@ const userLogin = async (req, res) => {
         const token = jwt.sign(payload, process.env.SECRET_KEY, {
           expiresIn: 36000,
         });
-        res.status(200).send({ token, message: "login succes!" });
+        res
+          .status(200)
+          .send({ token, message: "login succes!", role: payload.role });
       });
     }
   } catch (error) {

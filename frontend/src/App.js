@@ -20,28 +20,39 @@ import AllCart from "./pages/AllCard/AllCart";
 import { ProductContextProvider } from "./Context/productContext";
 import OmiseCheckout from "./components/OmiseCheckout/OmiseCheckout";
 import { OrderContextProvider } from "./Context/orderContext";
-
+import { UserContextProvider } from "./Context/userContext";
+import UserPage from "./pages/UserPage/UserPage";
 
 const App = () => (
-  <Layout>
-    <Switch>
-      <ProductContextProvider>
-        <OrderContextProvider>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/vender" component={VenderPage} />
-          <Route exact path="/vender/register" component={VendorRegister} />
-          <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
-          <Route exact path="/checkout" component={OmiseCheckout} />
-          <Route exact path="/products" component={AllProducts} />
-          <Route exact path="/product/:id" component={SingleProduct} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/vender/login" component={VenderLogin} />
-          <Route exact path="/cart" component={AllCart} />
-
-        </OrderContextProvider>
-      </ProductContextProvider>
-    </Switch>
-  </Layout>
+  <UserContextProvider>
+    <Layout>
+      <Switch>
+        <ProductContextProvider>
+          <OrderContextProvider>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/vender" component={VenderPage} />
+            <Route exact path="/vender/register" component={VendorRegister} />
+            <Route
+              exact
+              path="/vender/product/edit/:id"
+              component={VenderEditProduct}
+            />
+            <Route
+              exact
+              path="/user"
+              component={UserPage}
+            />
+            <Route exact path="/checkout" component={OmiseCheckout} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route exact path="/product/:id" component={SingleProduct} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/vender/login" component={VenderLogin} />
+            <Route exact path="/cart" component={AllCart} />
+          </OrderContextProvider>
+        </ProductContextProvider>
+      </Switch>
+    </Layout>
+  </UserContextProvider>
 );
 export default App;

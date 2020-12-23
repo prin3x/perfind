@@ -4,7 +4,8 @@ import axios from "../../config/axios";
 import LocalStorageService from "../../services/LocalStorageService";
 import styled from "styled-components";
 import { InsideMainSection } from "../Layout/Layout";
-import roles from "../../config/role";
+import { useContext } from "react";
+import { UserContext } from "../../Context/userContext";
 
 const Background = styled.div`
   min-height: 150rem;
@@ -42,6 +43,7 @@ const MainSection = styled.div`
 `;
 
 function Login(props) {
+  const { retrieveUserInfo } = useContext(UserContext);
   const onFinish = (values) => {
     const body = {
       username: values.username,
@@ -53,9 +55,9 @@ function Login(props) {
         notification.success({
           description: "Login success.",
         });
-        // props.setRole("USER");
         props.history.push("/");
         LocalStorageService.setToken(res.data.token);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
