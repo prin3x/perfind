@@ -12,8 +12,8 @@ const getCheckout = async (req, res) => {
 const addCheckout = async (req, res) => {
   try {
     const { totalPrice } = req.body;
-    const checkoutUser = await db.Order.findOne({
-      where: { user_id: req.user.id }
+    const checkoutUser = await db.User.findOne({
+      where: { id: req.user.id }
     });
     if (checkoutUser) {
       const addCheckoutProduct = await db.Order.create({
@@ -24,6 +24,7 @@ const addCheckout = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(500).send(err.message);
   }
 };
 

@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useReducer } from 'react';
 import axios from "../config/axios";
 import { ProductReducer } from "../Reducer/ProductReducer";
+import LocalStorageService from '../services/LocalStorageService';
 
 
 export const ProductContext = createContext();
@@ -9,7 +10,10 @@ export function ProductContextProvider({ children }) {
   const [selectItem, dispatch] = useReducer(ProductReducer, []);
 
   const retrieveAllItems = async () => {
-    const { data } = await axios.get('/carts');
+    let data = {};
+    if (LocalStorageService.getToken()) {
+      ({ data } = await axios.get('/carts'));
+    }
     dispatch({ type: 'RETRIEVE', data: data });
   };
 
