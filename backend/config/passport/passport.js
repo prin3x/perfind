@@ -8,8 +8,7 @@ const option = {
 };
 
 const JWTStrategy = new Strategy(option, async (payload, done) => {
-  if (payload.role === 'USER') {
-
+  if (payload.role === "USER") {
     const targetUser = await db.User.findOne({ where: { id: payload.id } });
 
     if (targetUser) {

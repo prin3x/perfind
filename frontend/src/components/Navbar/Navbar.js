@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Input } from "antd";
 import { Divider } from "antd";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../Context/userContext";
 import LocalStorageService from "../../services/LocalStorageService";
 
 const { Search } = Input;
@@ -184,6 +185,7 @@ const iconFontSize = {
 
 const Navbar = (props) => {
   const [show, setShow] = useState(false);
+  const { role,setRole } = useContext(UserContext);
 
   const history = useHistory();
 
@@ -198,7 +200,7 @@ const Navbar = (props) => {
 
   const logOut = (props) => {
     LocalStorageService.removeToken();
-    // props.setRole("GUEST");
+    setRole("Public");
   };
 
   return (
@@ -222,7 +224,7 @@ const Navbar = (props) => {
           transform={show ? "70rem" : "0"}
         >
           <MainNavbarContainer>
-            <MainNav>Home</MainNav>
+            <MainNav onClick={() => onRedirect("/")}>Home</MainNav>
             <Divider />
             <MainNav onClick={() => onRedirect("/products")}>
               All Products
@@ -238,25 +240,28 @@ const Navbar = (props) => {
           </MainNavbarContainer>
         </MainNavWrapper>
         <RightContainer>
-          <Search
-            placeholder="input search text"
-            size="medium"
-            style={{ borderRadius: "10px" }}
-            allowClear
-          />
-          <IconWrapper>
-            <RiShoppingCartLine style={iconFontSize} />
-          </IconWrapper>
-          <IconWrapper>
-            <AiOutlineUser style={iconFontSize} />
-            <DropdownContent display="none" className="dropdown-content">
-              <ListWrapper>
-                <List>My Account</List>
-                <List>My Transactions</List>
-                <List onClick={logOut}>Logout</List>
-              </ListWrapper>
-            </DropdownContent>
-          </IconWrapper>
+          {role === "USER" ? (
+            <Fragment>
+              <IconWrapper>
+                <RiShoppingCartLine style={iconFontSize} />
+              </IconWrapper>
+              <IconWrapper>
+                <AiOutlineUser style={iconFontSize} />
+                <DropdownContent display="none" className="dropdown-content">
+                  <ListWrapper>
+                    <List onClick={() => history.push('/user')}>My Account</List>
+                    <List onClick={logOut}>Logout</List>
+                  </ListWrapper>
+                </DropdownContent>
+              </IconWrapper>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <IconWrapper style={{cursor: 'pointer'}} onClick={() => history.push('/login')}>เข้าสู่ระบบ</IconWrapper>
+              <Divider type='vertical' />
+              <IconWrapper style={{cursor: 'pointer'}} onClick={() => history.push('/register')}>ลงทะเบียน</IconWrapper>
+            </Fragment>
+          )}
         </RightContainer>
       </LowerNavbar>
     </NavbarWrapper>

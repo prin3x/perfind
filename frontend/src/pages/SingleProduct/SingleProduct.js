@@ -349,14 +349,19 @@ function SingleProduct(props) {
                 </Row>
                 <Row style={{ marginTop: "1.6em" }}>
                   <Col span={12} align="center">
-                    <button className="style-btn-lightColor btn-effect"
-                      onClick={putAddCart}>
+                    <button
+                      className="style-btn-lightColor btn-effect"
+                      onClick={putAddCart}
+                    >
                       <ShoppingCartOutlined />
                       <p style={{ marginLeft: "10px" }}>ADD TO CART</p>
                     </button>
                   </Col>
                   <Col span={12} align="center">
-                    <button onClick={BuyNow} className="style-btn-darkColor btn-effect">
+                    <button
+                      onClick={BuyNow}
+                      className="style-btn-darkColor btn-effect"
+                    >
                       <ShoppingOutlined />
                       <p style={{ marginLeft: "10px" }}>BUY NOW</p>
                     </button>

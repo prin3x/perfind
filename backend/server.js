@@ -13,6 +13,7 @@ const logger = require('morgan');
 const uploadFiles = require("./routes/uploadRoutes");
 const chargRoutes = require("./routes/chargeRoute");
 const checkoutRoutes = require("./routes/checkoutRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 
 const server = express();
@@ -38,6 +39,7 @@ server.use('/vender', productVendorRoutes);
 server.use('/carts', cartRoutes);
 server.use("/charge", chargRoutes);
 server.use("/checkout", checkoutRoutes);
+server.use("/order", orderRoutes);
 
 db.sequelize
   .sync({ force: false })
