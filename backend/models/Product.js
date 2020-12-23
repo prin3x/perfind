@@ -12,21 +12,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(255),
       },
       size: {
-<<<<<<< HEAD
-        type: DataTypes.ENUM("30", "50", "75", "90", "100"),
-=======
-        type: DataTypes.ENUM('50','90','100')
->>>>>>> 1292eaf6f1db16df2d90d803618a9a560f71d9b0
+        type: DataTypes.ENUM('50', '90', '100')
       },
       daynight: {
         type: DataTypes.ENUM("day", "night"),
       },
       season: {
-<<<<<<< HEAD
         type: DataTypes.STRING(255),
-=======
-        type: DataTypes.STRING(255)
->>>>>>> 1292eaf6f1db16df2d90d803618a9a560f71d9b0
       },
       main_image: {
         type: DataTypes.STRING(255),

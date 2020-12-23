@@ -33,7 +33,7 @@ function SingleProduct(props) {
   const [productImg, setProductImg] = useState("");
   const [data, setData] = useState({});
   const [similarList, setSimilarList] = useState([]);
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
 
   useEffect(() => {
     fetchProduct();
@@ -56,9 +56,12 @@ function SingleProduct(props) {
 
   const putAddCart = async () => {
     axios.post(`/carts/${id}`, { qty });
-    props.history.push("/cart");
   };
 
+  const BuyNow = async () => {
+    axios.post(`/carts/${id}`, { qty });
+    props.history.push("/cart");
+  };
 
   function onChange(value) {
     console.log("changed", value);
@@ -353,7 +356,7 @@ function SingleProduct(props) {
                     </button>
                   </Col>
                   <Col span={12} align="center">
-                    <button className="style-btn-darkColor btn-effect">
+                    <button onClick={BuyNow} className="style-btn-darkColor btn-effect">
                       <ShoppingOutlined />
                       <p style={{ marginLeft: "10px" }}>BUY NOW</p>
                     </button>

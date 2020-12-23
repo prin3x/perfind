@@ -12,10 +12,7 @@ import VenderPage from "./pages/VenderPage/VenderPage";
 import VendorRegister from "./pages/VendorRegister/VendorRegister";
 import VenderEditProduct from "./components/VenderEditProduct.js/VenderEditProduct";
 import AllProducts from "./pages/AllProduct/AllProducts";
-<<<<<<< HEAD
-=======
 import SingleProduct from "./pages/SingleProduct/SingleProduct";
->>>>>>> 1292eaf6f1db16df2d90d803618a9a560f71d9b0
 import Login from "./pages/Login/Login";
 import VenderLogin from "./pages/Login/VendorLogin";
 import Layout from "./pages/Layout/Layout";
@@ -24,53 +21,26 @@ import { ProductContextProvider } from "./Context/productContext";
 import OmiseCheckout from "./components/OmiseCheckout/OmiseCheckout";
 import { OrderContextProvider } from "./Context/orderContext";
 
-<<<<<<< HEAD
-import SingleProduct from "./pages/SingleProduct/SingleProduct";
-=======
->>>>>>> 1292eaf6f1db16df2d90d803618a9a560f71d9b0
 
 const App = () => (
   <Layout>
     <Switch>
-      <LandingPage exact path="/" />
-<<<<<<< HEAD
       <ProductContextProvider>
         <OrderContextProvider>
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/contact" component={ContactForm} />
+          <Route exact path="/" component={LandingPage} />
           <Route exact path="/vender" component={VenderPage} />
           <Route exact path="/vender/register" component={VendorRegister} />
           <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
-
+          <Route exact path="/checkout" component={OmiseCheckout} />
           <Route exact path="/products" component={AllProducts} />
           <Route exact path="/product/:id" component={SingleProduct} />
           <Route exact path="/login" component={Login} />
-
-
-
+          <Route exact path="/register" component={Register} />
           <Route exact path="/vender/login" component={VenderLogin} />
-
           <Route exact path="/cart" component={AllCart} />
-          <Route exact path="/checkout" component={OmiseCheckout} />
+
         </OrderContextProvider>
       </ProductContextProvider>
-=======
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/contact" component={ContactForm} />
-      <Route exact path="/vender" component={VenderPage} />
-      <Route exact path="/vender/register" component={VenderRegister} />
-      <Route exact path="/vender/product/edit/:id" component={VenderEditProduct} />
-
-      <Route exact path="/products" component={AllProducts} />
-      <Route exact path="/product/:id" component={SingleProduct} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/contact" component={ContactForm} />
-      <Route exact path="/vender/register" component={VenderRegister} />
-      <Route exact path="/vender/login" component={VenderLogin} />
-      <Route exact path="/cart" component={AllCart} />
->>>>>>> 1292eaf6f1db16df2d90d803618a9a560f71d9b0
-
     </Switch>
   </Layout>
 );
