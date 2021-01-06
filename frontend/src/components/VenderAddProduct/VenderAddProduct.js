@@ -36,9 +36,7 @@ function VenderAddProduct(props) {
     // status: "done",
     // url:
     //   setProducts.main_image,
-
     // },
-
   ];
 
   // const onFinish = async (values) => {
@@ -63,33 +61,34 @@ function VenderAddProduct(props) {
     console.log(values);
     const formData = new FormData();
     console.log(values.main_image.file.originFileObj);
-    formData.append('main_image', values.main_image.file.originFileObj);
-    formData.append('name', values.name);
-    formData.append('price', values.price);
-    formData.append('description', values.description);
-    formData.append('gender', values.gender);
-    formData.append('size', values.size);
-    formData.append('daynight', values.daynight);
-    formData.append('season', values.season);
-    formData.append('brand', values.brand);
-    formData.append('style1', values.style1);
-    formData.append('style2', values.style2);
-    formData.append('style3', values.style3);
-    formData.append('style4', values.style4);
-    formData.append('topscent', values.topscent);
-    formData.append('secondscent', values.secondscent);
-    formData.append('thirdscent', values.thirdscent);
-    formData.append('longevity', values.longevity);
-    formData.append('countInStock', values.countInStock);
+    formData.append("main_image", values.main_image.file.originFileObj);
+    formData.append("name", values.name);
+    formData.append("price", values.price);
+    formData.append("description", values.description);
+    formData.append("gender", values.gender);
+    formData.append("size", values.size);
+    formData.append("daynight", values.daynight);
+    formData.append("season", values.season);
+    formData.append("brand", values.brand);
+    formData.append("style1", values.style1);
+    formData.append("style2", values.style2);
+    formData.append("style3", values.style3);
+    formData.append("style4", values.style4);
+    formData.append("topscent", values.topscent);
+    formData.append("secondscent", values.secondscent);
+    formData.append("thirdscent", values.thirdscent);
+    formData.append("longevity", values.longevity);
+    formData.append("countInStock", values.countInStock);
 
     try {
-      const res = await axios.post('/vender/products', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+      const res = await axios.post("/vender/products", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       if (res)
         notification.success({
           description: "successfully",
         });
       props.changeActivePane("1");
-
     } catch (error) {
       notification.error({
         description: "wrong.",
@@ -102,13 +101,13 @@ function VenderAddProduct(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-        labelCol: {
-          span: 10,
-        },
-        wrapperCol: {
-          span: 24,
-        },
-      }
+          labelCol: {
+            span: 10,
+          },
+          wrapperCol: {
+            span: 24,
+          },
+        }
       : null;
   function onChange(value) {
     console.log(`selected ${value}`);
@@ -145,7 +144,7 @@ function VenderAddProduct(props) {
             fontFamily: "Playfair",
           }}
         >
-          ADD PROJECT
+          ADD PRODUCT
         </h2>
       </Row>
       <Row justify="center">
@@ -168,7 +167,7 @@ function VenderAddProduct(props) {
               <Col span={20}>
                 <Form.Item
                   name="name"
-                  label="Product"
+                  label="Product Name"
                   rules={[
                     {
                       required: false,
@@ -177,10 +176,7 @@ function VenderAddProduct(props) {
                   ]}
                   style={{ width: "100%" }}
                 >
-                  <Input
-                    placeholder="input Name product"
-                    style={{ width: "100%" }}
-                  />
+                  <Input placeholder="product name" style={{ width: "100%" }} />
                 </Form.Item>
               </Col>
             </Row>
@@ -197,7 +193,7 @@ function VenderAddProduct(props) {
                     },
                   ]}
                 >
-                  <Input placeholder="input Price" />
+                  <Input placeholder="price" />
                 </Form.Item>
               </Col>
             </Row>
@@ -219,13 +215,12 @@ function VenderAddProduct(props) {
               </Col>
             </Row>
             <Row>
-              <div>main pic</div>
+              <div>Product Image</div>
             </Row>
             <Row>
               <Col>
                 <Form.Item
                   name="main_image"
-
                   rules={[
                     {
                       required: false,
@@ -252,12 +247,12 @@ function VenderAddProduct(props) {
                   rules={[
                     {
                       required: false,
-                      message: "Please input your description",
+                      message: "please input your description",
                     },
                   ]}
                 >
                   <Input
-                    placeholder="input description"
+                    placeholder="please input your description"
                     style={{ height: "10rem" }}
                   />
                 </Form.Item>
@@ -284,7 +279,6 @@ function VenderAddProduct(props) {
                   </Radio.Group>
                 </Form.Item>
               </Col>
-
             </Row>
             <br></br>
             <Row>
@@ -292,7 +286,6 @@ function VenderAddProduct(props) {
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="style1"
-
                   rules={[
                     {
                       required: false,
@@ -309,7 +302,6 @@ function VenderAddProduct(props) {
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="style2"
-
                   rules={[
                     {
                       required: false,
@@ -327,7 +319,6 @@ function VenderAddProduct(props) {
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="style3"
-
                   rules={[
                     {
                       required: false,
@@ -338,12 +329,12 @@ function VenderAddProduct(props) {
                   <Radio.Group defaultValue="style3" buttonStyle="solid">
                     <Radio.Button value="fresh">Fresh</Radio.Button>
                     <Radio.Button value="sweet">Sweet</Radio.Button>
-                  </Radio.Group></Form.Item>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="style4"
-
                   rules={[
                     {
                       required: false,
@@ -354,18 +345,17 @@ function VenderAddProduct(props) {
                   <Radio.Group defaultValue="style4" buttonStyle="solid">
                     <Radio.Button value="sexy">Sexy</Radio.Button>
                     <Radio.Button value="formal">Formal</Radio.Button>
-                  </Radio.Group></Form.Item>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
             </Row>
             <br></br>
-
 
             <Row>
               <Col style={{ marginRight: "2rem" }}>Note</Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="topscent"
-
                   rules={[
                     {
                       required: false,
@@ -384,8 +374,9 @@ function VenderAddProduct(props) {
                     onBlur={onBlur}
                     onSearch={onSearch}
                     filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                      0
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
                     }
                   >
                     <Option value="floral">Floral</Option>
@@ -396,12 +387,12 @@ function VenderAddProduct(props) {
                     <Option value="spicy">Spicy</Option>
                     <Option value="woody">Woody</Option>
                     <Option value="sweet">Sweet</Option>
-                  </Select></Form.Item>
+                  </Select>
+                </Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="secondscent"
-
                   rules={[
                     {
                       required: false,
@@ -420,8 +411,9 @@ function VenderAddProduct(props) {
                     onBlur={onBlur}
                     onSearch={onSearch}
                     filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                      0
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
                     }
                   >
                     <Option value="floral">Floral</Option>
@@ -432,12 +424,12 @@ function VenderAddProduct(props) {
                     <Option value="spicy">Spicy</Option>
                     <Option value="woody">Woody</Option>
                     <Option value="sweet">Sweet</Option>
-                  </Select> </Form.Item>
+                  </Select>{" "}
+                </Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="thirdscent"
-
                   rules={[
                     {
                       required: false,
@@ -456,8 +448,9 @@ function VenderAddProduct(props) {
                     onBlur={onBlur}
                     onSearch={onSearch}
                     filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                      0
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
                     }
                   >
                     <Option value="floral">Floral</Option>
@@ -468,7 +461,8 @@ function VenderAddProduct(props) {
                     <Option value="spicy">Spicy</Option>
                     <Option value="woody">Woody</Option>
                     <Option value="sweet">Sweet</Option>
-                  </Select></Form.Item>
+                  </Select>
+                </Form.Item>
               </Col>
             </Row>
             <br></br>
@@ -477,7 +471,6 @@ function VenderAddProduct(props) {
               <Col style={{ marginRight: "5rem" }}>
                 <Form.Item
                   name="daynight"
-
                   rules={[
                     {
                       required: false,
@@ -488,7 +481,8 @@ function VenderAddProduct(props) {
                   <Radio.Group defaultValue="daynight" buttonStyle="solid">
                     <Radio.Button value="day">Day</Radio.Button>
                     <Radio.Button value="night">Night</Radio.Button>
-                  </Radio.Group></Form.Item>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
             </Row>
             <Row>
@@ -496,7 +490,6 @@ function VenderAddProduct(props) {
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="season"
-
                   rules={[
                     {
                       required: false,
@@ -510,7 +503,8 @@ function VenderAddProduct(props) {
                     <Radio.Button value="winter">Winter</Radio.Button>
                     <Radio.Button value="autumn">Autumn</Radio.Button>
                     <Radio.Button value="rainy">Rainy</Radio.Button>
-                  </Radio.Group></Form.Item>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
             </Row>
             <br></br>
@@ -519,7 +513,6 @@ function VenderAddProduct(props) {
               <Col>
                 <Form.Item
                   name="longevity"
-
                   rules={[
                     {
                       required: false,
@@ -533,7 +526,8 @@ function VenderAddProduct(props) {
                     <Radio.Button value="4-5">4-5 hours</Radio.Button>
                     <Radio.Button value="5-6">5-6 hours</Radio.Button>
                     <Radio.Button value="6-7">6-8 hours</Radio.Button>
-                  </Radio.Group></Form.Item>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
             </Row>
             <br></br>
@@ -542,7 +536,6 @@ function VenderAddProduct(props) {
               <Col>
                 <Form.Item
                   name="size"
-
                   rules={[
                     {
                       required: false,
@@ -554,7 +547,8 @@ function VenderAddProduct(props) {
                     <Radio.Button value="50">50</Radio.Button>
                     <Radio.Button value="90">90</Radio.Button>
                     <Radio.Button value="100">100</Radio.Button>
-                  </Radio.Group></Form.Item>
+                  </Radio.Group>
+                </Form.Item>
               </Col>
             </Row>
             <br></br>

@@ -103,13 +103,13 @@ function Register(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-        labelCol: {
-          span: 10,
-        },
-        wrapperCol: {
-          span: 24,
-        },
-      }
+          labelCol: {
+            span: 10,
+          },
+          wrapperCol: {
+            span: 24,
+          },
+        }
       : null;
   return (
     <InsideMainSection>
@@ -135,7 +135,6 @@ function Register(props) {
       </Row>
       <Row justify="center">
         <Col span={24} className="Form">
-
           <Divider />
 
           <Row justify="center">
@@ -171,10 +170,7 @@ function Register(props) {
                       ]}
                       style={{ width: "100%" }}
                     >
-                      <Input
-                        placeholder="input Username"
-                        style={{ width: "100%" }}
-                      />
+                      <Input placeholder="Username" style={{ width: "100%" }} />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -191,7 +187,7 @@ function Register(props) {
                         },
                       ]}
                     >
-                      <Input placeholder="input First Name" />
+                      <Input placeholder="First Name" />
                     </Form.Item>
                   </Col>
                   <Col span={2}></Col>
@@ -206,7 +202,7 @@ function Register(props) {
                         },
                       ]}
                     >
-                      <Input placeholder="input Last name" />
+                      <Input placeholder="Last name" />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -223,7 +219,7 @@ function Register(props) {
                         },
                       ]}
                     >
-                      <Input placeholder="input E-mail!" />
+                      <Input placeholder="E-mail" />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -240,7 +236,7 @@ function Register(props) {
                         },
                       ]}
                     >
-                      <Input.Password placeholder="input Password" />
+                      <Input.Password placeholder="At least 6 characters" />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -269,12 +265,10 @@ function Register(props) {
                         }),
                       ]}
                     >
-                      <Input.Password placeholder="input Password" />
+                      <Input.Password placeholder="Enter Confirm Password" />
                     </Form.Item>
                   </Col>
                 </Row>
-
-
 
                 <Row justify="center">
                   <Col>
@@ -364,8 +358,6 @@ function Register(props) {
                   </Form.Item>
                 </Row>
 
-
-
                 <Row
                   justify="space-around"
                   style={{
@@ -376,7 +368,7 @@ function Register(props) {
                 >
                   <Button htmlType="button" type="primary" onClick={onReset}>
                     Reset
-              </Button>
+                  </Button>
 
                   <Button type="primary" htmlType="submit">
                     Register

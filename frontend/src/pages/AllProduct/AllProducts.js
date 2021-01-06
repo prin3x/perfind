@@ -205,21 +205,21 @@ export default function AllProducts() {
           : true) &&
         (searchQuery.scent.length
           ? searchQuery.scent.includes(item.topscent) ||
-          searchQuery.scent.includes(item.secondscent) ||
-          searchQuery.scent.includes(item.thirdscent)
+            searchQuery.scent.includes(item.secondscent) ||
+            searchQuery.scent.includes(item.thirdscent)
           : true) &&
         (searchQuery.size.length
           ? searchQuery.size.includes(item.size)
           : true) &&
         (searchQuery.style.length
           ? searchQuery.style.includes(item.style1) ||
-          searchQuery.style.includes(item.style2) ||
-          searchQuery.style.includes(item.style3) ||
-          searchQuery.style.includes(item.style4)
+            searchQuery.style.includes(item.style2) ||
+            searchQuery.style.includes(item.style3) ||
+            searchQuery.style.includes(item.style4)
           : true) &&
         (searchQuery.price.length
           ? item.price >= searchQuery.price[0] &&
-          item.price <= searchQuery.price[1]
+            item.price <= searchQuery.price[1]
           : true)
     );
     setActualPresentedProduct(filteredProducts);
@@ -261,7 +261,7 @@ export default function AllProducts() {
             <Divider />
             <Panel header="BRAND" key="22">
               <Input
-                placeholder="input search text"
+                placeholder="Search Brand"
                 allowClear
                 enterButton="Search"
                 size="small"
@@ -308,7 +308,7 @@ export default function AllProducts() {
         <FindProductContainer>
           <h1>Find Product</h1>
           <Search
-            placeholder="input search text"
+            placeholder="Search Product"
             allowClear
             enterButton="Search"
             size="large"

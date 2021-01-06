@@ -16,7 +16,6 @@ import axios from "../../config/axios";
 import { UploadOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
-
 const InsideMainSection = styled.div`
   box-shadow: 1px 0 45px 0.41px #33302a;
   width: 70vw;
@@ -94,13 +93,13 @@ function VenderRegister(props) {
   const formItemLayout =
     formLayout === "vertical"
       ? {
-        labelCol: {
-          span: 10,
-        },
-        wrapperCol: {
-          span: 24,
-        },
-      }
+          labelCol: {
+            span: 10,
+          },
+          wrapperCol: {
+            span: 24,
+          },
+        }
       : null;
   return (
     <InsideMainSection>
@@ -125,7 +124,6 @@ function VenderRegister(props) {
 
       <Row justify="center">
         <Col span={20} className="Form">
-
           <Row justify="center">
             <Col span={24}>
               <Form
@@ -159,10 +157,7 @@ function VenderRegister(props) {
                       ]}
                       style={{ width: "100%" }}
                     >
-                      <Input
-                        placeholder="input Username"
-                        style={{ width: "100%" }}
-                      />
+                      <Input placeholder="Username" style={{ width: "100%" }} />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -179,7 +174,7 @@ function VenderRegister(props) {
                         },
                       ]}
                     >
-                      <Input placeholder="input Brand name!" />
+                      <Input placeholder="Enter Brand name" />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -196,7 +191,7 @@ function VenderRegister(props) {
                         },
                       ]}
                     >
-                      <Input placeholder="input E-mail!" />
+                      <Input placeholder="E-mail" />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -213,7 +208,7 @@ function VenderRegister(props) {
                         },
                       ]}
                     >
-                      <Input.Password placeholder="input Password" />
+                      <Input.Password placeholder="Al least 6 characters" />
                     </Form.Item>
                   </Col>
                 </Row>
@@ -242,11 +237,10 @@ function VenderRegister(props) {
                         }),
                       ]}
                     >
-                      <Input.Password placeholder="input Password" />
+                      <Input.Password placeholder="Enter Confirm Password" />
                     </Form.Item>
                   </Col>
                 </Row>
-
 
                 <br></br>
                 <Row justify="center">
@@ -337,7 +331,6 @@ function VenderRegister(props) {
                   </Form.Item>
                 </Row>
 
-
                 <Row
                   justify="space-around"
                   style={{
@@ -348,11 +341,11 @@ function VenderRegister(props) {
                 >
                   <Button htmlType="button" type="primary" onClick={onReset}>
                     Reset
-              </Button>
+                  </Button>
 
                   <Button type="primary" htmlType="submit">
                     Register
-            </Button>
+                  </Button>
                 </Row>
               </Form>
             </Col>

@@ -14,7 +14,6 @@ import axios from "../../config/axios";
 import { UploadOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 
-
 const InsideMainSection = styled.div`
   box-shadow: 1px 0 45px 0.41px #33302a;
   max-width: 65vw;
@@ -31,7 +30,6 @@ const layout = {
   wrapperCol: { xs: 24, sm: 19, md: 20, lg: 19, xl: 19, xxl: 19 },
 };
 
-
 function VenderEditProduct(props) {
   // console.log(props.match.params.id);
 
@@ -46,8 +44,6 @@ function VenderEditProduct(props) {
     //     products.main_image,
     // }
   ];
-
-
 
   // const onFinish = async (values) => {
   //   console.log(values);
@@ -72,43 +68,42 @@ function VenderEditProduct(props) {
     console.log(values);
     const formData = new FormData();
     console.log(values.main_image.file.originFileObj);
-    if (values.main_image) formData.append('main_image', values.main_image.file.originFileObj);
-    formData.append('name', values.name);
-    formData.append('price', values.price);
-    formData.append('description', values.description);
-    formData.append('gender', values.gender);
-    formData.append('size', values.size);
-    formData.append('daynight', values.daynight);
-    formData.append('season', values.season);
-    formData.append('brand', values.brand);
-    formData.append('style1', values.style1);
-    formData.append('style2', values.style2);
-    formData.append('style3', values.style3);
-    formData.append('style4', values.style4);
-    formData.append('topscent', values.topscent);
-    formData.append('secondscent', values.secondscent);
-    formData.append('thirdscent', values.thirdscent);
-    formData.append('longevity', values.longevity);
-    formData.append('countInStock', values.countInStock);
+    if (values.main_image)
+      formData.append("main_image", values.main_image.file.originFileObj);
+    formData.append("name", values.name);
+    formData.append("price", values.price);
+    formData.append("description", values.description);
+    formData.append("gender", values.gender);
+    formData.append("size", values.size);
+    formData.append("daynight", values.daynight);
+    formData.append("season", values.season);
+    formData.append("brand", values.brand);
+    formData.append("style1", values.style1);
+    formData.append("style2", values.style2);
+    formData.append("style3", values.style3);
+    formData.append("style4", values.style4);
+    formData.append("topscent", values.topscent);
+    formData.append("secondscent", values.secondscent);
+    formData.append("thirdscent", values.thirdscent);
+    formData.append("longevity", values.longevity);
+    formData.append("countInStock", values.countInStock);
 
     try {
-      const res = await axios.patch(`/vender/products/${props.match.params.id}`, formData,);
+      const res = await axios.patch(
+        `/vender/products/${props.match.params.id}`,
+        formData
+      );
       if (res)
         notification.success({
           description: "successfully",
         });
       props.history.push("/vender");
-
     } catch (error) {
       notification.error({
         description: "wrong.",
       });
     }
   };
-
-
-
-
 
   const [form] = Form.useForm();
 
@@ -132,8 +127,7 @@ function VenderEditProduct(props) {
       longevity: data.longevity,
       daynight: data.daynight,
       season: data.season,
-      size: data.size
-
+      size: data.size,
     });
   };
 
@@ -141,18 +135,17 @@ function VenderEditProduct(props) {
     fetchAllProducts();
   }, []);
 
-
   const formLayout = "vertical";
   const formItemLayout =
     formLayout === "vertical"
       ? {
-        labelCol: {
-          span: 10,
-        },
-        wrapperCol: {
-          span: 24,
-        },
-      }
+          labelCol: {
+            span: 10,
+          },
+          wrapperCol: {
+            span: 24,
+          },
+        }
       : null;
   // function onChange(e) {
   //   console.log(e.target.value);
@@ -178,7 +171,7 @@ function VenderEditProduct(props) {
     form.resetFields();
   };
   return (
-    < InsideMainSection >
+    <InsideMainSection>
       <Row justify="center">
         <h2
           style={{
@@ -194,7 +187,7 @@ function VenderEditProduct(props) {
             fontFamily: "Playfair",
           }}
         >
-          EDIT PROJECT
+          EDIT PRODUCT
         </h2>
       </Row>
       <Row justify="center">
@@ -204,7 +197,6 @@ function VenderEditProduct(props) {
             {...layout}
             name="vendor"
             onFinish={onFinish}
-
             scrollToFirstError
             ///
             {...formItemLayout}
@@ -218,7 +210,7 @@ function VenderEditProduct(props) {
               <Col span={20}>
                 <Form.Item
                   name="name"
-                  label="Product"
+                  label="Product Name"
                   rules={[
                     {
                       required: false,
@@ -231,8 +223,8 @@ function VenderEditProduct(props) {
                     style={{ width: "100%" }}
                     initialValues={products.name}
                     defaultValue={products.name}
-                    placeholder="input product"
-                  // onChange={onChange}
+                    placeholder="product name"
+                    // onChange={onChange}
                   />
                 </Form.Item>
               </Col>
@@ -250,8 +242,7 @@ function VenderEditProduct(props) {
                     },
                   ]}
                 >
-                  <Input placeholder="input Price"
-                    initialValues={products.price} />
+                  <Input placeholder="price" initialValues={products.price} />
                 </Form.Item>
               </Col>
             </Row>
@@ -268,19 +259,20 @@ function VenderEditProduct(props) {
                     },
                   ]}
                 >
-                  <Input placeholder="input inventory"
-                    initialValues={products.countInStock} />
+                  <Input
+                    placeholder="input inventory"
+                    initialValues={products.countInStock}
+                  />
                 </Form.Item>
               </Col>
             </Row>
             <Row>
-              <div>main pic</div>
+              <div>Product Image</div>
             </Row>
             <Row>
               <Col>
                 <Form.Item
                   name="main_image"
-
                   rules={[
                     {
                       required: false,
@@ -292,7 +284,6 @@ function VenderEditProduct(props) {
                     action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                     listType="picture"
                     defaultFileList={[...mainList]}
-
                   >
                     <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
@@ -313,14 +304,14 @@ function VenderEditProduct(props) {
                   ]}
                 >
                   <Input
-                    placeholder="input description"
+                    placeholder="please enter your description"
                     style={{ height: "10rem" }}
                   />
                 </Form.Item>
               </Col>
             </Row>
 
-            <Row >
+            <Row>
               <Col style={{ marginRight: "4rem" }}>
                 <Form.Item
                   name="gender"
@@ -332,7 +323,6 @@ function VenderEditProduct(props) {
                     },
                   ]}
                 >
-
                   <Radio.Group buttonStyle="solid">
                     <Radio.Button value="men">for men</Radio.Button>
                     <Radio.Button value="women">for women</Radio.Button>
@@ -347,7 +337,6 @@ function VenderEditProduct(props) {
               <Col style={{ marginRight: "1.5rem" }}>
                 <Form.Item
                   name="style1"
-
                   rules={[
                     {
                       required: false,
@@ -365,7 +354,6 @@ function VenderEditProduct(props) {
               <Col style={{ marginRight: "1.5rem" }}>
                 <Form.Item
                   name="style2"
-
                   rules={[
                     {
                       required: false,
@@ -383,7 +371,6 @@ function VenderEditProduct(props) {
               <Col style={{ marginRight: "1.5rem" }}>
                 <Form.Item
                   name="style3"
-
                   rules={[
                     {
                       required: false,
@@ -400,7 +387,6 @@ function VenderEditProduct(props) {
               <Col style={{ marginRight: "1.5rem" }}>
                 <Form.Item
                   name="style4"
-
                   rules={[
                     {
                       required: false,
@@ -417,35 +403,35 @@ function VenderEditProduct(props) {
             </Row>
             <br></br>
 
-
             <Row>
               <Col style={{ marginRight: "2rem" }}>Note</Col>
 
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="topscent"
-
                   rules={[
                     {
                       required: false,
                       message: "Please input your scent",
                     },
                   ]}
-                ><Select
-                  name="topscent"
-                  showSearch
-                  style={{ width: 170 }}
-                  placeholder="Select a note"
-                  optionFilterProp="children"
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  onSearch={onSearch}
-                  filterOption={(input, option) =>
-                    option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                    0
-                  }
                 >
+                  <Select
+                    name="topscent"
+                    showSearch
+                    style={{ width: 170 }}
+                    placeholder="Select a note"
+                    optionFilterProp="children"
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    onSearch={onSearch}
+                    filterOption={(input, option) =>
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
+                    }
+                  >
                     <Option value="floral">Floral</Option>
                     <Option value="citrus">Citrus</Option>
                     <Option value="powdery">Powdery</Option>
@@ -454,12 +440,12 @@ function VenderEditProduct(props) {
                     <Option value="spicy">Spicy</Option>
                     <Option value="woody">Woody</Option>
                     <Option value="sweet">Sweet</Option>
-                  </Select></Form.Item>
+                  </Select>
+                </Form.Item>
               </Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="secondscent"
-
                   rules={[
                     {
                       required: false,
@@ -478,8 +464,9 @@ function VenderEditProduct(props) {
                     onBlur={onBlur}
                     onSearch={onSearch}
                     filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                      0
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
                     }
                   >
                     <Option value="floral">Floral</Option>
@@ -496,7 +483,6 @@ function VenderEditProduct(props) {
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="thirdscent"
-
                   rules={[
                     {
                       required: false,
@@ -515,8 +501,9 @@ function VenderEditProduct(props) {
                     onBlur={onBlur}
                     onSearch={onSearch}
                     filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >=
-                      0
+                      option.children
+                        .toLowerCase()
+                        .indexOf(input.toLowerCase()) >= 0
                     }
                   >
                     <Option value="floral">Floral</Option>
@@ -537,7 +524,6 @@ function VenderEditProduct(props) {
               <Col style={{ marginRight: "5rem" }}>
                 <Form.Item
                   name="daynight"
-
                   rules={[
                     {
                       required: false,
@@ -551,7 +537,6 @@ function VenderEditProduct(props) {
                   </Radio.Group>
                 </Form.Item>
               </Col>
-
             </Row>
             <br></br>
             <Row>
@@ -559,7 +544,6 @@ function VenderEditProduct(props) {
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
                   name="season"
-
                   rules={[
                     {
                       required: false,
@@ -578,14 +562,12 @@ function VenderEditProduct(props) {
               </Col>
             </Row>
 
-
             <br></br>
             <Row>
               <Col style={{ marginRight: "2rem" }}>Longevity</Col>
               <Col>
                 <Form.Item
                   name="longevity"
-
                   rules={[
                     {
                       required: false,
@@ -598,7 +580,6 @@ function VenderEditProduct(props) {
                     <Radio.Button value={3}>3 hours</Radio.Button>
                     <Radio.Button value={5}>5 hours</Radio.Button>
                     <Radio.Button value={7}>7 hours</Radio.Button>
-
                   </Radio.Group>
                 </Form.Item>
               </Col>
@@ -609,7 +590,6 @@ function VenderEditProduct(props) {
               <Col>
                 <Form.Item
                   name="size"
-
                   rules={[
                     {
                       required: false,
@@ -648,7 +628,7 @@ function VenderEditProduct(props) {
           </Form>
         </Col>
       </Row>
-    </InsideMainSection >
+    </InsideMainSection>
   );
 }
 

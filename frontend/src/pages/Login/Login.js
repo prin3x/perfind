@@ -14,9 +14,8 @@ const InsideMainSection = styled.div`
   margin: 0 auto;
   border-radius: 1rem;
   height: 100%;
-  margin-top:5rem;
+  margin-top: 5rem;
 `;
-
 
 function Login(props) {
   const { retrieveUserInfo } = useContext(UserContext);
@@ -44,7 +43,6 @@ function Login(props) {
   };
 
   return (
-
     <InsideMainSection>
       <Row justify="center">
         <h2
@@ -101,20 +99,18 @@ function Login(props) {
               </Link>
               <Button htmlType="submit" type="primary" onClick={Login}>
                 SIGN IN
-                </Button>
+              </Button>
             </Row>
             <br></br>
             <Row justify="center">
               <Link to="/vender/login">
                 <Button type="primary">Vendor</Button>
               </Link>
-
             </Row>
           </Form>
         </Col>
       </Row>
     </InsideMainSection>
-
   );
 }
 

@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import {
-  Table,
-  Input,
-  InputNumber,
-  Form,
-  Row,
-  Col,
-} from "antd";
+import { Table, Input, InputNumber, Form, Row, Col } from "antd";
 import { Link, withRouter } from "react-router-dom";
 import axios from "../../config/axios";
 
-
 const { Search } = Input;
-
 
 const EditableCell = ({
   editing,
@@ -43,8 +34,8 @@ const EditableCell = ({
           {inputNode}
         </Form.Item>
       ) : (
-          children
-        )}
+        children
+      )}
     </td>
   );
 };
@@ -55,8 +46,6 @@ function CardProductVender(props) {
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
 
-
-
   const [isLoading, setIsLoading] = React.useState(false);
   const [products, setProducts] = React.useState([]);
 
@@ -64,7 +53,6 @@ function CardProductVender(props) {
     props.history.push(path);
     setShow(!show);
   };
-
 
   const isEditing = (record) => record.key === editingKey;
 
@@ -86,8 +74,6 @@ function CardProductVender(props) {
     fetchAllProducts();
   }, []);
 
-
-
   const deleteProduct = async (id) => {
     await axios.delete(`vender/product/${id}`);
     setProducts(products.filter((product) => product.id !== id));
@@ -96,24 +82,24 @@ function CardProductVender(props) {
     setEditingKey("");
   };
 
-
-
   const columns = [
     {
       title: "Product",
       dataIndex: "name",
       width: "15%",
       align: "center",
-
-
     },
     {
       title: "Img",
       dataIndex: "main_image",
-      render: (text, record) => <img src={record.main_image} style={{ width: "3rem", height: "3rem", }} />,
+      render: (text, record) => (
+        <img
+          src={record.main_image}
+          style={{ width: "3rem", height: "3rem" }}
+        />
+      ),
       width: "10%",
       align: "center",
-
     },
 
     {
@@ -144,34 +130,31 @@ function CardProductVender(props) {
       align: "center",
       width: "15%",
       render: (_, record) => {
-
         return (
           <Row justify="space-around">
             <Col>
-              <button style={{ width: "3rem", }}
-                onClick={() => onRedirect(`/vender/product/edit/${record.id}`)}>
+              <button
+                style={{ width: "3rem" }}
+                onClick={() => onRedirect(`/vender/product/edit/${record.id}`)}
+              >
                 Edit
                 {/* <Link
                   to={`/vender/product/edit/${record.id}`}
                   className="btn btn-outline-info btn-sm pull-right"
                 >
                 </Link> */}
-
               </button>
             </Col>
             <Col>
-              <button style={{ width: "3rem" }}
-
+              <button
+                style={{ width: "3rem" }}
                 onClick={() => deleteProduct(record.id)}
               >
                 Delete
-          </button>
+              </button>
             </Col>
-
-          </Row >
-
+          </Row>
         );
-
       },
     },
   ];
@@ -198,7 +181,7 @@ function CardProductVender(props) {
       <Row style={{ marginLeft: "5rem" }}>
         <Col>
           <Search
-            placeholder="input search text"
+            placeholder="Search Product"
             allowClear
             onSearch={onSearch}
             loading={isLoading}
@@ -213,16 +196,13 @@ function CardProductVender(props) {
           components={{
             body: {
               cell: EditableCell,
-
             },
           }}
-
           bordered
           dataSource={products}
           columns={mergedColumns}
           rowClassName="editable-row"
-          rowKey={record => record.id}
-
+          rowKey={(record) => record.id}
         />
       </Form>
     </>

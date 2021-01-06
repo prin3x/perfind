@@ -88,18 +88,18 @@ export default function OmiseCheckout() {
         <Form {...layout} name="nest-messages" onFinish={handleFieldSubmit} style={{ padding: "3rem" }}>
           <Form.Item
             name="number"
-            label="Number"
+            label="Card Number"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Input placeholder="4242424242424242" />
+            <Input placeholder="Enter card number" />
           </Form.Item>
           <Form.Item
             name="name"
-            label="Name"
+            label="Card Holder Name"
 
             rules={[
               {
@@ -107,18 +107,18 @@ export default function OmiseCheckout() {
               },
             ]}
           >
-            <Input placeholder="John Doe" />
+            <Input placeholder="Enter your name" />
           </Form.Item>
           <Form.Item
             name="expiration_month"
-            label="Exp. Month"
+            label="Card Exp. Month"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Select placeholder="11">
+            <Select placeholder="Please select month">
               <Select.Option value="1">1</Select.Option>
               <Select.Option value="2">2</Select.Option>
               <Select.Option value="3">3</Select.Option>
@@ -135,14 +135,14 @@ export default function OmiseCheckout() {
           </Form.Item>
           <Form.Item
             name="expiration_year"
-            label="Exp. Year"
+            label="Card Exp. Year"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Select placeholder="2022">
+            <Select placeholder="Please select year">
               <Select.Option value="2020">2020</Select.Option>
               <Select.Option value="2021">2021</Select.Option>
               <Select.Option value="2022">2022</Select.Option>
@@ -153,14 +153,14 @@ export default function OmiseCheckout() {
           </Form.Item>
           <Form.Item
             name="security_code"
-            label="Security Code"
+            label="CVC/CVV/CID"
             rules={[
               {
                 required: true,
               },
             ]}
           >
-            <Input placeholder="123" />
+            <Input placeholder="Enter your security code" />
           </Form.Item>
 
           <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
