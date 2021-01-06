@@ -26,14 +26,13 @@ const { Option } = Select;
 
 const InsideMainSection = styled.div`
   box-shadow: 1px 0 45px 0.41px #33302a;
-  max-width: 90rem;
+  max-width: 60rem;
   background: #fff;
   box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
   margin: 0 auto;
   margin-bottom: 10rem;
   margin-bottom: 10rem;
   border-radius: 1rem;
-  height: 100%;
 `;
 
 function Register(props) {
@@ -95,6 +94,10 @@ function Register(props) {
     console.log(`checked = ${e.target.checked}`);
   }
 
+  const onReset = () => {
+    form.resetFields();
+  };
+
   const [form] = Form.useForm();
   const formLayout = "vertical";
   const formItemLayout =
@@ -132,29 +135,7 @@ function Register(props) {
       </Row>
       <Row justify="center">
         <Col span={24} className="Form">
-          <Row justify="center">
-            <div>
-              <Dragger {...propsUpload}>
-                <div
-                  style={{
-                    width: "12rem",
-                    height: "12rem",
-                    background: "Gray",
-                    borderRadius: "50%",
-                    marginTop: "1rem",
-                  }}
-                >
-                  <p className="ant-upload-drag-icon">
-                    <br></br>
-                    <br></br>
-                  </p>
 
-                  <p className="ant-upload-text">Upload</p>
-                  <p className="ant-upload-hint">Profile Image</p>
-                </div>
-              </Dragger>
-            </div>
-          </Row>
           <Divider />
 
           <Row justify="center">
@@ -293,72 +274,13 @@ function Register(props) {
                   </Col>
                 </Row>
 
-                <Row>
-                  <Col span={20}>
-                    <Form.Item
-                      name="security"
-                      label="Security Question"
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input your Security Question!",
-                        },
-                      ]}
-                    >
-                      <Input.Group compact>
-                        <Form.Item
-                          name={["security", "question"]}
-                          label="Security Question"
-                          noStyle
-                          rules={[
-                            {
-                              required: true,
-                              message: "Question is required",
-                            },
-                          ]}
-                        >
-                          <Select placeholder="Select question">
-                            <Option value="เกิดเดือนอะไร">เกิดเดือนอะไร</Option>
-                            <Option value="ชอบสีอะไร">ชอบสีอะไร</Option>
-                          </Select>
-                        </Form.Item>
-                        <Form.Item
-                          name={["security", "answer"]}
-                          noStyle
-                          rules={[
-                            {
-                              required: true,
-                              message: "Question is required",
-                            },
-                          ]}
-                        >
-                          <Select placeholder="Select question">
-                            <Option value="เกิดเดือนอะไร">เกิดเดือนอะไร</Option>
-                            <Option value="ชอบสีอะไร">ชอบสีอะไร</Option>
-                          </Select>
-                        </Form.Item>
-                        <Form.Item
-                          name={["security", "answer"]}
-                          noStyle
-                          rules={[
-                            { required: true, message: "Answer is required" },
-                          ]}
-                        >
-                          <Input
-                            style={{ width: "82.5%" }}
-                            placeholder="Input answer"
-                          />
-                        </Form.Item>
-                      </Input.Group>
-                    </Form.Item>
-                  </Col>
-                </Row>
+
 
                 <Row justify="center">
                   <Col>
                     <Form
                       style={{
-                        width: "25rem",
+                        width: "40rem",
                         height: "10rem",
                         overflowY: "scroll",
                         display: "flex",
@@ -442,23 +364,7 @@ function Register(props) {
                   </Form.Item>
                 </Row>
 
-                <Row justify="center">
-                  <Col>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      style={{
-                        borderRadius: "50%",
-                        width: "3rem",
-                        height: "3rem",
-                        marginTop: "2rem",
-                        marginRight: "9rem",
-                      }}
-                    >
-                      F
-                    </Button>
-                  </Col>
-                </Row>
+
 
                 <Row
                   justify="space-around"
@@ -468,9 +374,9 @@ function Register(props) {
                     marginRight: "9rem",
                   }}
                 >
-                  <Button type="primary" htmlType="submit">
+                  <Button htmlType="button" type="primary" onClick={onReset}>
                     Reset
-                  </Button>
+              </Button>
 
                   <Button type="primary" htmlType="submit">
                     Register

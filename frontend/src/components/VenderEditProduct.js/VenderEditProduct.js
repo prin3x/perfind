@@ -36,45 +36,80 @@ function VenderEditProduct(props) {
   // console.log(props.match.params.id);
 
   const [products, setProducts] = React.useState({});
-  console.log(products);
+  // console.log(products);
   const mainList = [
-    {
-      uid: "-1",
-      name: "main_image",
-      status: "done",
-      url:
-        products.main_image,
-    }
+    // {
+    //   uid: "-1",
+    //   name: "main_image",
+    //   status: "done",
+    //   url:
+    //     products.main_image,
+    // }
   ];
 
-  const fileList = [
-    {
-      uid: "-1",
-      name: "image",
-      status: "done",
-      url:
-        products.image,
-    }
-  ];
+
+
+  // const onFinish = async (values) => {
+  //   console.log(values);
+  //   const res = await axios.patch(`/vender/product/${props.match.params.id}`, {
+  //     ...values
+  //   });
+  //   try {
+
+  //     notification.success({
+  //       description: "successfully",
+
+  //     });
+  //     props.history.push("/vender");
+  //   } catch (error) {
+  //     notification.error({
+  //       description: "wrong.",
+  //     });
+  //   }
+  // };
 
   const onFinish = async (values) => {
     console.log(values);
-    const res = await axios.patch(`/vender/product/${props.match.params.id}`, {
-      ...values
-    });
+    const formData = new FormData();
+    console.log(values.main_image.file.originFileObj);
+    if (values.main_image) formData.append('main_image', values.main_image.file.originFileObj);
+    formData.append('name', values.name);
+    formData.append('price', values.price);
+    formData.append('description', values.description);
+    formData.append('gender', values.gender);
+    formData.append('size', values.size);
+    formData.append('daynight', values.daynight);
+    formData.append('season', values.season);
+    formData.append('brand', values.brand);
+    formData.append('style1', values.style1);
+    formData.append('style2', values.style2);
+    formData.append('style3', values.style3);
+    formData.append('style4', values.style4);
+    formData.append('topscent', values.topscent);
+    formData.append('secondscent', values.secondscent);
+    formData.append('thirdscent', values.thirdscent);
+    formData.append('longevity', values.longevity);
+    formData.append('countInStock', values.countInStock);
+
     try {
-
-      notification.success({
-        description: "successfully",
-
-      });
+      const res = await axios.patch(`/vender/products/${props.match.params.id}`, formData,);
+      if (res)
+        notification.success({
+          description: "successfully",
+        });
       props.history.push("/vender");
+
     } catch (error) {
       notification.error({
         description: "wrong.",
       });
     }
   };
+
+
+
+
+
   const [form] = Form.useForm();
 
   const fetchAllProducts = async () => {
@@ -254,10 +289,10 @@ function VenderEditProduct(props) {
                   ]}
                 >
                   <Upload
-                    action={"https://fimgs.net/mdimg/perfume/375x500.52002.jpg"}
+                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                     listType="picture"
-                    // defaultFileList={products.image}
-                    fileList={mainList}
+                    defaultFileList={[...mainList]}
+
                   >
                     <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>
@@ -593,19 +628,7 @@ function VenderEditProduct(props) {
               </Col>
             </Row>
             <br></br>
-            <Row>
-              <div>Sup pic</div>
-            </Row>
-            <Row>
-              <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture"
-                fileList={[...fileList]}
-              >
-                {fileList.length < 5}
-                <Button icon={<UploadOutlined />}>Upload</Button>
-              </Upload>
-            </Row>
+
             <Row
               justify="space-around"
               style={{

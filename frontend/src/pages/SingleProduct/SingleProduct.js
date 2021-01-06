@@ -56,10 +56,13 @@ function SingleProduct(props) {
 
   const putAddCart = async () => {
     await axios.post(`/carts/${id}`, { qty });
+    console.log(id);
+
   };
 
   const BuyNow = async () => {
     await axios.post(`/carts/${id}`, { qty });
+    console.log(id);
     props.history.push("/cart");
   };
 

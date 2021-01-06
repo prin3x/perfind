@@ -1,6 +1,5 @@
 import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
-import { InsideMainSection } from "../../pages/Layout/Layout";
 import axios from "../../config/axios";
 import styled from "styled-components";
 const UserWrapper = styled.section`
@@ -11,6 +10,16 @@ const UserWrapper = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const InsideMainSection = styled.div`
+  box-shadow: 1px 0 45px 0.41px #33302a;
+  max-width: 95vw;
+  background: #fff;
+  box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
+  margin: 0 auto;
+  border-radius: 1rem;
+  height: 100%;
 `;
 
 export default function UserProfile() {

@@ -12,7 +12,7 @@ const Background = styled.div`
 const TopBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   top: 0;
   background: url("/assets/index/bg-top.jpg") center center no-repeat;
   background-size: cover;
@@ -30,15 +30,7 @@ const MainSection = styled.div`
   margin: 0 2rem;
 `;
 
-export const InsideMainSection = styled.div`
-  box-shadow: 1px 0 45px 0.41px #33302a;
-  max-width: 95vw;
-  background: #fff;
-  box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
-  margin: 0 auto;
-  border-radius: 1rem;
-  height: 100%;
-`;
+
 
 function Layout(props) {
   return (

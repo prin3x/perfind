@@ -1,4 +1,4 @@
-import { Button, Checkbox, Col, notification, Row } from 'antd';
+import { Button, Checkbox, Col, notification, Row, Divider } from 'antd';
 import Form from 'antd/lib/form/Form';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -28,11 +28,11 @@ export default function AllCart(props) {
   let totalPrice = 0;
 
   const { totalPriceOrder, setTotalPriceOrder } = useContext(OrderContext);
-
+  console.log(totalPriceOrder);
   const { selectItem, retrieveAllItems } = useContext(ProductContext);
 
-  const putPay = async (totalPrice) => {
-    await axios.post(`/checkout/2`, { totalPrice });
+  const putPay = async (totalPrice, id) => {
+    // await axios.post(`/checkout/${id}`, { totalPrice });
     props.history.push("/checkout");
   };
 
@@ -65,29 +65,29 @@ export default function AllCart(props) {
       <br></br>
       <Row justify="center"><Col> <h2>My Item</h2></Col></Row>
       <br></br>
-      <Row>
-        <Col>
-          <Checkbox style={{ marginLeft: "7rem", fontSize: "1rem" }} >
-            Check all
-      </Checkbox>
-        </Col>
 
+      <Row justify="center">
+        <Col style={{ marginBottom: "1rem" }}>
+          {selectItem.length &&
+            selectItem.map(item => {
+              const { Product } = item;
+              totalPrice += +item.qty * item.Product.price;
+
+              setTotalPriceOrder(totalPrice);
+              return <Cart key={item.id}
+                props={{ ...Product }}
+                qty={item.qty} />;
+            })}
+        </Col>
+      </Row>
+
+      <Row>
+        <Col style={{ marginLeft: "55rem" }}>
+          Total : {totalPrice}
+        </Col>
       </Row>
       <br></br>
-
-      <Row>
-        {selectItem.length &&
-          selectItem.map(item => {
-            const { Product } = item;
-            totalPrice += +item.qty * +item.Product.price;
-
-            setTotalPriceOrder(totalPrice);
-            return <Cart key={item.id} props={{ ...Product }} qty={item.qty} />;
-          })}
-      </Row>
-
-      <Row><hr></hr><Col style={{ marginLeft: "50rem" }}>Total : {totalPrice}</Col></Row>
-      <Button onClick={() => putPay(totalPrice)} >Pay</Button>
+      <Button style={{ marginLeft: "56rem", marginBottom: "3rem" }} onClick={() => putPay(totalPrice)} type="primary" >Pay</Button>
 
 
 

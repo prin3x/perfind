@@ -64,38 +64,7 @@ function VenderPage(props) {
           >
             <VenderAddProduct changeActivePane={changeActivePane} />
           </TabPane>
-          <TabPane
-            tab={
-              <span
-                style={{
-                  background: "linear-gradient(to right, #b8956c, #e3d5b0)",
-                  padding: "5rem",
-                }}
-              >
-                Tab 3
-            </span>
-            }
-            key="3"
-            style={{ background: "white" }}
-          >
-            Content of Tab Pane 3
-        </TabPane>
-          <TabPane
-            tab={
-              <span
-                style={{
-                  background: "linear-gradient(to right, #b8956c, #e3d5b0)",
-                  padding: "5rem",
-                }}
-              >
-                Tab 4
-            </span>
-            }
-            key="4"
-            style={{ background: "white" }}
-          >
-            Content of Tab Pane 3
-        </TabPane>
+
         </Tabs>
       </InsideMainSection>
     </Fragment>

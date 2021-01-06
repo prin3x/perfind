@@ -185,7 +185,7 @@ const iconFontSize = {
 
 const Navbar = (props) => {
   const [show, setShow] = useState(false);
-  const { role,setRole } = useContext(UserContext);
+  const { role, setRole } = useContext(UserContext);
 
   const history = useHistory();
 
@@ -201,6 +201,11 @@ const Navbar = (props) => {
   const logOut = (props) => {
     LocalStorageService.removeToken();
     setRole("Public");
+  };
+  const logOut2 = (props) => {
+    LocalStorageService.removeToken();
+    setRole("Public");
+    onRedirect("/");
   };
 
   return (
@@ -237,6 +242,8 @@ const Navbar = (props) => {
             <MainNav onClick={() => onRedirect("/about")}>About Us</MainNav>
             <Divider />
             <MainNav onClick={() => onRedirect("/contact")}>Contact Us</MainNav>
+            <Divider />
+            <MainNav onClick={logOut2}>Logout</MainNav>
           </MainNavbarContainer>
         </MainNavWrapper>
         <RightContainer>
@@ -244,6 +251,11 @@ const Navbar = (props) => {
             <Fragment>
               <IconWrapper>
                 <RiShoppingCartLine style={iconFontSize} />
+                <DropdownContent display="none" className="dropdown-content">
+                  <ListWrapper>
+                    <List onClick={() => history.push('/cart')}>My Cart</List>
+                  </ListWrapper>
+                </DropdownContent>
               </IconWrapper>
               <IconWrapper>
                 <AiOutlineUser style={iconFontSize} />
@@ -256,12 +268,12 @@ const Navbar = (props) => {
               </IconWrapper>
             </Fragment>
           ) : (
-            <Fragment>
-              <IconWrapper style={{cursor: 'pointer'}} onClick={() => history.push('/login')}>เข้าสู่ระบบ</IconWrapper>
-              <Divider type='vertical' />
-              <IconWrapper style={{cursor: 'pointer'}} onClick={() => history.push('/register')}>ลงทะเบียน</IconWrapper>
-            </Fragment>
-          )}
+              <Fragment>
+                <IconWrapper style={{ cursor: 'pointer' }} onClick={() => history.push('/login')}>เข้าสู่ระบบ</IconWrapper>
+                <Divider type='vertical' />
+                <IconWrapper style={{ cursor: 'pointer' }} onClick={() => history.push('/register')}>ลงทะเบียน</IconWrapper>
+              </Fragment>
+            )}
         </RightContainer>
       </LowerNavbar>
     </NavbarWrapper>

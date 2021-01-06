@@ -119,29 +119,7 @@ function VenderRegister(props) {
 
       <Row justify="center">
         <Col span={20} className="Form">
-          <Row justify="center">
-            <div>
-              <Dragger {...propsUpload}>
-                <div
-                  style={{
-                    width: "12rem",
-                    height: "12rem",
-                    background: "Gray",
-                    borderRadius: "50%",
-                    marginTop: "1rem",
-                  }}
-                >
-                  <p className="ant-upload-drag-icon">
-                    <br></br>
-                    <br></br>
-                  </p>
 
-                  <p className="ant-upload-text">Upload</p>
-                  <p className="ant-upload-hint">Brand Image</p>
-                </div>
-              </Dragger>
-            </div>
-          </Row>
           <Row justify="center">
             <Col span={24}>
               <Form

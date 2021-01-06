@@ -3,44 +3,20 @@ import { Link } from "react-router-dom";
 import axios from "../../config/axios";
 import LocalStorageService from "../../services/LocalStorageService";
 import styled from "styled-components";
-import { InsideMainSection } from "../Layout/Layout";
 import { useContext } from "react";
 import { UserContext } from "../../Context/userContext";
 
-const Background = styled.div`
-  min-height: 150rem;
+const InsideMainSection = styled.div`
+  box-shadow: 1px 0 45px 0.41px #33302a;
+  width: 70vw;
+  background: #fff;
+  box-shadow: 1px 4px 19px 3px rgba(51, 48, 42, 0.47);
+  margin: 0 auto;
+  border-radius: 1rem;
   height: 100%;
-  width: 100vw;
-  position: relative;
+  margin-top:5rem;
 `;
 
-const TopBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  background: url("/assets/index/bg-top.jpg") center center no-repeat;
-  background-size: cover;
-  z-index: 1;
-  position: fixed;
-`;
-const BottomBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  bottom: 0;
-  background: url("/assets/index/bg-bottom.jpg") center center no-repeat;
-  background-size: cover;
-  z-index: 1;
-`;
-const MainSection = styled.div`
-  margin-top: 4rem;
-  width: 100vw;
-  position: absolute;
-  top: 5%;
-  background: transparent;
-  z-index: 2;
-`;
 
 function Login(props) {
   const { retrieveUserInfo } = useContext(UserContext);
@@ -68,49 +44,77 @@ function Login(props) {
   };
 
   return (
-    <MainSection>
-      <InsideMainSection>
-        <Row justify="center">
-          <Col xs={20} md={14} lg={9}>
-            <Form
-              labelCol={{ xs: 24, sm: 5, md: 4, lg: 5, xl: 5, xxl: 5 }}
-              wrapperCol={{
-                xs: 24,
-                sm: 19,
-                md: 20,
-                lg: 19,
-                xl: 19,
-                xxl: 19,
-              }}
-              onFinish={onFinish}
-              className="Form"
-              style={{ padding: "20px" }}
-            >
-              <Form.Item name="username" label="Username">
-                <Input />
-              </Form.Item>
-              <Form.Item name="password" label="Password">
-                <Input.Password />
-              </Form.Item>
-              <Row justify="center" name="fbLoginBtn">
-                <p>Login With</p>
-                <Button>
-                  <a href="http://localhost:7000/auth/facebook">Facebook</a>
+
+    <InsideMainSection>
+      <Row justify="center">
+        <h2
+          style={{
+            background: "linear-gradient(to right, #b8956c, #e3d5b0)",
+            width: "100%",
+            height: "3.5rem",
+            margin: "0 auto",
+            textAlign: "center",
+            paddingTop: "0.5rem",
+            paddingLeft: "0rem",
+            paddingRight: "0rem",
+            borderTopLeftRadius: "1rem",
+            borderTopRightRadius: "1rem",
+            color: "white",
+            fontFamily: "Playfair",
+          }}
+        >
+          Login
+        </h2>
+      </Row>
+      <Row justify="center">
+        <Col xs={20} md={14} lg={9}>
+          <Form
+            labelCol={{ xs: 24, sm: 5, md: 4, lg: 5, xl: 5, xxl: 5 }}
+            wrapperCol={{
+              xs: 24,
+              sm: 19,
+              md: 20,
+              lg: 19,
+              xl: 19,
+              xxl: 19,
+            }}
+            onFinish={onFinish}
+            className="Form"
+            style={{ padding: "20px" }}
+          >
+            <Form.Item name="username" label="Username">
+              <Input />
+            </Form.Item>
+            <Form.Item name="password" label="Password">
+              <Input.Password />
+            </Form.Item>
+            <Row justify="center" name="fbLoginBtn">
+              <Col style={{ width: "5rem" }}>Login With :</Col>
+              <Button type="primary">
+                <a href="http://localhost:7000/auth/facebook">Facebook</a>
+              </Button>
+            </Row>
+            <br></br>
+            <Row justify="space-between">
+              <Link to="/register">
+                <Button type="primary">Register</Button>
+              </Link>
+              <Button htmlType="submit" type="primary" onClick={Login}>
+                SIGN IN
                 </Button>
-              </Row>
-              <Row justify="center">
-                <Button htmlType="submit" onClick={Login}>
-                  SIGN IN
-                </Button>
-                <Link to="/register">
-                  <Button>SIGN UP</Button>
-                </Link>
-              </Row>
-            </Form>
-          </Col>
-        </Row>
-      </InsideMainSection>
-    </MainSection>
+            </Row>
+            <br></br>
+            <Row justify="center">
+              <Link to="/vender/login">
+                <Button type="primary">Vendor</Button>
+              </Link>
+
+            </Row>
+          </Form>
+        </Col>
+      </Row>
+    </InsideMainSection>
+
   );
 }
 

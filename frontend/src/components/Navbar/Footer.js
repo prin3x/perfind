@@ -7,7 +7,6 @@ const { Link } = Typography;
 const Setfooter = styled.div`
   z-index: 2;
   background: linear-gradient(to right, #b8956c, #e3d5b0);
-  height: 17vh;
   width: 100%;
   bottom: 0;
   padding: 1rem;
@@ -18,23 +17,16 @@ function Footer() {
       <Row justify="space-around">
         <Col>
           <h4>Contact Us</h4>
-          <div>9999 fdfdfs gsdgdsg</div>
-          <div>sfsfs 41000</div>
+          <div>9999 fdfdfs 41000</div>
           <div>Thailand</div>
         </Col>
         <Col>
-          <br></br>
           <br></br>
           <div>99999@gmail.com</div>
           <div>+88 956421486</div>
         </Col>
         <Col>
           <h4>Useful Links</h4>
-          <div>
-            <Link href="https://ant.design" style={{ color: "black" }}>
-              site map
-            </Link>
-          </div>
           <div>
             <Link href="https://ant.design" style={{ color: "black" }}>
               Store Location
@@ -55,17 +47,7 @@ function Footer() {
           <h4>Services</h4>
           <div>
             <Link href="https://ant.design" style={{ color: "black" }}>
-              International Shipping
-            </Link>
-          </div>
-          <div>
-            <Link href="https://ant.design" style={{ color: "black" }}>
               Term and Conditions
-            </Link>
-          </div>
-          <div>
-            <Link href="https://ant.design" style={{ color: "black" }}>
-              Orders and Returns
             </Link>
           </div>
           <div>

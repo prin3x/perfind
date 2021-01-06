@@ -10,14 +10,13 @@ const productVendorRoutes = require('./routes/productVendorRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const passport = require('passport');
 const logger = require('morgan');
-const uploadFiles = require("./routes/uploadRoutes");
+// const uploadFiles = require("./routes/uploadRoutes");
 const chargRoutes = require("./routes/chargeRoute");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 
 
 const server = express();
-
 require("./config/passport/passport");
 require("./config/passport/passport-facebook");
 
@@ -32,7 +31,7 @@ server.use(express.urlencoded({ extended: false }));
 
 server.use("/auth", authRoutes);
 server.use("/products", productRoutes);
-server.use("/upload", uploadFiles);
+// server.use("/upload", uploadFiles);
 server.use("/vender/login", authRoutes);
 server.use("/vender/register", authRoutes);
 server.use('/vender', productVendorRoutes);

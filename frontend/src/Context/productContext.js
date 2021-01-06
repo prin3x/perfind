@@ -30,12 +30,20 @@ export function ProductContextProvider({ children }) {
     });
   };
 
+  // const updateQty = async (productId, qty) => {
+  //   await axios.post(`/carts/${productId}`, { qty });
+  //   qty === 0
+  //     ? deleteProduct(productId)
+  //     : await dispatch({ type: 'UPDATE_QTY', productId, qty });
+  // };
+
   const updateQty = async (productId, qty) => {
-    await axios.post(`/carts/${productId}`, { qty });
-    qty === 0
+    const { data: { qty: newQty } } = await axios.post(`/carts/${productId}`, { qty });
+    newQty === 0
       ? deleteProduct(productId)
-      : await dispatch({ type: 'UPDATE_QTY', productId, qty });
+      : await dispatch({ type: 'UPDATE_QTY', productId, qty: newQty });
   };
+
 
 
   const deleteProduct = async productId => {

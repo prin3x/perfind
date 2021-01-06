@@ -8,6 +8,7 @@ const omise = require("omise")({
 const chargeControl = async (req, res) => {
   const tokenId = req.body.token;
   const amount = req.body.amount;
+  console.log(amount);
   omise.charges.create(
     {
       description: tokenId,
@@ -25,9 +26,9 @@ const chargeControl = async (req, res) => {
         where: {
           user_id: req.user.id
         }
-      })
+      });
       await db.Order.create({
-        total_price : amount/100,
+        total_price: Number(amount),
         status: "success",
         user_id: req.user.id
       });

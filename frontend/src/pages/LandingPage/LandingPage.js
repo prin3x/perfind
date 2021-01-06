@@ -14,7 +14,7 @@ const ContentWrapper = styled.div`
 
 const Content = styled.div`
   width: 50%;
-  height: 30rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,6 +36,8 @@ const Paragraph = styled.p`
   font-size: 1.2rem;
 `;
 
+
+
 const MainSection = styled.div`
   padding: 5rem 7.5rem;
 `;
@@ -48,7 +50,7 @@ const InsideMainSection = styled.div`
   border-radius: 1rem;
   height: 100%;
 `;
-const LandingPage = () => {
+const LandingPage = (props) => {
   return (
     <Fragment>
       <InsideMainSection>
@@ -67,7 +69,7 @@ const LandingPage = () => {
                 doloremque iure nesciunt quaerat sit sint perspiciatis
                 exercitationem. Sint, eligendi inventore?
             </Paragraph>
-              <Button type="primary" style={{ width: "15rem" }}>
+              <Button type="primary" style={{ width: "15rem" }} onClick={() => props.history.push('/products')}>
                 DISCOVER YOUR PERFUME
             </Button>
             </Content>
@@ -104,7 +106,7 @@ const LandingPage = () => {
                 doloremque iure nesciunt quaerat sit sint perspiciatis
                 exercitationem. Sint, eligendi inventore?
             </Paragraph>
-              <Button type="primary" style={{ width: "15rem" }}>
+              <Button type="primary" style={{ width: "15rem" }} onClick={() => props.history.push('/products')}>
                 DISCOVER YOUR PERFUME
             </Button>
             </Content>
@@ -123,7 +125,7 @@ const LandingPage = () => {
                 doloremque iure nesciunt quaerat sit sint perspiciatis
                 exercitationem. Sint, eligendi inventore?
             </Paragraph>
-              <Button type="primary" style={{ width: "15rem" }}>
+              <Button type="primary" style={{ width: "15rem" }} onClick={() => props.history.push('/products')}>
                 DISCOVER YOUR PERFUME
             </Button>
             </Content>

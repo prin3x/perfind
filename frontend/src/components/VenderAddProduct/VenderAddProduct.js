@@ -30,22 +30,60 @@ function VenderAddProduct(props) {
 
   const history = useHistory();
   const mainList = [
-    {
-      uid: "-1",
-      name: "main_image",
-      status: "done",
-      url:
-        setProducts.main_image,
+    // {
+    // uid: "-1",
+    // name: "main_image",
+    // status: "done",
+    // url:
+    //   setProducts.main_image,
 
-    },
+    // },
 
   ];
 
+  // const onFinish = async (values) => {
+  //   try {
+  //     const res = await axios.post('/vender/products', {
+  //       ...values
+  //     });
+  //     if (res)
+  //       notification.success({
+  //         description: "successfully",
+  //       });
+  //     props.changeActivePane("1");
+
+  //   } catch (error) {
+  //     notification.error({
+  //       description: "wrong.",
+  //     });
+  //   }
+  // };
+
   const onFinish = async (values) => {
+    console.log(values);
+    const formData = new FormData();
+    console.log(values.main_image.file.originFileObj);
+    formData.append('main_image', values.main_image.file.originFileObj);
+    formData.append('name', values.name);
+    formData.append('price', values.price);
+    formData.append('description', values.description);
+    formData.append('gender', values.gender);
+    formData.append('size', values.size);
+    formData.append('daynight', values.daynight);
+    formData.append('season', values.season);
+    formData.append('brand', values.brand);
+    formData.append('style1', values.style1);
+    formData.append('style2', values.style2);
+    formData.append('style3', values.style3);
+    formData.append('style4', values.style4);
+    formData.append('topscent', values.topscent);
+    formData.append('secondscent', values.secondscent);
+    formData.append('thirdscent', values.thirdscent);
+    formData.append('longevity', values.longevity);
+    formData.append('countInStock', values.countInStock);
+
     try {
-      const res = await axios.post('/vender/products', {
-        ...values
-      });
+      const res = await axios.post('/vender/products', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
       if (res)
         notification.success({
           description: "successfully",
@@ -58,6 +96,7 @@ function VenderAddProduct(props) {
       });
     }
   };
+
   const [form] = Form.useForm();
   const formLayout = "vertical";
   const formItemLayout =
@@ -106,7 +145,7 @@ function VenderAddProduct(props) {
             fontFamily: "Playfair",
           }}
         >
-          EDIT PROJECT
+          ADD PROJECT
         </h2>
       </Row>
       <Row justify="center">
@@ -451,6 +490,8 @@ function VenderAddProduct(props) {
                     <Radio.Button value="night">Night</Radio.Button>
                   </Radio.Group></Form.Item>
               </Col>
+            </Row>
+            <Row>
               <Col style={{ marginRight: "2rem" }}>Season</Col>
               <Col style={{ marginRight: "2rem" }}>
                 <Form.Item
@@ -510,37 +551,14 @@ function VenderAddProduct(props) {
                   ]}
                 >
                   <Radio.Group defaultValue="size" buttonStyle="solid">
-                    <Radio.Button value="30">30</Radio.Button>
                     <Radio.Button value="50">50</Radio.Button>
-                    <Radio.Button value="75">75</Radio.Button>
                     <Radio.Button value="90">90</Radio.Button>
                     <Radio.Button value="100">100</Radio.Button>
                   </Radio.Group></Form.Item>
               </Col>
             </Row>
             <br></br>
-            <Row>
-              <div>Sup pic</div>
-            </Row>
-            <Row>
-              <Form.Item
-                name="main_image"
 
-                rules={[
-                  {
-                    required: false,
-                    message: "Please input your image",
-                  },
-                ]}
-              >
-                <Upload
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                  listType="picture"
-                  defaultFileList={[...mainList]}
-                >
-                  <Button icon={<UploadOutlined />}>Upload</Button>
-                </Upload></Form.Item>
-            </Row>
             <Row
               justify="space-around"
               style={{
@@ -549,7 +567,7 @@ function VenderAddProduct(props) {
                 marginRight: "9rem",
               }}
             >
-              <Button htmlType="button" onClick={onReset}>
+              <Button type="primary" onClick={onReset}>
                 Reset
               </Button>
 

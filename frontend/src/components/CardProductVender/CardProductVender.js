@@ -7,7 +7,7 @@ import {
   Row,
   Col,
 } from "antd";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from "../../config/axios";
 
 
@@ -50,6 +50,8 @@ const EditableCell = ({
 };
 
 function CardProductVender(props) {
+  const [show, setShow] = useState(false);
+
   const [form] = Form.useForm();
   const [editingKey, setEditingKey] = useState("");
 
@@ -58,7 +60,10 @@ function CardProductVender(props) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [products, setProducts] = React.useState([]);
 
-
+  const onRedirect = (path) => {
+    props.history.push(path);
+    setShow(!show);
+  };
 
 
   const isEditing = (record) => record.key === editingKey;
@@ -143,12 +148,14 @@ function CardProductVender(props) {
         return (
           <Row justify="space-around">
             <Col>
-              <button style={{ width: "3rem", }}>
-                <Link
+              <button style={{ width: "3rem", }}
+                onClick={() => onRedirect(`/vender/product/edit/${record.id}`)}>
+                Edit
+                {/* <Link
                   to={`/vender/product/edit/${record.id}`}
                   className="btn btn-outline-info btn-sm pull-right"
-                >Edit
-            </Link>
+                >
+                </Link> */}
 
               </button>
             </Col>
@@ -222,4 +229,4 @@ function CardProductVender(props) {
   );
 }
 
-export default CardProductVender;
+export default withRouter(CardProductVender);

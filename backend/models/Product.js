@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       },
 
       longevity: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(255),
       },
       sillage: {
         type: DataTypes.INTEGER,
@@ -65,6 +65,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       totalRating: {
         type: DataTypes.INTEGER,
+      },
+      publicId: {
+        type: DataTypes.STRING(255)
       },
       // slug: {
       //   type: DataTypes.STRING,

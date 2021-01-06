@@ -26,27 +26,28 @@ const getAllCarts = async (req, res) => {
   res.status(200).send(cartProducts);
 };
 
+
+
 const addCarts = async (req, res) => {
   const { qty } = req.body;
   const targetId = req.params.id;
-
   const getCart = await db.Cart.findOne({
-    // where: { product_id: targetId },
     where: { product_id: targetId, user_id: req.user.id },
-    include: [db.Product],
+    include: [db.Product]
+
   });
+
   if (getCart) {
-    await getCart.increment('qty', { by: +qty });
-    res.status(200).send(getCart);
+    const updatedCart = await getCart.increment('qty', { by: +qty });
+    res.status(200).send(Object.assign(updatedCart, { qty: updatedCart.qty + qty }));
   } else {
     const cartProduct = await db.Cart.create({
       product_id: +targetId,
       user_id: req.user.id,
-      qty: +qty,
+      qty: +qty
     });
     res.status(200).send(cartProduct);
   }
-  res.status(200).send(null);
 };
 
 
